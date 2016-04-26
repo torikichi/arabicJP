@@ -23,7 +23,31 @@
     <%= link_to "単元別単語一覧メニュー", lessons_path %>
   </div>
   <div class="row">
-    <table class="table results">
-    </table>
+    <!--table class="table results">
+      <thead>
+      <tr>
+      <th>単語</th>
+      <th>読み</th>
+      <th>品詞</th>
+      <th>意味</th>
+      <th>語根</th>
+      <th>LV</th>
+      <th>科目</th>
+      <th>単元</th>
+      <th>例文</th>
+      </tr>
+      </thead>
+      <% if false %>
+      <% @words.each do |word| %>
+      <tr>
+        <td><%= word.word %></td>
+        <td><%= word.word_with_pron %></td>
+        <td><%= word.word_pos %></td>
+        <td><%= word.meaning %></td>
+        <td><%= word.root %></td>
+      </tr>
+      <% end %>
+      <% end %>
+    </table-->
   </div>
 </div>

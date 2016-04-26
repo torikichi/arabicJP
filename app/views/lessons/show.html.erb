@@ -42,19 +42,39 @@
       <h3>LV<%= @disp_obj.lv %></h3>
       <ul>
         <li>
+          <%if @disp_obj.category == 1 then %>
+          <%= CATEGORY1+"　"+CATEGORY1_AR %>
+          <% else %>
           <%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 1) %>
+          <% end %>
         </li>
       	<li>
+          <%if @disp_obj.category == 2 then %>
+          <%= CATEGORY2+"　"+CATEGORY2_AR %>
+          <% else %>
           <%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 2) %>
+          <% end %>
         </li>
       	<li>
+          <%if @disp_obj.category == 3 then %>
+          <%= CATEGORY3+" "+CATEGORY3_AR %>
+          <% else %>
           <%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 3) %>
+          <% end %>
         </li>
         <li>
         <% if @disp_obj.lv != 1 then %>
-          <%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 4) %>
+          <%if @disp_obj.category == 4 then %>
+            <%= CATEGORY4+"　"+CATEGORY4_AR %>
+          <% else %>
+            <%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 4) %>
+          <% end %>
         <% else %>
-          <%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 5) %>
+          <%if @disp_obj.category == 5 then %>
+            <%= CATEGORY5+"　"+CATEGORY5_AR %>
+          <% else %>
+            <%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 5) %>
+          <% end %>
         <% end %>
         </li>
       </ul>
