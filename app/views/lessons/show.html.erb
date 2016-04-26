@@ -1,0 +1,82 @@
+<div class="container">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Level" + @disp_obj.lv.to_s, "#", class:"navbar-brand" %>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+          <li><a href="../navbar-static-top/">Static top</a></li>
+          <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+  <div class="row">
+    <div class="col-lg-3 portfolio-item inline">
+      <%= image_tag("cover"+@disp_obj.lv.to_s, alt:"img", class:"img-responsive") %>
+      <h3>LV<%= @disp_obj.lv %></h3>
+      <ul>
+        <li>
+          <%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 1) %>
+        </li>
+      	<li>
+          <%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 2) %>
+        </li>
+      	<li>
+          <%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 3) %>
+        </li>
+        <li>
+        <% if @disp_obj.lv != 1 then %>
+          <%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 4) %>
+        <% else %>
+          <%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 5) %>
+        <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-5 portfolio-item inline">
+      <dl>
+      <% @lessons.each do |lesson| %>
+      <dd>Lesson <%= lesson.lesson_no %>
+      <% if lesson.lesson_seq != 0 %>
+        - <%= lesson.lesson_seq %>
+      <% end %>
+      </dd>
+        <dt>
+          <%= link_to lesson.lesson_name, "#" %>
+          <span class="lesson"><%= link_to lesson.lesson_name_ar, "#" %></span>
+        </dt>
+      <% end %>
+      </dl>
+    </div>
+  </div>
+
+  <div class="row" id="list">
+    <%= link_to "単語検索メニュー", root_path %>
+  </div>
+</div>

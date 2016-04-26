@@ -1,0 +1,53 @@
+<!--h1>Level Category</h1-->
+<div class="container">
+  <div class="col-lg-12">
+    <h2 class="page-header">単元別メニュー</h2>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 portfolio-item inline">
+      <%= link_to image_tag("cover1", alt:"LEVEL 1", class:"img-responsive"), '#' %>
+      <h3>LV1</h3>
+      <ul>
+        <li><%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => 1, :category => 1) %></li>
+        <li><%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => 1, :category => 2) %></li>
+        <li><%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => 1, :category => 3) %></li>
+        <li><%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => 1, :category => 5) %></li>
+      </ul>
+    </div>
+    <div class="col-lg-4 portfolio-item inline">
+      <%= link_to image_tag("cover2", alt:"LEVEL 2", class:"img-responsive"), '#' %>
+      <h3>LV2</h3>
+      <ul>
+        <li><%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => 2, :category => 1) %></li>
+        <li><%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => 2, :category => 2) %></li>
+        <li><%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => 2, :category => 3) %></li>
+        <li><%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => 2, :category => 4) %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 portfolio-item inline">
+      <%= link_to image_tag("cover3", alt:"LEVEL 3", class:"img-responsive"), '#' %>
+      <h3>LV3</h3>
+      <ul>
+        <li><%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => 3, :category => 1) %></li>
+        <li><%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => 3, :category => 2) %></li>
+        <li><%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => 3, :category => 3) %></li>
+        <li><%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => 3, :category => 4) %></li>
+      </ul>
+    </div>
+    <div class="col-lg-4 portfolio-item inline">
+      <%= link_to image_tag("cover4", alt:"LEVEL 4", class:"img-responsive"), '#' %>
+      <h3>LV4</h3>
+      <ul>
+        <li><%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => 4, :category => 1) %></li>
+        <li><%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => 4, :category => 2) %></li>
+        <li><%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => 4, :category => 3) %></li>
+        <li><%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => 4, :category => 4) %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" id="list">
+    <%= link_to "単語検索メニュー", root_path %>
+  </div>
+</div>

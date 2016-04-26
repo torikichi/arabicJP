@@ -1,0 +1,29 @@
+<!--h1>Lessons#home</h1-->
+<div class="container">
+  <div class="row">
+    <form>
+      <fieldset>
+        <legend>単語検索メニュー</legend>
+        <p>
+          検索メニュー:
+          <select id="dictionary">
+            <option type="submit" class="btn btn-default" id="arabic">単語検索</option>
+            <option type="submit" class="btn btn-default" id="chinese">類義語検索</option>
+            <option type="submit" class="btn btn-default" id="classification">対義語検索</option>
+          </select>
+        </p>
+        <p>
+          <input type="text" class="form-control" id="search" placeholder="アラビア語または日本語を入力" autofocus="autofocus">
+        </p>
+        <button type="submit" class="btn btn-default" id="search-btn">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="row" id="list">
+    <%= link_to "単元別単語一覧メニュー", lessons_path %>
+  </div>
+  <div class="row">
+    <table class="table results">
+    </table>
+  </div>
+</div>
