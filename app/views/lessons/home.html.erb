@@ -1,21 +1,22 @@
 <!--h1>Lessons#home</h1-->
 <div class="container">
   <div class="row">
-    <form>
+    <!--form-->
+    <%= form_tag("/words", method: "get") do %>
       <fieldset>
         <legend>単語検索メニュー</legend>
-        <p>
+        <!--p>
           検索メニュー:
           <select id="dictionary">
             <option type="submit" class="btn btn-default" id="arabic">単語検索</option>
             <option type="submit" class="btn btn-default" id="chinese">類義語検索</option>
             <option type="submit" class="btn btn-default" id="classification">対義語検索</option>
           </select>
-        </p>
+        </p-->
         <p>
-          <input type="text" class="form-control" id="search" placeholder="アラビア語または日本語を入力" autofocus="autofocus">
+          <%= text_field_tag(:srchWrd, "", placeholder: "アラビア語または日本語を入力", class:"form-control", id:"search", autofocus:true) %>
         </p>
-        <button type="submit" class="btn btn-default" id="search-btn">Submit</button>
+        <%= submit_tag("submit", class:"btn btn-default", id:"search-btn") %>
       </fieldset>
     </form>
   </div>
