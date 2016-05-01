@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :lessons
     resource :lessons
 
+    resources :words
+
   # Example resource route with options:
   #   resources :products do
   #     member do
