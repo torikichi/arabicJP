@@ -1,8 +1,6 @@
 class LessonsController < ApplicationController
   def home
     @words
-    # @words = Word.where("root = ?", "عمل")
-    # @words = nil
 
   end
 

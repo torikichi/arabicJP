@@ -1,5 +1,8 @@
 <!--h1>Lessons#home</h1-->
 <div class="container">
+  <div class="row" id="list">
+    <%= link_to "単元別単語一覧メニュー", lessons_path %>
+  </div>
   <div class="row">
     <%= form_tag("/words", method: "get") do %>
       <fieldset>
@@ -19,11 +22,17 @@
       </fieldset>
     <% end %>
   </div>
-  <div class="row" id="list">
-    <%= link_to "単元別単語一覧メニュー", lessons_path %>
-  </div>
   <div class="row">
+
+  <%if false %>
+  <% if !@relations.nil? %>
+    <%= render synonym_word_path %>
+  <% end %>
+  <% end %>
+
   <% if !@words.nil? %>
+    <p>類義語：<%= link_to @words.first.cntSynm(1, @words.first.id).count, "#" %>件　
+    対義語：<%= link_to  @words.first.cntSynm(2, @words.first.id).count, "#" %>件</p>
     <table class="table results">
       <thead>
       <tr>
@@ -38,7 +47,7 @@
         <th>例文</th>
       </tr>
       </thead>
-    <%= render @words %>
+      <%= render @words %>
     </table>
   <% end %>
   </div>

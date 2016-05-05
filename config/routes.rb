@@ -20,8 +20,13 @@ Rails.application.routes.draw do
   # 自分で追加した分
     resources :lessons
     resource :lessons
+    resources :relations
 
-    resources :words
+    resources :words do
+      member do
+        get :synonym
+      end
+    end
 
   # Example resource route with options:
   #   resources :products do
