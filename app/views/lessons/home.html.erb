@@ -32,7 +32,7 @@
 
   <% if !@words.nil? %>
     <p>類義語：<%= link_to @words.first.cntSynm(1, @words.first.id).count, "#" %>件　
-    対義語：<%= link_to  @words.first.cntSynm(2, @words.first.id).count, "#" %>件</p>
+    対義語：<%= link_to @words.first.cntSynm(2, @words.first.id).count, "#" %>件</p>
     <table class="table results">
       <thead>
       <tr>
