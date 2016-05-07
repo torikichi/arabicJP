@@ -31,8 +31,13 @@
   <% end %>
 
   <% if !@words.nil? %>
-    <p>類義語：<%= link_to @words.first.cntSynm(1, @words.first.id).count, "#" %>件　
-    対義語：<%= link_to @words.first.cntSynm(2, @words.first.id).count, "#" %>件</p>
+    <p>類義語：
+    <% @words.first.cntSynm(1, @words.first.id).each do |syn| %>
+      <%= link_to syn.subTotal, "#" %>件
+    <% end %>　
+    対義語：<%= link_to @words.first.cntSynm(2, @words.first.id).count, "#" %>件
+    </p>
+
     <table class="table results">
       <thead>
       <tr>
