@@ -4,8 +4,26 @@
     <td><%= word.word_with_pron %></td>
     <td><%= word.pos %></td>
     <td><%= word.meaning %></td>
-    <td><%= link_to word.root, "#" %></td>
+    <td>
+      <% if word.plural_cd != 0 %>
+        <%= word.plural_ord == 0 ? "→複" : "→単" %>
+      <% end %>
+    </td>
+    <td><%= link_to word.root, wordsRoots_word_path(word.root) %></td>
     <td><%#= word.lessons.first.lv %></td>
-    <td></td>
+    <td><%#= category %></td>
+    <td><%#= lesson No. %></td>
+    <td>
+      <% word.cntSynm(1, word.id).each do |syn| %>
+        <%= link_to syn.subTotal, "#" -%>件<br>
+      <% end %>
+    </td>
+    <td>
+      <% if (lnk = word.cntSynm(2, word.id).count) == 0 %>
+        <%= "" %>
+      <% else %>
+        <%= link_to lnk, "#" %>件
+      <% end %>
+    </td>
     <td></td>
   </tr>

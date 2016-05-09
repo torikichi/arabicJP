@@ -24,20 +24,7 @@
   </div>
   <div class="row">
 
-  <%if false %>
-  <% if !@relations.nil? %>
-    <%= render synonym_word_path %>
-  <% end %>
-  <% end %>
-
   <% if !@words.nil? %>
-    <p>類義語：
-    <% @words.first.cntSynm(1, @words.first.id).each do |syn| %>
-      <%= link_to syn.subTotal, "#" %>件
-    <% end %>　
-    対義語：<%= link_to @words.first.cntSynm(2, @words.first.id).count, "#" %>件
-    </p>
-
     <table class="table results">
       <thead>
       <tr>
@@ -45,11 +32,14 @@
         <th>読み</th>
         <th>品詞</th>
         <th>意味</th>
+        <th>複数</th>
         <th>語根</th>
         <th>LV</th>
         <th>科目</th>
-        <th>単元</th>
-        <th>例文</th>
+        <th>No.</th>
+        <th>類</th>
+        <th>対</th>
+        <th>例</th>
       </tr>
       </thead>
       <%= render @words %>

@@ -24,8 +24,10 @@ Rails.application.routes.draw do
 
     resources :words do
       member do
-        get :synonym
+        get :synonym, :wordsRoots
       end
+
+      resources :examples
     end
 
   # Example resource route with options:
