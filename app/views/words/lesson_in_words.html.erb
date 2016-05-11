@@ -1,0 +1,47 @@
+<table class="table results">
+  <thead>
+  <tr>
+    <th>単語</th>
+    <th>読み</th>
+    <th>品詞</th>
+    <th>意味</th>
+    <th>複数</th>
+    <th>語根</th>
+    <th>類</th>
+    <th>対</th>
+    <th>例</th>
+  </tr>
+  </thead>
+  <% @words.each do |word| %>
+  <tr>
+    <td><%= word.word %></td>
+    <td><%= word.word_with_pron %></td>
+    <td><%= word.pos %></td>
+    <td><%= word.meaning %></td>
+    <td>
+      <% if word.plural_cd != 0 %>
+        <%= word.plural_ord == 0 ? "→複" : "→単" %>
+      <% end %>
+    </td>
+    <td>
+      <% if word.root != "-" && word.root.present? %>
+        <%= link_to word.root, wordsRoots_word_path(word.root) %>
+      <% end %>
+    </td>
+    <td>
+      <% word.cntSynm(1, word.id).each do |syn| %>
+        <%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件<br>
+      <% end %>
+    </td>
+    <td>
+      <% anto = word.cntSynm(2, word.id) %>
+      <% if anto.count == 0 %>
+        <%= "" %>
+      <% else %>
+        <%= link_to anto.count, antonym_relation_path(anto.first.rel_id, anto.first.ant_contrast_cd) %>件
+      <% end %>
+    </td>
+    <td></td>
+  </tr>
+  <% end %>
+</table>

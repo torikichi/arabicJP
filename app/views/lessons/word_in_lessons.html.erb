@@ -1,0 +1,60 @@
+<div class="container">
+
+<table>
+  <thead>
+  <tr>
+    <th>単語</th>
+    <th>読み</th>
+    <th>品詞</th>
+    <th>意味</th>
+  </tr>
+  </thead>
+  <tr>
+  	<td><%= @choisedWord.word %></td>
+  	<td><%= @choisedWord.word_with_pron%></td>
+  	<td><%= @choisedWord.pos %></td>
+  	<td><%= @choisedWord.meaning %></td>
+  </tr>
+</table>
+
+<table class="table results">
+  <thead>
+  <tr>
+  	<th>LV</th>
+  	<th>科目</th>
+  	<th>Lesson</th>
+  	<th>Lesson名</th>
+  </tr>
+  </thead>
+  <% @lessons.each do |lesson| %>
+  <tr>
+  	<td><%= lesson.lv %></td>
+  	<td>
+	  <% case lesson.category %>
+	  <% when READ_NO %>
+	    <%= CATE1 %>
+	  <% when WRITE_NO %>
+	  	<%= CATE2 %>
+	  <% when CONVERSATION_NO %>
+	  	<%= CATE3 %>
+	  <% when GRAMMER_NO %>
+	  	<%= CATE4 %>
+	  <% when SUPPLEMENT_NO %>
+	  	<%= CATE5 %>
+	  <% end %>
+  	</td>
+  	<td>
+  	  <%= lesson.lesson_no %>
+  	  <% strSeq = lesson.lesson_seq != 0 ? " - "+lesson.lesson_seq.to_s : "" %>
+  	  <%= strSeq %>
+  	</td>
+  	<td><%= link_to lesson.lesson_name, lesson_in_words_word_path(params[:id]) %></td>
+  </tr>
+  <% end %>
+</table>
+
+<div class="row" id="list">
+  <%= link_to "単語検索メニュー", root_path %>
+</div>
+
+</div>
