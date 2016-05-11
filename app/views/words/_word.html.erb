@@ -9,20 +9,26 @@
         <%= word.plural_ord == 0 ? "→複" : "→単" %>
       <% end %>
     </td>
-    <td><%= link_to word.root, wordsRoots_word_path(word.root) %></td>
+    <td>
+      <% if word.root != "-" && word.root.present? %>
+        <%= link_to word.root, wordsRoots_word_path(word.root) %>
+      <% end %>
+    </td>
     <td><%#= word.lessons.first.lv %></td>
     <td><%#= category %></td>
     <td><%#= lesson No. %></td>
     <td>
       <% word.cntSynm(1, word.id).each do |syn| %>
-        <%= link_to syn.subTotal, "#" -%>件<br>
+        <%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件<br>
       <% end %>
     </td>
     <td>
-      <% if (lnk = word.cntSynm(2, word.id).count) == 0 %>
+      <% anto = word.cntSynm(2, word.id) %>
+      <% if anto.count == 0 %>
+      <%# if (anto = word.cntSynm(2, word.id).count) == 0 %>
         <%= "" %>
       <% else %>
-        <%= link_to lnk, "#" %>件
+        <%= link_to anto.count, antonym_relation_path(anto.first.rel_id, anto.first.ant_contrast_cd) %>件
       <% end %>
     </td>
     <td></td>

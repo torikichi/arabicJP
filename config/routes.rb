@@ -20,11 +20,15 @@ Rails.application.routes.draw do
   # 自分で追加した分
     resources :lessons
     resource :lessons
-    resources :relations
+    resources :relations do
+      member do
+        get :synonym, :antonym
+      end
+    end
 
     resources :words do
       member do
-        get :synonym, :wordsRoots
+        get :wordsRoots
       end
 
       resources :examples

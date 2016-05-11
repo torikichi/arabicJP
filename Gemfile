@@ -50,5 +50,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 
+  # N+1問題検知
+  gem 'bullet'
+
 end
 
