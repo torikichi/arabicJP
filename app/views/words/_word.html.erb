@@ -14,9 +14,6 @@
         <%= link_to word.root, wordsRoots_word_path(word.root) %>
       <% end %>
     </td>
-    <td><%#= word.lessons.first.lv %></td>
-    <td><%#= category %></td>
-    <td><%#= lesson No. %></td>
     <td>
       <% word.cntSynm(1, word.id).each do |syn| %>
         <%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件<br>
@@ -25,11 +22,16 @@
     <td>
       <% anto = word.cntSynm(2, word.id) %>
       <% if anto.count == 0 %>
-      <%# if (anto = word.cntSynm(2, word.id).count) == 0 %>
         <%= "" %>
       <% else %>
         <%= link_to anto.count, antonym_relation_path(anto.first.rel_id, anto.first.ant_contrast_cd) %>件
       <% end %>
     </td>
     <td></td>
+    <td>
+      <% srchArray = word.arrayAppr(word.id) %>
+      <% if srchArray.present? %>
+        <%= link_to srchArray.size, word_in_lessons_lesson_path(srchArray, word.id) %>件
+      <% end %>
+    </td>
   </tr>

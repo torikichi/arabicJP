@@ -17,20 +17,12 @@ class LessonsController < ApplicationController
 
   end
 
-  # def levelCategoryList
-  #   @lessons = Lesson.all
-  # 	redirect_to '/lessons/level_category'
-  # end
+  def word_in_lessons
+    @choisedWord = Word.find(params[:format])
 
-  def searchWords
+    srchKeys = params[:id].split('/').map(&:to_i)
+    @lessons = Lesson.where("id in (?)", srchKeys)
 
   end
 
-  def searchSynonym
-  	
-  end
-
-  def seachAntonym
-  	
-  end
 end

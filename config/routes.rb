@@ -18,7 +18,12 @@ Rails.application.routes.draw do
   #   resources :product
   #
   # 自分で追加した分
-    resources :lessons
+    resources :lessons do
+      member do
+        get :word_in_lessons
+      end
+    end
+
     resource :lessons
     resources :relations do
       member do
@@ -28,7 +33,7 @@ Rails.application.routes.draw do
 
     resources :words do
       member do
-        get :wordsRoots
+        get :wordsRoots, :lesson_in_words
       end
 
       resources :examples

@@ -17,4 +17,8 @@ class Word < ActiveRecord::Base
 
   end
 
+  def arrayAppr(wordId)
+  	Appearance.where("word_id=?", wordId).pluck(:appr_id)
+  	
+  end
 end

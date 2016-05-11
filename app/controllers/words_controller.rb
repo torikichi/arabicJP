@@ -12,4 +12,11 @@ class WordsController < ApplicationController
     render '/lessons/home'
   end
 
+  # Lessonに紐付く単語を取得
+  def lesson_in_words
+    srchKeys = params[:id].split('/').map(&:to_i)
+    apprArray = Appearance.where("appr_id in (?)", srchKeys).pluck(:word_id)
+    @words = Word.where("id in (?)", apprArray)
+  end
+
 end
