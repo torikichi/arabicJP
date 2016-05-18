@@ -48,7 +48,7 @@
   	  <% strSeq = lesson.lesson_seq != 0 ? " - "+lesson.lesson_seq.to_s : "" %>
   	  <%= strSeq %>
   	</td>
-  	<td><%= link_to lesson.lesson_name, lesson_in_words_word_path(params[:id]) %></td>
+  	<td><%= link_to lesson.lesson_name, lesson_in_words_word_path(lesson.id) %></td>
   </tr>
   <% end %>
 </table>

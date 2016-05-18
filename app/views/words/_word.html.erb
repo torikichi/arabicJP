@@ -9,29 +9,30 @@
         <%= word.plural_ord == 0 ? "→複" : "→単" %>
       <% end %>
     </td>
+    <% if params[:action] != "wordsRoots" %>
+      <td>
+        <% if word.root != "-" && word.root.present? %>
+          <%= link_to word.root, wordsRoots_word_path(word.root) %>
+        <% end %>
+      </td>
+    <% end %>
+    <% if params[:action] != "synonym" %>
+      <td>
+        <% word.cntSynm(1, word.id).each do |syn| %>
+          <p><%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件</p>
+        <% end %>
+      </td>
+    <% end %>
     <td>
-      <% if word.root != "-" && word.root.present? %>
-        <%= link_to word.root, wordsRoots_word_path(word.root) %>
-      <% end %>
-    </td>
-    <td>
-      <% word.cntSynm(1, word.id).each do |syn| %>
-        <%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件<br>
-      <% end %>
-    </td>
-    <td>
-      <% anto = word.cntSynm(2, word.id) %>
-      <% if anto.count == 0 %>
-        <%= "" %>
-      <% else %>
-        <%= link_to anto.count, antonym_relation_path(anto.first.rel_id, anto.first.ant_contrast_cd) %>件
+      <% word.cntSynm(2, word.id).each do |anto| %>
+        <p><%= link_to anto.type_name, antonym_relation_path(anto.rel_id, anto.ant_contrast_cd) -%>
+        </p>
       <% end %>
     </td>
     <td></td>
     <td>
-      <% srchArray = word.arrayAppr(word.id) %>
-      <% if srchArray.present? %>
-        <%= link_to srchArray.size, word_in_lessons_lesson_path(srchArray, word.id) %>件
+      <% if word.lesson != 0 %>
+      <%= link_to word.lesson, word_in_lessons_lesson_path(word.id) %>件
       <% end %>
     </td>
   </tr>

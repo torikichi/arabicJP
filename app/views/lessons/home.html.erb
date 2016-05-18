@@ -33,8 +33,12 @@
         <th>品詞</th>
         <th>意味</th>
         <th>複数</th>
-        <th>語根</th>
-        <th>類</th>
+        <% if params[:action] != "wordsRoots" %>
+          <th>語根</th>
+        <% end %>
+        <% if params[:action] != "synonym" %>
+          <th>類</th>
+        <% end %>
         <th>対</th>
         <th>例</th>
         <th>登場箇所</th>

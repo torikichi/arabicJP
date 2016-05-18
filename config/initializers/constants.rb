@@ -23,3 +23,6 @@ CATE2 = "作文"
 CATE3 = "会話"
 CATE4 = "文法"
 CATE5 = "ホンダ"
+
+# 共有SQL用クエリ(where句以前)
+QUERY = "select w.*, count(a.appr_id) as lesson from words w left outer join appearances a on w.id=a.word_id "
