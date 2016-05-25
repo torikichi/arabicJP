@@ -12,26 +12,50 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li class="active">
+            <% case @disp_obj.category %>
+            <% when READ_NO %>
+              <%= link_to CATEGORY1, "#" %>
+            <% when WRITE_NO %>
+              <%= link_to CATEGORY2, "#" %>
+            <% when CONVERSATION_NO %>
+              <%= link_to CATEGORY3, "#" %>
+            <% when GRAMMER_NO %>
+              <%= link_to CATEGORY4, "#" %>
+            <% when SUPPLEMENT_NO %>
+              <%= link_to CATEGORY5, "#" %>
+            <% end %>
+          </li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Others… <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li>　その他のLVを選択…</li>
               <li class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li class="dropdown-header">Level<%= @disp_obj.lv.to_s %></li>
+              <% if @disp_obj.lv != 1 %>
+                <li><%=link_to "LEVEL1", lesson_path(:id => 1, :lv => 1, :category => 1) %></li>
+              <% end %>
+              <% if @disp_obj.lv != 2 %>
+                <li><%=link_to "LEVEL2", lesson_path(:id => 1, :lv => 2, :category => 1) %></li>
+              <% end %>
+              <% if @disp_obj.lv != 3 %>
+                <li><%=link_to "LEVEL3", lesson_path(:id => 1, :lv => 3, :category => 1) %></li>
+              <% end %>
+              <% if @disp_obj.lv != 4 %>
+                <li><%=link_to "LEVEL4", lesson_path(:id => 1, :lv => 4, :category => 1) %></li>
+              <% end %>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+          <li class="active">
+            <%=link_to "単語検索メニュー", root_path %>
+          </li>
+          <!--li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
           <li><a href="../navbar-static-top/">Static top</a></li>
-          <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+          <li><a href="../navbar-fixed-top/">Fixed top</a></li-->
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
@@ -42,35 +66,35 @@
       <h3>LV<%= @disp_obj.lv %></h3>
       <ul>
         <li>
-          <%if @disp_obj.category == 1 then %>
+          <% if @disp_obj.category == READ_NO %>
           <%= CATEGORY1+"　"+CATEGORY1_AR %>
           <% else %>
           <%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 1) %>
           <% end %>
         </li>
       	<li>
-          <%if @disp_obj.category == 2 then %>
+          <% if @disp_obj.category == WRITE_NO %>
           <%= CATEGORY2+"　"+CATEGORY2_AR %>
           <% else %>
           <%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 2) %>
           <% end %>
         </li>
       	<li>
-          <%if @disp_obj.category == 3 then %>
+          <% if @disp_obj.category == CONVERSATION_NO %>
           <%= CATEGORY3+" "+CATEGORY3_AR %>
           <% else %>
           <%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 3) %>
           <% end %>
         </li>
         <li>
-        <% if @disp_obj.lv != 1 then %>
-          <%if @disp_obj.category == 4 then %>
+        <% if @disp_obj.lv != 1 %>
+          <%if @disp_obj.category == GRAMMER_NO %>
             <%= CATEGORY4+"　"+CATEGORY4_AR %>
           <% else %>
             <%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 4) %>
           <% end %>
         <% else %>
-          <%if @disp_obj.category == 5 then %>
+          <%if @disp_obj.category == SUPPLEMENT_NO %>
             <%= CATEGORY5+"　"+CATEGORY5_AR %>
           <% else %>
             <%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 5) %>
@@ -96,7 +120,4 @@
     </div>
   </div>
 
-  <div class="row" id="list">
-    <%= link_to "単語検索メニュー", root_path %>
-  </div>
 </div>

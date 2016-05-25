@@ -7,20 +7,64 @@
     <%= form_tag("/words", method: "get") do %>
       <fieldset>
         <legend>単語検索メニュー</legend>
-        <!--p>
-          検索メニュー:
-          <select id="dictionary">
-            <option type="submit" class="btn btn-default" id="arabic">単語検索</option>
-            <option type="submit" class="btn btn-default" id="chinese">類義語検索</option>
-            <option type="submit" class="btn btn-default" id="classification">対義語検索</option>
-          </select>
-        </p-->
+        <% if params[:action] == "home" %>
         <p>
-          <%= text_field_tag(:srchWrd, "", placeholder: "アラビア語または日本語を入力", class:"form-control", id:"search", autofocus:true) %>
+          <%= text_field_tag(:srchWrd, "", placeholder: "アラビア語を入力", class:"form-control", id:"search", autofocus:true) %>
+          <%= link_to "アラビア語キーボードを表示", "#", id:"showkeyboard" %>
         </p>
         <%= submit_tag("submit", class:"btn btn-default", id:"search-btn") %>
+        <% end %>
       </fieldset>
     <% end %>
+    <div id="keyboard">
+      <div id="row0">
+        <input name="ض" type="button" value="ض" />
+        <input name="ص" type="button" value="ص" />
+        <input name="ث" type="button" value="ث" />
+        <input name="ق" type="button" value="ق" />
+        <input name="ف" type="button" value="ف" />
+        <input name="غ" type="button" value="غ" />
+        <input name="ع" type="button" value="ع" />
+        <input name="ه" type="button" value="ه" />
+        <input name="خ" type="button" value="خ" />
+        <input name="ح" type="button" value="ح" />
+        <input name="ج" type="button" value="ج" />
+        <input name="ّ" type="button" value="ّ" />
+        <input name="backspace" type="button" value="Backspace" />
+      </div>
+      <div id="row1">
+        <input name="إ" type="button" value="إ" />
+        <input name="أ" type="button" value="أ" />
+        <input name="آ" type="button" value="آ" />
+        <input name="ش" type="button" value="ش" />
+        <input name="س" type="button" value="س" />
+        <input name="ي" type="button" value="ي" />
+        <input name="ب" type="button" value="ب" />
+        <input name="ل" type="button" value="ل" />
+        <input name="ا" type="button" value="ا" />
+        <input name="ت" type="button" value="ت" />
+        <input name="ن" type="button" value="ن" />
+        <input name="م" type="button" value="م" />
+        <input name="ك" type="button" value="ك" />
+        <input name="ة" type="button" value="ة" />
+      </div>
+      <div id="row2">
+        <input name="ؤ" type="button" value="ؤ" />
+        <input name="ئ" type="button" value="ئ" />
+        <input name="ء" type="button" value="ء" />
+        <input name="ظ" type="button" value="ظ" />
+        <input name="ط" type="button" value="ط" />
+        <input name="ذ" type="button" value="ذ" />
+        <input name="د" type="button" value="د" />
+        <input name="ز" type="button" value="ز" />
+        <input name="ر" type="button" value="ر" />
+        <input name="و" type="button" value="و" />
+        <input name="ى" type="button" value="ى" />  
+      </div>
+      <div id="spacebar">
+        <input name="spacebar" type="button" value=" " />
+      </div>
+    </div>
   </div>
   <div class="row">
 

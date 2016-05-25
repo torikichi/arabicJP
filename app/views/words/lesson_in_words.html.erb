@@ -54,14 +54,10 @@
       <% end %>
     </td>
     <td>
-    <% if false %>
-      <% anto = word.cntSynm(2, word.id) %>
-      <% if anto.count == 0 %>
-        <%= "" %>
-      <% else %>
-        <%= link_to anto.count, antonym_relation_path(anto.first.rel_id, anto.first.ant_contrast_cd) %>件
+      <% word.cntSynm(2, word.id).each do |anto| %>
+        <p><%= link_to anto.type_name, antonym_relation_path(anto.rel_id, anto.ant_contrast_cd) -%>
+        </p>
       <% end %>
-    <% end %>  
     </td>
     <td></td>
   </tr>

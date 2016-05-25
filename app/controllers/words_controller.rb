@@ -18,9 +18,11 @@ class WordsController < ApplicationController
   def lesson_in_words
     @choisedLesson = Lesson.find(params[:id])
 
-    srchKeys = params[:id].split('/').map(&:to_i)
-    apprArray = Appearance.where("appr_id in (?)", srchKeys).pluck(:word_id)
-    @words = Word.where("id in (?)", apprArray)
+    # srchKeys = params[:id].split('/').map(&:to_i)
+    # apprArray = Appearance.where("appr_id in (?)", srchKeys).pluck(:word_id)
+    # @words = Word.where("id in (?)", apprArray)
+
+    @words = Word.eager_load(:appearances).where("appr_id=?", params[:id])
   end
 
   private
