@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>例文：<%= params[:exp] %></h3>
+  <table class="table results">
+  <tr>
+  	<th>日本語</th>
+  	<th>アラビア語</th>
+  </tr>
+  <% @examples.each do |example| %>
+  <tr>
+  	<td><%= example.sentence_ja %></td>
+  	<td><%= example.sentence_ar %></td>
+  </tr>
+  <% end %>
+  </table>
+</div>
