@@ -45,5 +45,7 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.console = true
     Bullet.rails_logger = true
+    # whitelists
+    Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Word", :association => :examples
   end
 end

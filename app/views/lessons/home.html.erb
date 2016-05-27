@@ -1,4 +1,3 @@
-<!--h1>Lessons#home</h1-->
 <div class="container">
   <div class="row" id="list">
     <%= link_to "単元別単語一覧メニュー", lessons_path %>
@@ -6,7 +5,7 @@
   <div class="row">
     <%= form_tag("/words", method: "get") do %>
       <fieldset>
-        <legend>単語検索メニュー</legend>
+        <legend><%= action_title(params[:action]) %></legend>
         <% if params[:action] == "home" %>
         <p>
           <%= text_field_tag(:srchWrd, "", placeholder: "アラビア語を入力", class:"form-control", id:"search", autofocus:true) %>

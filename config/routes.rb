@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       resources :examples
     end
 
+    resources :examples
+
   # Example resource route with options:
   #   resources :products do
   #     member do

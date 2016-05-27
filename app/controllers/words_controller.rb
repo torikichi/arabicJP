@@ -22,11 +22,11 @@ class WordsController < ApplicationController
     # apprArray = Appearance.where("appr_id in (?)", srchKeys).pluck(:word_id)
     # @words = Word.where("id in (?)", apprArray)
 
-    @words = Word.eager_load(:appearances).where("appr_id=?", params[:id])
+    @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id])
   end
 
   private
     def gen_word_query
-      "select w.*, count(a.appr_id) as lesson from words w left outer join appearances a on w.id=a.word_id "
+      "select w.*, count(e.word_id) as example, count(a.appr_id) as lesson from words w left outer join appearances a on w.id=a.word_id left outer join examples e on w.id=e.word_id "
     end
 end

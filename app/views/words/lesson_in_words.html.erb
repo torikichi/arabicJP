@@ -59,7 +59,11 @@
         </p>
       <% end %>
     </td>
-    <td></td>
+    <td>
+      <%if word.examples.size != 0 %>
+        <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
