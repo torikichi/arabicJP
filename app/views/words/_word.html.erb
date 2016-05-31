@@ -30,13 +30,21 @@
       <% end %>
     </td>
     <td>
+    <% if params[:action] != "lesson_in_words" %>
       <% if word.example != 0 %>
       <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
       <% end %>
+    <% else %>
+      <%if word.examples.size != 0 %>
+      <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+      <% end %>
+    <% end %>
     </td>
+    <% if params[:action] != "lesson_in_words" %>
     <td>
       <% if word.lesson != 0 %>
       <%= link_to word.lesson, word_in_lessons_lesson_path(word.id) %>件
       <% end %>
     </td>
+    <% end %>
   </tr>

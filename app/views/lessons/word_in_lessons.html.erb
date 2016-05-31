@@ -16,6 +16,9 @@
   	<td><%= @choisedWord.meaning %></td>
   </tr>
 </table>
+<div class="row" id="list">
+  <%= link_to "HOME", root_path, class:"pull-right" %>
+</div>
 
 <table class="table results">
   <thead>
@@ -52,9 +55,5 @@
   </tr>
   <% end %>
 </table>
-
-<div class="row" id="list">
-  <%= link_to "HOME", root_path %>
-</div>
 
 </div>

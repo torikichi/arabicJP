@@ -21,9 +21,6 @@ class LessonsController < ApplicationController
     @choisedWord = Word.find(params[:id])
 
     @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:id])
-    # srchKeys = params[:id].split('/').map(&:to_i)
-    # srchKeys = Appearance
-    # @lessons = Lesson.where("id in (?)", srchKeys)
 
   end
 

@@ -1,7 +1,10 @@
 <!--h1>Level Category</h1-->
 <div class="container">
+  <div class="row" id="list">
+    <%= link_to "HOME", root_path, class:"pull-right" %>
+  </div>
   <div class="col-lg-12">
-    <h2 class="page-header">単元別メニュー</h2>
+    <h2 class="page-header">LESSON別メニュー</h2>
   </div>
   <div class="row">
     <div class="col-lg-4 portfolio-item inline">
@@ -46,8 +49,5 @@
         <li><%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => 4, :category => 4) %></li>
       </ul>
     </div>
-  </div>
-  <div class="row" id="list">
-    <%= link_to "HOME", root_path %>
   </div>
 </div>

@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <%= link_to "Level" + @disp_obj.lv.to_s, "#", class:"navbar-brand" %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <% case @disp_obj.category %>
+          <% when READ_NO %>
+            <%= link_to CATEGORY1, "#" %>
+          <% when WRITE_NO %>
+            <%= link_to CATEGORY2, "#" %>
+          <% when CONVERSATION_NO %>
+            <%= link_to CATEGORY3, "#" %>
+          <% when GRAMMER_NO %>
+            <%= link_to CATEGORY4, "#" %>
+          <% when SUPPLEMENT_NO %>
+            <%= link_to CATEGORY5, "#" %>
+          <% end %>
+        </li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Others… <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li>　その他のLVを選択…</li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Level<%= @disp_obj.lv.to_s %></li>
+            <% if @disp_obj.lv != 1 %>
+              <li><%=link_to "LEVEL1", lesson_path(:id => 1, :lv => 1, :category => 1) %></li>
+            <% end %>
+            <% if @disp_obj.lv != 2 %>
+              <li><%=link_to "LEVEL2", lesson_path(:id => 1, :lv => 2, :category => 1) %></li>
+            <% end %>
+            <% if @disp_obj.lv != 3 %>
+              <li><%=link_to "LEVEL3", lesson_path(:id => 1, :lv => 3, :category => 1) %></li>
+            <% end %>
+            <% if @disp_obj.lv != 4 %>
+              <li><%=link_to "LEVEL4", lesson_path(:id => 1, :lv => 4, :category => 1) %></li>
+            <% end %>
+          </ul>
+        </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <%=link_to "単語検索メニュー", root_path %>
+          </li>
+          <!--li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+          <li><a href="../navbar-static-top/">Static top</a></li>
+          <li><a href="../navbar-fixed-top/">Fixed top</a></li-->
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+</nav>

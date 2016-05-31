@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  contact_cd: 1
+  contact: MyString
+  password_digest: MyString
+
+two:
+  name: MyString
+  contact_cd: 1
+  contact: MyString
+  password_digest: MyString

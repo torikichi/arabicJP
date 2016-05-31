@@ -1,3 +1,4 @@
+<div class="container">
 <section>
   <p>
     LV<%= @choisedLesson.lv %> ＞ 
@@ -14,6 +15,7 @@
       <%= CATE5 %>
     <% end %>
     ＞ LESSON <%= @choisedLesson.lesson_no %> - <%= @choisedLesson.lesson_seq %>
+    <%= link_to "HOME", root_path, class:"pull-right" %>
     </p>
     <h1><%= @choisedLesson.lesson_name %></h1>
 </section>
@@ -32,38 +34,6 @@
     <th>例</th>
   </tr>
   </thead>
-  <% @words.each do |word| %>
-  <tr>
-    <td><%= word.word %></td>
-    <td><%= word.word_with_pron %></td>
-    <td><%= word.pos %></td>
-    <td><%= word.meaning %></td>
-    <td>
-      <% if word.plural_cd != 0 %>
-        <%= word.plural_ord == 0 ? "→複" : "→単" %>
-      <% end %>
-    </td>
-    <td>
-      <% if word.root != "-" && word.root.present? %>
-        <%= link_to word.root, wordsRoots_word_path(word.root) %>
-      <% end %>
-    </td>
-    <td>
-      <% word.cntSynm(1, word.id).each do |syn| %>
-        <%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件<br>
-      <% end %>
-    </td>
-    <td>
-      <% word.cntSynm(2, word.id).each do |anto| %>
-        <p><%= link_to anto.type_name, antonym_relation_path(anto.rel_id, anto.ant_contrast_cd) -%>
-        </p>
-      <% end %>
-    </td>
-    <td>
-      <%if word.examples.size != 0 %>
-        <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
+  <%= render @words %>
 </table>
+</div>
