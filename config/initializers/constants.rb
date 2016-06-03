@@ -23,3 +23,9 @@ CATE2 = "作文"
 CATE3 = "会話"
 CATE4 = "文法"
 CATE5 = "ホンダ"
+
+# 連絡先区分 ※現時点では未使用
+EMAIL = 1
+FACEBOOK = 2
+TWITTER = 3
+LINE = 4

@@ -12,6 +12,14 @@ module ApplicationHelper
       return "例文：" + params[:exp] + divider + baseTitle
   	end
 
+    if controller_name == "users" && action_name == "new"
+      return "新規ユーザー登録" + divider + baseTitle
+    end
+
+    if controller_name == "sessions"
+      return "ログイン" + divider + baseTitle
+    end
+
   	case action_name
   	when "home"
 	  return baseTitle
