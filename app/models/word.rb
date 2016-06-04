@@ -9,7 +9,7 @@ class Word < ActiveRecord::Base
   def cntSynm(kbn, wordId)
 	if kbn == 1
 	  Relation.find_by_sql([\
-	  	"select P.rel_id, count(P.rel_id) as subTotal \
+	  	"select P.rel_id, count(P.rel_id) as subtotal \
 	  	from relations P where syn_ant_cd=? and \
 	  	exists (select * from relations C where C.rel_id=P.rel_id and syn_ant_cd=? and word_id=?) \
 	  	group by rel_id", kbn, kbn, wordId])

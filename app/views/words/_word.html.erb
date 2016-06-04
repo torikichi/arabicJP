@@ -19,7 +19,7 @@
     <% if params[:action] != "synonym" %>
       <td>
         <% word.cntSynm(1, word.id).each do |syn| %>
-          <p><%= link_to syn.subTotal, synonym_relation_path(syn.rel_id) -%>件</p>
+          <p><%= link_to syn.subtotal, synonym_relation_path(syn.rel_id) -%>件</p>
         <% end %>
       </td>
     <% end %>
