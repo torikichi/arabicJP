@@ -19,6 +19,6 @@ class WordsController < ApplicationController
 
   private
     def gen_word_query
-      "select w.*, count(e.word_id) as example, count(a.appr_id) as lesson from words w left outer join appearances a on w.id=a.word_id left outer join examples e on w.id=e.word_id "
+      "select w.*, count(e.word_id) as example, count(distinct a.appr_id) as lesson from words w left outer join appearances a on w.id=a.word_id left outer join examples e on w.id=e.word_id "
     end
 end
