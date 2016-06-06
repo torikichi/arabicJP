@@ -20,6 +20,7 @@
     <h1><%= @choisedLesson.lesson_name %></h1>
 </section>
 
+<%= page_entries_info @words %>
 <table class="table results">
   <thead>
   <tr>
@@ -36,4 +37,5 @@
   </thead>
   <%= render @words %>
 </table>
+<%= paginate @words %>
 </div>

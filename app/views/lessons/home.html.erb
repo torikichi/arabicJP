@@ -71,6 +71,7 @@
   <div class="row">
 
   <% if !@words.nil? %>
+    <%= page_entries_info @words %>
     <table class="table results">
       <thead>
       <tr>
@@ -92,6 +93,7 @@
       </thead>
       <%= render @words %>
     </table>
+    <%= paginate @words %>
   <% end %>
   </div>
 </div>
