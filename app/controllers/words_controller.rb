@@ -2,7 +2,15 @@ class WordsController < ApplicationController
   include Common
 
   def index
-    @words = Word.find_by_sql([generate_query("word") + "where w.word=? group by w.id", params[:srchWrd]])
+    # 日本語検索(あいまい検索)対応
+    srchCondition = "where w.word=? "
+    srchValue = params[:srchWrd]
+    if params[:srch_in_jpn]
+      srchCondition = "where w.meaning like ? "
+      srchValue = "%" + params[:srchWrd] + "%"
+    end
+
+    @words = Word.find_by_sql([generate_query("word") + srchCondition + "group by w.id", srchValue])
     @words = Kaminari.paginate_array(@words).page(params[:page])
   	render '/lessons/home'
   end
