@@ -5,7 +5,7 @@
     <td><%= word.pos %></td>
     <td><%= word.meaning %></td>
     <td>
-      <% if word.plural_cd.present? %>
+      <% if word.plural_cd.present? && word.plural_cd.nonzero? %>
         <%= word.plural_ord == 0 ? "→複" : "→単" %>
       <% end %>
     </td>
