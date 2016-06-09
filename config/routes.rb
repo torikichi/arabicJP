@@ -57,13 +57,6 @@ Rails.application.routes.draw do
   #     end
   #   end
   #
-  # 自分で追加した分
-      # resources :lessons do
-      #   collection do
-      #     get 'levelCategoryList'
-      #   end
-        
-      # end
 
   # Example resource route with sub-resources:
   #   resources :products do

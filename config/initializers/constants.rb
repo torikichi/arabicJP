@@ -29,3 +29,6 @@ EMAIL = 1
 FACEBOOK = 2
 TWITTER = 3
 LINE = 4
+
+# ログインユーザー向けメッセージ
+WELCOME_MSG = "أهلا وسهلا"

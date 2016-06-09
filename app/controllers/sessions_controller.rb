@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   	user = User.find_by(name: params[:session][:name])
   	if user && user.authenticate(params[:session][:password])
   	  log_in user
-  	  redirect_to user
+  	  redirect_to root_url
   	else
   	  flash.now[:danger] = 'アカウント名またはパスワードが違います'
   	  render 'new'
