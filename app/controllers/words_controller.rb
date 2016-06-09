@@ -5,6 +5,13 @@ class WordsController < ApplicationController
     # 日本語検索(あいまい検索)対応
     srchCondition = "where w.word=? "
     srchValue = params[:srchWrd]
+
+    if srchValue.empty?
+      flash.now[:danger] = 'アラビア語もしくは日本語を入力してください'
+      render '/lessons/home'
+      return
+    end
+
     if params[:srch_in_jpn]
       srchCondition = "where w.meaning like ? "
       srchValue = "%" + params[:srchWrd] + "%"
