@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601055245) do
+ActiveRecord::Schema.define(version: 20160610081108) do
 
   create_table "appearances", id: false, force: :cascade do |t|
     t.integer  "word_id",    null: false
@@ -58,12 +58,13 @@ ActiveRecord::Schema.define(version: 20160601055245) do
   add_index "relations", ["rel_id", "word_id", "syn_ant_cd"], name: "index_relations_on_rel_id_and_word_id_and_syn_ant_cd", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",            null: false
+    t.string   "name",                            null: false
     t.integer  "contact_cd"
     t.string   "contact"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["name"], name: "index_users_on_name"
