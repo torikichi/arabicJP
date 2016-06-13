@@ -36,4 +36,33 @@ class WordsController < ApplicationController
     @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id]).page(params[:page])
   end
 
+  def show
+    @word = Word.find(params[:id])
+  end
+
+  def new
+    @word = Word.new
+  end
+
+  def create
+    @word = Word.new(word_params)
+    if @word.plural_cd != 0
+      # 実装検討中
+    else
+      @word.plural_cd = nil
+    end
+
+    if @word.save
+      flash[:success] = "単語登録が完了しました！正しく登録されたか、確認してください。"
+      redirect_to @word
+    else
+      render 'new'
+    end
+  end
+
+  private
+    def word_params
+      params.require(:word).permit(:word, :word_with_pron, :pos, :meaning, :root, :plural_cd, :plural_ord)
+    end
+
 end

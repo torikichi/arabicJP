@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      word: 単語
+    attributes:
+      word:
+        word: 単語
+        word_with_pron: 単語(シャクル付)
+        pos: 品詞
+        meaning: 意味
+        root: 語根
+        plural_cd: 複数形
+    errors:
+      messages:
+        blank: が未入力です。
+        invalid: が不正です。
+        too_short: の文字数が短すぎます。3文字または4文字で入力してください。
+        too_long: の文字数が長すぎます。3文字または4文字で入力してください。
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        zero: "<b>該当データがありません。</b>"
+        one: "<b>1件中 1-1 件を表示</b>"
+        display_entries: '検索結果の1-%{count}件を表示中 / 合計%{count}件'
+      more_pages:
+        display_entries: '検索結果の%{first}-%{last}件を表示中 / 合計%{total}件'

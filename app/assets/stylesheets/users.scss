@@ -8,13 +8,14 @@
   box-sizing:         border-box;
 }
 
-h1#new_user_title {
+h1 {
   text-align: center;
 }
 
 /* forms */
 /*input, textarea, select, .uneditable-input {*/
-#user_name, #user_password, #user_password_confirmation {
+#user_name, #user_password, #user_password_confirmation,
+#entry_word, #entry_shakle {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
