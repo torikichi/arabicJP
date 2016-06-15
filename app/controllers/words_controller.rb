@@ -60,6 +60,20 @@ class WordsController < ApplicationController
     end
   end
 
+  def edit
+    @word = Word.find(params[:id])
+  end
+
+  def update
+    @word = Word.find(params[:id])
+    if @word.update_attributes(word_params)
+      flash[:success] = "更新が正しく完了しました。"
+      redirect_to @word
+    else
+      render 'edit'
+    end
+  end
+
   private
     def word_params
       params.require(:word).permit(:word, :word_with_pron, :pos, :meaning, :root, :plural_cd, :plural_ord)

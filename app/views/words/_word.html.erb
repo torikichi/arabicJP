@@ -1,6 +1,6 @@
 
   <tr>
-    <td><%= word.word %></td>
+    <td><%= link_to_if(logged_in?, word.word, edit_word_path(word), {:'data-toggle' => "tooltip", :'data-original-title' => "クリックで単語情報を編集"}) %></td>
     <td><%= word.word_with_pron %></td>
     <td><%= word.pos %></td>
     <td><%= word.meaning %></td>

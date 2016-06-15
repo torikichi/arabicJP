@@ -1,0 +1,30 @@
+<div class="col-md-6 col-md-offset-3">
+	<%= form_for(word) do |f| %>
+	  <%= render 'shared/error_messages' %>
+	  <%= f.label :word, "単語" %>
+	  <%= f.text_field :word, class:"form-control", id:"entry_word" %>
+
+	  <%= f.label :word_with_pron, "単語(シャクル付)" %>
+	  <%= f.text_field :word_with_pron, class:"form-control", id:"entry_shakle" %>
+
+	  <%= f.label :pos, "品詞" %>
+	  <%= f.select :pos, [["選択してください", ""], ["男性名詞", "男"], ["女性名詞", "女"], ["集合名詞", "集"], ["数詞", "数"], ["複数形名詞(複数形しかないもの)"], ["名詞(男女分類不可)", "名"], ["形容詞", "形"], ["形容詞(女性形)", "形女"], ["形容詞(男性形)", "形男"], ["自動詞", "自"], ["他動詞", "他"], ["動詞(自動詞・他動詞両方ある場合)", "動"], ["係動詞", "係"], ["重動詞(目的語を2つ以上とるもの)", "重"], ["前置詞", "前"], ["副詞", "副"], ["接続詞", "接"],["疑問詞", "疑"], ["卓越詞(比較級や最上級)", "卓"], ["熟語", "熟"], ["分類なし(複数の品詞を持つ場合は、意味の所に書いてください)", "-"]] %>
+
+	  <div>
+  	<%= f.label :meaning, "意味" %>
+  	<%= f.text_area :meaning, class:"form-control" %>
+	  </div>
+
+	  <%= f.label :root, "語根(シャクルなしで入力)" %>
+	  <%= f.text_field :root, class:"form-control", id:"entry_root" %>
+
+	  <div>
+	  <%= f.check_box :plural_cd %>
+	  <%= f.label :plural_cd, "複数形の場合はチェック ※名詞選択時のみ" %>
+	  </div>
+
+	  <%= f.hidden_field :plural_ord %>
+
+	  <%= f.submit "単語登録", class: "btn btn-primary" %>
+	<% end %>
+</div>

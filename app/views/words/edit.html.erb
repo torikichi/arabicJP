@@ -1,8 +1,8 @@
-<h1>新規単語登録</h1>
+<h1>単語情報変更/修正</h1>
 <div class="row">
 <% if logged_in? %>
 <%= render partial: 'words/word_form', locals: {word: @word} %>
 </div>
 <% else %>
-  単語登録を行うときはログインしてください。
+  変更/修正を行うときはログインしてください。
 <% end %>

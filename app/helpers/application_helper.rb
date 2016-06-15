@@ -39,6 +39,8 @@ module ApplicationHelper
   	  return "登場箇所" + divider + baseTitle
   	when "lesson_in_words"
   	  return "LESSON内単語一覧" + divider + baseTitle
+    when "edit"
+      return "編集メニュー" + divider + baseTitle
   	end
 
   end

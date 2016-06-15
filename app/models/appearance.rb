@@ -4,4 +4,5 @@ class Appearance < ActiveRecord::Base
 		foreign_key: [:word_id]
 	belongs_to :lesson,
 		foreign_key: [:appr_id]
+	has_paper_trail
 end
