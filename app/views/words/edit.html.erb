@@ -2,7 +2,7 @@
 <div class="row">
 <% if logged_in? %>
 <%= render partial: 'words/word_form', locals: {word: @word} %>
-</div>
 <% else %>
   変更/修正を行うときはログインしてください。
 <% end %>
+</div>

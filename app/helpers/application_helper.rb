@@ -20,6 +20,10 @@ module ApplicationHelper
       return "新規単語登録" + divider + baseTitle
     end
 
+    if controller_name == "examples" && action_name == "new"
+      return "例文追加：" + params[:exp] + divider + baseTitle
+    end
+
     if controller_name == "sessions"
       return "ログイン" + divider + baseTitle
     end

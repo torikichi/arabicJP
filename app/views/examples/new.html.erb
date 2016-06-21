@@ -1,0 +1,21 @@
+<h1>例文を追加する：<%= params[:exp] %></h1>
+<div class="row">
+<% if logged_in? %>
+  <div class="col-md-6 col-md-offset-3">
+  <%= form_for(@example) do |f| %>
+  <%= render 'shared/error_messages' %>
+    <%= f.label :sentence_ja, "日本語" %>
+    <%= f.text_area :sentence_ja, class:"form-control" %>
+
+    <%= f.label :sentence_ar, "アラビア語" %>
+    <%= f.text_area :sentence_ar, class:"form-control" %>
+
+    <%= f.hidden_field :word_id, :value => params[:word_id] %>
+
+    <%= f.submit "例文追加", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+<% else %>
+  例文追加を行うときはログインしてください。
+<% end %>
+</div>

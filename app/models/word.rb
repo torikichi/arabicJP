@@ -10,7 +10,7 @@ class Word < ActiveRecord::Base
 	validates :word, presence: true, format: { with: VALID_ARABIC_REGEX }
 	validates :word_with_pron, presence: true, format: { with: VALID_ARABIC_REGEX }
 	validates :meaning, presence: true
-	validates :root, length: { in: 3..4 }, format: { with: VALID_ARABIC_REGEX }, allow_blank: true
+	validates :root, length: { in: 2..4 }, format: { with: VALID_ARABIC_REGEX }, allow_blank: true
 
 # 類義語(区分1)の件数、および対義語(区分2)の情報を取得する
   def cntSynm(kbn, wordId)

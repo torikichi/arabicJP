@@ -33,10 +33,14 @@
     <% if params[:action] != "lesson_in_words" %>
       <% if word.example != 0 %>
       <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+      <% else %>
+      <%= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加"}) %>
       <% end %>
     <% else %>
       <%if word.examples.size != 0 %>
       <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+      <% else %>
+      <%= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加"}) %>
       <% end %>
     <% end %>
     </td>
