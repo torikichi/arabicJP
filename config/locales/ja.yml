@@ -10,12 +10,16 @@ ja:
         meaning: 意味
         root: 語根
         plural_cd: 複数形
+      example:
+        sentence_ja: 日本語文章
+        sentence_ar: アラビア語文章
+        ja_or_ar: 日本語もしくはアラビア語
     errors:
       messages:
         blank: が未入力です。
         invalid: が不正です。
-        too_short: の文字数が短すぎます。3文字または4文字で入力してください。
-        too_long: の文字数が長すぎます。3文字または4文字で入力してください。
+        too_short: の文字数が短すぎます。2〜4文字で入力してください。
+        too_long: の文字数が長すぎます。2〜4文字で入力してください。
   views:
     pagination:
       first: "&laquo;"

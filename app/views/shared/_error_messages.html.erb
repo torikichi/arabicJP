@@ -20,4 +20,15 @@
     <% end %>
     </ul>
   </div>
+<% elsif !@example.nil? && @example.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      入力エラー <%= pluralize(@example.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @example.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>

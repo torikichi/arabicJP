@@ -17,7 +17,7 @@
   	<td><%= example.sentence_ja %></td>
   	<td><%= example.sentence_ar %></td>
     <% if logged_in? %>
-      <td><%= link_to "この例文を修正", "#" %></td>
+      <td><%= link_to "この例文を修正", edit_example_path(example.word_id, example.exp_seq, :exp => params[:exp]) %></td>
     <% end %>
   </tr>
   <% end %>

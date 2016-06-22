@@ -1,8 +1,8 @@
-<h1>例文を追加する：<%= params[:exp] %></h1>
+<h1>例文を修正する：<%= params[:exp] %></h1>
 <div class="row">
 <% if logged_in? %>
   <%= render partial: 'examples/example_form', locals: {example: @example} %>
 <% else %>
-  例文を追加をするときはログインしてください。
+  例文修正を行うときはログインしてください。
 <% end %>
 </div>

@@ -27,6 +27,24 @@ class ExamplesController < ApplicationController
   	end
   end
 
+  def edit
+    @example = Example.find_by(word_id: params[:id], exp_seq: params[:format])
+  end
+
+  def update
+    keyArray = params[:id].split(",")
+    @example = Example.find_by(word_id: keyArray[0].to_i, exp_seq: keyArray[1].to_i)
+    @example.assign_attributes(example_params)
+    # :idがカンマ区切りの文字列になっているので、配列で取り出したidを上書き
+    @example.word_id = keyArray[0].to_i
+    if @example.save
+      flash[:success] = "更新が正しく完了しました。"
+      redirect_to @example
+    else
+      render 'edit'
+    end
+  end
+
   private
   	def example_params
   	  params.require(:example).permit(:word_id, :sentence_ja, :sentence_ar)
