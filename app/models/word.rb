@@ -6,6 +6,7 @@ class Word < ActiveRecord::Base
 	has_many :synonym, through: :relations, source: :from_word
 	has_paper_trail
 
+	before_validation :is_changed_word
 	VALID_ARABIC_REGEX = /[\u0600-\u06FF]+\s*[\u0600-\u06FF]+/
 	validates :word, presence: true, format: { with: VALID_ARABIC_REGEX }
 	validates :word_with_pron, presence: true, format: { with: VALID_ARABIC_REGEX }
@@ -26,5 +27,15 @@ class Word < ActiveRecord::Base
 	  Relation.where("word_id=? and syn_ant_cd=?", wordId, kbn)
 	end
   end
+
+  private
+	# 内容を変えずに変更しようとした場合はエラーを返す
+	def is_changed_word
+	  if !self.word_changed? && !self.word_with_pron_changed? && !self.pos_changed? && !self.meaning_changed? && !self.root_changed?
+	 	errors.add(:base, NO_CHG_ERROR)
+	  else
+	    return true
+	  end
+	end
 
 end
