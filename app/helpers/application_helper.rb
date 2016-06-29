@@ -24,6 +24,10 @@ module ApplicationHelper
       return "例文追加：" + params[:exp] + divider + baseTitle
     end
 
+    if controller_name == "relations" && action_name == "new"
+      return "類義語/対義語登録" + divider + baseTitle
+    end
+
     if controller_name == "sessions"
       return "ログイン" + divider + baseTitle
     end

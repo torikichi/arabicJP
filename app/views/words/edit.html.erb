@@ -1,8 +1,20 @@
 <h1>単語情報変更/修正</h1>
 <div class="row">
 <% if logged_in? %>
+<div class="col-md-6 col-md-offset-3">
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">単語</a></li>
+  <% if @relations.present? %>
+  	<li><%= link_to "類義語/対義語", edit_relation_path(params[:id]) %></li>
+  <% else %>
+  	<li><%= link_to "類義語/対義語", new_relation_path(params[:id]) %></li>
+  <% end %>
+  <li><a href="#">複数形登録</a></li>
+</ul>
 <%= render partial: 'words/word_form', locals: {word: @word} %>
+</div>
 <% else %>
   変更/修正を行うときはログインしてください。
 <% end %>
 </div>
+<%= debug @relations %>

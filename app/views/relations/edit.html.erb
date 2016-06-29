@@ -1,0 +1,47 @@
+<h1>類義語・対義語登録/修正</h1>
+<div class="row">
+<% if logged_in? %>
+<div class="col-md-6 col-md-offset-3">
+  <ul class="nav nav-tabs">
+    <li><%= link_to "単語", edit_word_path(params[:id]) %></li>
+    <li class="active"><%= link_to "類義語/対義語", "#" %></li>
+    <li><a href="#">複数形登録</a></li>
+  </ul>
+  <section id="syn_detail">
+	<% @relations.each do |rel| %>
+	  <% case rel.syn_ant_cd %>
+	  <% when 1 %>
+		<p>
+		<%= link_to "類義語詳細", "#" %>
+		分類名：<%= rel.type_name %>
+		</p>
+	  <% when 2 %>
+		<p>
+		<%= link_to "対義語詳細", "#" %>
+		分類名：<%= rel.type_name %>
+		</p>
+	  <% end %>
+	<% end %>
+  </section>
+  <section id="setsyn">
+  	<h4>・類義語にする単語を指定</h4>
+  	<p><input type="button" value="検索" id="opensyn" onclick="window.open('<%= relations_synsub_path %>', 'sub', 'width=640,height=480'); return false;"></p>
+  	<table>
+  	  <tr>
+	  	<th>単語</th>
+	  	<th>品詞</th>
+	  	<th>意味</th>
+  	  </tr>
+  	  <tr>
+  	    <td><input type="text" readonly="true" /></td>
+  	    <td><input type="text" readonly="true" /></td>
+  	    <td><input type="text" readonly="true" /></td>
+  	  </tr>
+  	</table>
+  </section>
+<%= debug @relations %>
+</div>
+<% else %>
+  変更/修正を行うときはログインしてください。
+<% end %>
+</div>

@@ -27,4 +27,18 @@ class RelationsController < ApplicationController
   	render '/lessons/home'
   end
 
+  def add_synonym
+    # @relations = Relation.eager_load(:words).where("word.word=? and relation.syn_ant_cd=?", params[:srchSyn], 1)
+    @relations = Relation.find_by_sql(["select r.*, w.word as word, w.pos as pos, w.meaning as meaning from relations r left outer join words w on r.word_id=w.id where w.word=? and r.syn_ant_cd=?", params[:srchSyn], 1])
+    render '/relations/synsub'
+  end
+
+  def edit
+    @relations = Relation.where("word_id=?", params[:id])
+  end
+
+  def synsub
+    #render 'relations/synsub'
+  end
+
 end

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  get 'relations/synsub'
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
     resource :lessons
     resources :relations do
       member do
-        get :synonym, :antonym
+        get :synonym, :antonym, :add_synonym
       end
     end
 

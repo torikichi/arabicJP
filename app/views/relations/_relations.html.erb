@@ -1,0 +1,9 @@
+<% relations.each do |r| %>
+<tr>
+  <td><a href="setSynValue();">選択</a></td>
+  <td><%= r.type_name %></td>
+  <td><%= r.word %></td>
+  <td><%= r.pos %></td>
+  <td><%= r.meaning %></td>
+</tr>
+<% end %>

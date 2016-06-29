@@ -62,6 +62,7 @@ class WordsController < ApplicationController
 
   def edit
     @word = Word.find(params[:id])
+    @relations = Relation.where("word_id=?", params[:id])
   end
 
   def update
