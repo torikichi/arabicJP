@@ -8,34 +8,51 @@
     <li><a href="#">複数形登録</a></li>
   </ul>
   <section id="syn_detail">
+  	<% cnt = 0 %>
+	<% strLnk = "#disp" %>
+	<% strOpp = "#opps" %>
 	<% @relations.each do |rel| %>
 	  <% case rel.syn_ant_cd %>
 	  <% when 1 %>
 		<p>
-		<%= link_to "類義語詳細", "#" %>
+		<%= link_to "類義語詳細", strLnk + cnt.to_s, class:"clickToolTip", remote: true %>
 		分類名：<%= rel.type_name %>
 		</p>
+		<ul id="<%= strLnk.delete("#") + cnt.to_s %>" class="toolTip invisible">
+	  	<% rel.word_list(1, rel.rel_id).each do |syn| %>
+	  	  <li><%= syn.word %>　<%= syn.meaning %></li>
+	  	<% end %>
+	  	</ul>
 	  <% when 2 %>
 		<p>
-		<%= link_to "対義語詳細", "#" %>
+		<%= link_to "対義語詳細", strOpp + cnt.to_s, class:"clickToolTip", remote: true %>
 		分類名：<%= rel.type_name %>
 		</p>
+		<ul id="<%= strOpp.delete("#") + cnt.to_s %>" class="toolTip invisible">
+	  	<% rel.word_list(2, rel.rel_id).each do |syn| %>
+	  	  <li><%= syn.word %>　<%= syn.meaning %></li>
+	  	<% end %>
+	  	</ul>
 	  <% end %>
+	  <% cnt += 1 %>
 	<% end %>
   </section>
   <section id="setsyn">
-  	<h4>・類義語にする単語を指定</h4>
+  	<h4>・新たに類義語にする単語を指定</h4>
   	<p><input type="button" value="検索" id="opensyn" onclick="window.open('<%= relations_synsub_path %>', 'sub', 'width=640,height=480'); return false;"></p>
   	<table>
   	  <tr>
+  	  	<th>分類名</th>
 	  	<th>単語</th>
 	  	<th>品詞</th>
 	  	<th>意味</th>
   	  </tr>
   	  <tr>
-  	    <td><input type="text" readonly="true" /></td>
-  	    <td><input type="text" readonly="true" /></td>
-  	    <td><input type="text" readonly="true" /></td>
+  	  	<input type="hidden" name="syn_relid" value="" />
+  	  	<td><input type="text" name="syn_type" readonly="true" value="" /></td>
+  	    <td><input type="text" name="syn_word" readonly="true" /></td>
+  	    <td><input type="text" name="syn_pos" readonly="true" /></td>
+  	    <td><input type="text" name="syn_meaning" readonly="true" /></td>
   	  </tr>
   	</table>
   </section>
@@ -45,3 +62,23 @@
   変更/修正を行うときはログインしてください。
 <% end %>
 </div>
+
+<script type="text/javascript">
+$(function(){
+  $('a.clickToolTip').click(function(){
+  	var targetList = $(this).attr('href');
+
+  	var position = $(this).position();
+    var newPositionTop = position.top +10;
+    var newPositionLeft = position.left + 35;
+
+    $('ul'+targetList).css({'top': newPositionTop + 'px', 'left': newPositionLeft + 'px'});
+
+    $('ul'+targetList).removeClass('invisible');
+  });
+
+  $('html').mousedown(function(){
+    $('ul.toolTip').addClass('invisible');
+  });
+});
+</script>

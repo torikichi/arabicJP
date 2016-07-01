@@ -4,7 +4,7 @@
   	<fieldset>
   	  <%= text_field_tag(:srchSyn, "", autofocus:true) %>
   	  <%= submit_tag("検索", class:"btn btn-primary") %>
-  	  <input type="button" value="close" class="pull-right" onclick="window.close()">
+  	  <input type="button" value="close" class="pull-right" onclick="window.close();">
   	</fieldset>
   <% end %>
 </div>
@@ -27,8 +27,18 @@
 </div>
 </div>
 <script type="text/javascript">
-  function setSynValue(obj) {
-
+  function setSynValue(rel_id, type, word, pos, meaning) {
+  	if (!window.opener || window.opener.closed) {
+  	  window.close();
+  	} else {
+  	  var pWindow = window.opener;
+  	  pWindow.$("input[name='syn_relid']").val(rel_id);
+  	  pWindow.$("input[name='syn_type']").val(type);
+  	  pWindow.$("input[name='syn_word']").val(word);
+  	  pWindow.$("input[name='syn_pos']").val(pos);
+  	  pWindow.$("input[name='syn_meaning']").val(meaning);
+  	  window.close();
+  	}
   }
 </script>
 <%= debug params %>
