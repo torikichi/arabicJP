@@ -31,4 +31,15 @@
     <% end %>
     </ul>
   </div>
+<% elsif !@relation.nil? && @relation.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      入力エラー <%= pluralize(@relation.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @relation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>

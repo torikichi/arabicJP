@@ -1,0 +1,19 @@
+<script type="text/javascript">
+$(function(){
+  $('a.clickToolTip').click(function(){
+  	var targetList = $(this).attr('href');
+
+  	var position = $(this).position();
+    var newPositionTop = position.top +10;
+    var newPositionLeft = position.left + 35;
+
+    $('ul'+targetList).css({'top': newPositionTop + 'px', 'left': newPositionLeft + 'px'});
+
+    $('ul'+targetList).removeClass('invisible');
+  });
+
+  $('html').mousedown(function(){
+    $('ul.toolTip').addClass('invisible');
+  });
+});
+</script>

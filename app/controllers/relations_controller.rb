@@ -35,10 +35,43 @@ class RelationsController < ApplicationController
 
   def edit
     @relations = Relation.where("word_id=?", params[:id])
+    @relation = Relation.new
+  end
+
+  def update
+    @relation = Relation.new(relation_params)
+
+    if @relation.save
+      flash[:success] = "新たな類義語を登録しました。"
+      redirect_to action: 'edit', id: @relation.word_id
+    else
+      render 'edit'
+    end
+  end
+
+  def new
+    @relation = Relation.new
+  end
+
+  def create
+    @relation = Relation.new(relation_params)
+
+    if @relation.save
+      flash[:success] = "新たな類義語を登録しました。"
+      redirect_to action: 'edit', id: @relation.word_id
+    else
+      @relations = Relation.where("word_id=?", @relation.word_id)
+      render :action => "edit", :controller => "relations", :id => @relation.word_id
+    end
   end
 
   def synsub
     #render 'relations/synsub'
   end
+
+  private
+    def relation_params
+      params.require(:relation).permit(:rel_id, :word_id, :syn_ant_cd, :ant_contrast_cd, :type_name)
+    end
 
 end

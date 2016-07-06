@@ -49,6 +49,8 @@ module ApplicationHelper
   	  return "LESSON内単語一覧" + divider + baseTitle
     when "edit"
       return "編集メニュー" + divider + baseTitle
+    when "synsub"
+      return "登録用類義語検索"
   	end
 
   end

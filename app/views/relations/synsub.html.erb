@@ -32,13 +32,12 @@
   	  window.close();
   	} else {
   	  var pWindow = window.opener;
-  	  pWindow.$("input[name='syn_relid']").val(rel_id);
-  	  pWindow.$("input[name='syn_type']").val(type);
-  	  pWindow.$("input[name='syn_word']").val(word);
-  	  pWindow.$("input[name='syn_pos']").val(pos);
-  	  pWindow.$("input[name='syn_meaning']").val(meaning);
+  	  pWindow.$("input[id='syn_relid']").val(rel_id);
+  	  pWindow.$("input[id='syn_type']").val(type);
+  	  pWindow.$("input[id='syn_word']").val(word);
+  	  pWindow.$("input[id='syn_pos']").val(pos);
+  	  pWindow.$("input[id='syn_meaning']").val(meaning);
   	  window.close();
   	}
   }
 </script>
-<%= debug params %>

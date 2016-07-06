@@ -1,14 +1,22 @@
-<h1>類義語・対義語登録</h1>
+<h1>類義語登録/修正</h1>
 <div class="row">
 <% if logged_in? %>
 <div class="col-md-6 col-md-offset-3">
-<ul class="nav nav-tabs">
-  <li><%= link_to "単語", edit_word_path(params[:format]) %></li>
-  <li class="active"><%= link_to "類義語/対義語", "#" %></li>
-  <li><a href="#">複数形登録</a></li>
-</ul>
+  <ul class="nav nav-tabs">
+  	<% params[:format] ||= @relation.word_id %>
+    <li><%= link_to "単語", edit_word_path(:id => params[:format]) %></li>
+    <li class="active"><%= link_to "類義語/対義語", "#" %></li>
+    <li><a href="#">複数形登録</a></li>
+  </ul>
+
+  <h4>・現在、類義語なし</h4>
+
+  <%= render partial: 'relations/relation_form', locals: {relation: @relation} %>
+
 </div>
 <% else %>
   変更/修正を行うときはログインしてください。
 <% end %>
 </div>
+
+<%= render 'relations/tooltips' %>
