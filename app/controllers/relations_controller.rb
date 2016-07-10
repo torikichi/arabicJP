@@ -28,9 +28,14 @@ class RelationsController < ApplicationController
   end
 
   def add_synonym
-    # @relations = Relation.eager_load(:words).where("word.word=? and relation.syn_ant_cd=?", params[:srchSyn], 1)
-    @relations = Relation.find_by_sql(["select r.*, w.word as word, w.pos as pos, w.meaning as meaning from relations r left outer join words w on r.word_id=w.id where w.word=? and r.syn_ant_cd=?", params[:srchSyn], 1])
-    render '/relations/synsub'
+    @relations = Relation.find_by_sql(["select r.*, w.word as word, w.pos as pos, w.meaning as meaning from relations r left outer join words w on r.word_id=w.id where w.word=? and r.syn_ant_cd=?", params[:srchSyn], params[:id]])
+
+    case params[:id]
+    when "1"
+      render '/relations/synsub'
+    when "2"
+      render '/relations/antosub'
+    end
   end
 
   def edit
@@ -65,8 +70,43 @@ class RelationsController < ApplicationController
     end
   end
 
+  def edit_antonym
+    @relations = Relation.where("word_id=?", params[:id])
+    @relation = Relation.new
+  end
+
+  def entry_antonym
+    @relation = Relation.new(relation_params)
+    # 反対の意味を持つ語が指定されてくるため、対比コードを入れ替える
+    case @relation.ant_contrast_cd
+    when 0
+      @relation.ant_contrast_cd = 1
+    when 1
+      @relation.ant_contrast_cd = 0
+    else
+      flash.now[:danger] = "対義語を指定してください。"
+      render 'edit_antonym'
+      return
+    end
+
+    if @relation.save
+      flash[:success] = "新たな対義語を登録しました。"
+      redirect_to action: 'edit_antonym', id: @relation.word_id
+    else
+      @relations = Relation.where("word_id=?", @relation.word_id)
+      render :action => "edit_antonym", :controller => "relations", :id => @relation.word_id
+    end
+
+  end
+
+  # 類義語サブウィンドウOPEN
   def synsub
-    #render 'relations/synsub'
+    
+  end
+
+  # 対義語サブウィンドウOPEN
+  def antosub
+    
   end
 
   private

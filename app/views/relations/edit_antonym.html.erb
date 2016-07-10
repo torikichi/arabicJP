@@ -1,16 +1,21 @@
-<h1><%= params[:titleWrd] %>：類義語登録/修正</h1>
+<h1><%= params[:titleWrd] %>：対義語登録/修正</h1>
 <div class="row">
 <% if logged_in? %>
 <div class="col-md-6 col-md-offset-3">
   <ul class="nav nav-tabs">
   	<% params[:id] ||= @relation.word_id %>
     <li><%= link_to "単語", edit_word_path(params[:id]) %></li>
-    <li class="active"><%= link_to "類義語", "#" %></li>
-    <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: params[:titleWrd]) %></li>
+    <% if @relations.present? %>
+      <li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: params[:titleWrd]) %></li>
+    <% else %>
+      <li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: params[:titleWrd]) %></li>
+    <% end %>
+    <li class="active"><%= link_to "対義語", "#" %></li>
     <li><a href="#">複数形登録</a></li>
   </ul>
   <section id="syn_detail">
-  <% cnt = 0 %>
+  <% if @relations.present? %>
+  	<% cnt = 0 %>
 	<% strLnk = "#disp" %>
 	<% strOpp = "#opps" %>
 	<% @relations.each do |rel| %>
@@ -39,9 +44,12 @@
 	  <% cnt += 1 %>
 	<% end %>
 	<p>※詳細をクリックで類義語/対義語となっている単語を確認</p>
+  <% else %>
+	<h4>・現在、対義語なし</h4>	
+  <% end %>
   </section>
 
-  <%= render partial: 'relations/relation_form', locals: {relation: @relation} %>
+  <%= render partial: 'relations/antonym_form', locals: {relation: @relation} %>
 
 </div>
 <% else %>

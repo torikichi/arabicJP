@@ -5,10 +5,11 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">単語</a></li>
   <% if @relations.present? %>
-  	<li><%= link_to "類義語/対義語", edit_relation_path(params[:id]) %></li>
+  	<li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word) %></li>
   <% else %>
-  	<li><%= link_to "類義語/対義語", new_relation_path(params[:id]) %></li>
+  	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word) %></li>
   <% end %>
+  <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word) %></li>
   <li><a href="#">複数形登録</a></li>
 </ul>
 <%= render partial: 'words/word_form', locals: {word: @word} %>

@@ -1,6 +1,6 @@
 <% relations.each do |r| %>
 <tr>
-  <td><input type="button" value="選択" onclick='setSynValue(<%= r.rel_id %>, "<%= r.type_name %>", "<%= r.word %>", "<%= r.pos %>", "<%= r.meaning %>");'></td>
+  <td><input type="button" value="選択" onclick='setSynValue(<%= r.rel_id %>, "<%= r.type_name %>", "<%= r.word %>", "<%= r.pos %>", "<%= r.meaning %>", "<%= r.ant_contrast_cd %>");'></td>
   <td><%= r.type_name %></td>
   <td><%= r.word %></td>
   <td><%= r.pos %></td>

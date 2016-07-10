@@ -1,11 +1,12 @@
-<h1>類義語登録/修正</h1>
+<h1><%= params[:titleWrd] %>：類義語登録/修正</h1>
 <div class="row">
 <% if logged_in? %>
 <div class="col-md-6 col-md-offset-3">
   <ul class="nav nav-tabs">
   	<% params[:format] ||= @relation.word_id %>
     <li><%= link_to "単語", edit_word_path(:id => params[:format]) %></li>
-    <li class="active"><%= link_to "類義語/対義語", "#" %></li>
+    <li class="active"><%= link_to "類義語", "#" %></li>
+    <li><%= link_to "対義語", edit_antonym_relation_path(params[:format], titleWrd: params[:titleWrd]) %></li>
     <li><a href="#">複数形登録</a></li>
   </ul>
 

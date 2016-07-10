@@ -1,0 +1,26 @@
+<%= form_for(relation, url: entry_antonym_relation_path, html:{method:"post"}) do |f| %>
+  <%= render 'shared/error_messages' %>
+  <section id="setsyn">
+  	<h4>・反対の意味になる単語を指定</h4>
+  	<p><input type="button" value="検索" id="opensyn" onclick="window.open('<%= relations_antosub_path %>', 'sub', 'width=640,height=480'); return false;"></p>
+  	<table>
+  	  <tr>
+  	  	<th>分類名</th>
+	  	  <th>単語</th>
+	  	  <th>品詞</th>
+	  	  <th>意味</th>
+  	  </tr>
+  	  <tr>
+  	  	<%= f.hidden_field :rel_id, id:"syn_relid" %>
+  	  	<%= f.hidden_field :word_id, :value => params[:id] %>
+  	  	<%= f.hidden_field :syn_ant_cd, :value => 2 %>
+        <%= f.hidden_field :ant_contrast_cd, id:"syn_const" %>
+  	  	<td><%= f.text_field :type_name, id:"syn_type", readonly: true %></td>
+  	    <td><input type="text" id="syn_word" readonly="true" /></td>
+  	    <td><input type="text" id="syn_pos" readonly="true" /></td>
+  	    <td><input type="text" id="syn_meaning" readonly="true" /></td>
+  	  </tr>
+  	</table>
+  </section>
+  <%= f.submit "対義語登録", class: "btn btn-primary kakutei" %>
+<% end %>

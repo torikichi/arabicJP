@@ -25,7 +25,7 @@ module ApplicationHelper
     end
 
     if controller_name == "relations" && action_name == "new"
-      return "類義語/対義語登録" + divider + baseTitle
+      return "類義語登録" + divider + baseTitle
     end
 
     if controller_name == "sessions"
@@ -51,6 +51,12 @@ module ApplicationHelper
       return "編集メニュー" + divider + baseTitle
     when "synsub"
       return "登録用類義語検索"
+    when "edit_antonym"
+      return "対義語登録" + divider + baseTitle
+    when "antosub"
+      return "登録用対義語検索"
+    when "add_synonym"
+      return "検索結果"
   	end
 
   end
