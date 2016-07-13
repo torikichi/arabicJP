@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611092330) do
+ActiveRecord::Schema.define(version: 20160713044213) do
 
   create_table "appearances", id: false, force: :cascade do |t|
     t.integer  "word_id",    null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160611092330) do
   add_index "examples", ["word_id", "exp_seq"], name: "index_examples_on_word_id_and_exp_seq", unique: true
 
   create_table "lessons", force: :cascade do |t|
-    t.integer  "ampm"
+    t.integer  "edition"
     t.integer  "lv"
     t.integer  "category"
     t.integer  "lesson_no"
