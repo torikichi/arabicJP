@@ -36,6 +36,15 @@ class WordsController < ApplicationController
     @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id]).page(params[:page])
   end
 
+  def opn_words_to_lesson
+    
+  end
+
+  def srch_words_to_lesson
+    @words = Word.where("word = ?", params[:w_t_l])
+    render 'words/opn_words_to_lesson'
+  end
+
   def show
     @word = Word.find(params[:id])
   end

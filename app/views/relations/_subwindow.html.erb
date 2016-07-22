@@ -3,7 +3,9 @@
   	<fieldset id="srchSynField">
   	  <%= text_field_tag(:srchSyn, "", autofocus:true) %>
   	  <%= submit_tag("検索", class:"btn btn-primary") %>
-  	  <input type="button" value="close" class="pull-right" onclick="window.close();">
+      <button type="button" class="close" data-dismiss="modal" onclick="window.close();">
+      <span aria-hidden="true">&#215;</span><span class="sr-only">close</span>
+      </button>
   	</fieldset>
   <% end %>
 </div>

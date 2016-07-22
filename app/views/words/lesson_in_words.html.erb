@@ -21,6 +21,7 @@
 </section>
 
 <%= page_entries_info @words %>
+<%= link_to "単語を追加", new_appearance_path(params[:id], :flg => 1), class:"pull-right btn btn-default" %>
 <table class="table results">
   <thead>
   <tr>

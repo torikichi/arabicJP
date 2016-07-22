@@ -32,6 +32,10 @@ module ApplicationHelper
       return "ログイン" + divider + baseTitle
     end
 
+    if controller_name == "appearances" && action_name == "new"
+      return "登場単語登録" + divider + baseTitle
+    end
+
   	case action_name
   	when "home"
 	  return baseTitle

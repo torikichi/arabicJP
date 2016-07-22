@@ -5,12 +5,20 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">単語</a></li>
   <% if @relations.present? %>
-  	<li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word) %></li>
+  	<li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
   <% else %>
-  	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word) %></li>
+  	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
   <% end %>
-  <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word) %></li>
+  <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
   <li><a href="#">複数形登録</a></li>
+</ul>
+<p>※登場LESSONの登録は<%= link_to "ここ", new_appearance_path(params[:id], :flg => 0, titleWrd: @word.word) %>から、例文の追加/修正は
+<% if params[:exp_flg] == "1" %>
+  <%= link_to "ここ", examples_path(params[:id], :exp => @word.word), target:"_blank" %>
+<% else %>
+  <%= link_to "ここ", new_word_example_path(params[:id], :exp => @word.word), target:"_blank" %>
+<% end %>
+から</p>
 </ul>
 <%= render partial: 'words/word_form', locals: {word: @word} %>
 </div>

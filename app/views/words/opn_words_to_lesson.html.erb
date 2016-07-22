@@ -1,0 +1,31 @@
+<%= form_tag(srch_words_to_lesson_word_path(:id => 1), method: "get") do %>
+  <fieldset>
+    <%= text_field_tag(:w_t_l, "", autofocus:true) %>
+    <%= submit_tag("検索", class:"btn btn-primary") %>
+  </fieldset>
+<% end %>
+
+<% if @words.present? %>
+  <table class="table results">
+  <thead>
+  <tr>
+  	<th></th>
+  	<th>単語</th>
+  	<th>品詞</th>
+  	<th>意味</th>
+  	<th>語根</th>
+  </tr>
+  </thead>
+  <% @words.each do |w| %>
+  <tr>
+  	<td><input type="button" value="選択" /></td>
+    <td><%= w.word %></td>
+    <td><%= w.pos %></td>
+    <td><%= w.meaning %></td>
+    <td><%= w.root %></td>
+  </tr>
+  <% end %>
+  </table>
+<% end %>
+<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+

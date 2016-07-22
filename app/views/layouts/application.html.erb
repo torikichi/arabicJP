@@ -12,7 +12,7 @@
   	<div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
 
-  <% isSub = (params[:action] == "antosub" or params[:action] == "synsub" or params[:action] == "add_synonym") %>
+  <% isSub = (params[:action] == "antosub" or params[:action] == "synsub" or params[:action] == "add_synonym" or params[:action] == "opn_words_to_lesson" or params[:action] == "srch_words_to_lesson") %>
   <% if logged_in? && !isSub %>
   	<%= render 'layouts/header' %>
   <% end %>

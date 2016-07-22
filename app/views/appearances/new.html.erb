@@ -1,0 +1,98 @@
+<!--LESSON画面から-->
+<% if params[:flg] == "1" %>
+<h1>登場単語登録</h1>
+<div class="row">
+<% if logged_in? %>
+<div class="col-md-6 col-md-offset-3">
+
+  <%= link_to "登録する単語を検索", words_opn_words_to_lesson_path, class:"btn btn-default", :data => {:toggle => "modal", :target => "#remoteModal"} %>
+
+<!-- /modal area start -->
+  <div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
+    
+<div class="modal-dialog">
+<div class="modal-content">
+
+<div class="modal-body">
+</div><!-- /modal-body -->
+
+</div><!-- /modal-content -->
+</div><!--/modal-dialig -->
+  </div>
+<!-- /modal area end -->
+
+<!--formタグ開始-->
+
+</div>
+<% else %>
+  変更/修正を行うときはログインしてください。
+<% end %>
+</div>
+
+<script type="text/javascript">
+$(function() {
+  // JavaScript で表示
+  $('#remoteModalButton').on('click', function() {
+    $('#remoteModal').removeData('bs.modal'); //< 毎回新規に読み込み
+    $('#remoteModal').modal({'remote': '<%= words_opn_words_to_lesson_path %>'});
+  });
+  // ダイアログ表示前にJavaScriptで操作する
+  $('#remoteModal').on('loaded.bs.modal', function(e) {
+    $('#remoteModal .modal-body').append('<a class="btn btn-info" href="#addjs">JavaScript で追加したボタン</a>');
+  });
+  $('#remoteModal').on('click', '.modal-footer .btn-primary', function() {
+    $('#remoteModal').modal('hide');
+    alert('変更を保存をクリックしました。');
+  });
+  $('#remoteModal').on('click', 'a[href="#addjs"]', function() {
+    alert('JavaScript で追加したボタンをクリックしました。');
+    $('#remoteModal').modal('hide');
+  });
+});
+</script>
+
+<!--単語画面から-->
+<% elsif params[:flg] == "0" %>
+<h1><%= params[:titleWrd] %>：登場LESSON登録</h1>
+<div class="row">
+<% if logged_in? %>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for(@appearance) do |a| %>
+  <%= render 'shared/error_messages' %>
+  <div>
+  	<label for="lv">LV：</label>
+  	<%= select_tag :lv, options_for_select(@lvs) %>
+  </div>
+  <div>
+  	<label for="category">科目を選択：</label>
+  	<%= select_tag :category, options_for_select(@categories1) %>
+  </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+$(function() {
+
+$('select#lv').change(chngCategory);
+
+function chngCategory(){
+  if ($('select#lv').val() == 1){
+	$('select#category').empty();
+	list = [{value: 1, name:'<%= CATE1 %>'}, {value: 2, name:'<%= CATE2 %>'}, {value:3, name:'<%= CATE3 %>'}, {value:5, name:'<%= CATE5 %>'}];
+	$.each(list, function(index, elem){
+	  option = $('<option />');
+	  option.val(elem.value);
+	  option.html(elem.name);
+	  $('select#category').append(option);
+	})
+  };
+}
+
+});
+</script>
+
+<% else %>
+  LESSONを登録するにはログインしてください。
+<% end %>
+
+<% end %>
