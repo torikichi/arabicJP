@@ -3,22 +3,27 @@ class AppearancesController < ApplicationController
   	@appearance = Appearance.new
   	@lvs = Lesson.select("lv").where("edition=?", 1).distinct.pluck(:lv)
 
-  	@categories1 = get_categories(1)
-  	@categories2 = get_categories(2)
-  	@categories3 = get_categories(3)
-  	@categories4 = get_categories(4)
   end
 
-  def category_select
-  	@categories = Lesson.select("category").where("edition=? and lv=?", 1,1)
+  def create
+  	@appearance = Appearance.new(appearance_params)
+
+  	if @appearance.save
+  	  flash[:success] = "登場単語・LESSONを登録しました。"
+  	  redirect_to action: "lesson_in_words", controller: "words", id: @appearance.appr_id
+  	else
+  	  render 'new'
+  	end
+  end
+
+  def get_lesson_list
+  	@lessons = Lesson.where("edition=? and lv=? and category=?", 1, params[:lv], params[:category])
+  	# render 'appearances/new'
+  	render
   end
 
   private
   	def appearance_params
   	  params.require(:appearance).permit(:word_id, :appr_id)
-  	end
-
-  	def get_categories(lv)
-  	  Lesson.select("category").where("edition=? and lv=?", 1, lv).distinct.pluck(:category)
   	end
 end

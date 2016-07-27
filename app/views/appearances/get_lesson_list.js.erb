@@ -1,0 +1,4 @@
+<label for="lesson[id]">LESSONを選択：</label>
+<% if @lessons.present? %>
+  <%= select_tag "lesson[id]", options_from_collection_for_select(@lessons, :id, :lesson_name), :include_blank => true %>
+<% end %>

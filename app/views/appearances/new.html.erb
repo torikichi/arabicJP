@@ -8,7 +8,7 @@
   <%= link_to "登録する単語を検索", words_opn_words_to_lesson_path, class:"btn btn-default", :data => {:toggle => "modal", :target => "#remoteModal"} %>
 
 <!-- /modal area start -->
-  <div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
     
 <div class="modal-dialog">
 <div class="modal-content">
@@ -18,7 +18,7 @@
 
 </div><!-- /modal-content -->
 </div><!--/modal-dialig -->
-  </div>
+</div>
 <!-- /modal area end -->
 
 <!--formタグ開始-->
@@ -57,16 +57,22 @@ $(function() {
 <div class="row">
 <% if logged_in? %>
 <div class="col-md-6 col-md-offset-3">
-  <%= form_for(@appearance) do |a| %>
+  <%= form_for(@appearance) do |f| %>
   <%= render 'shared/error_messages' %>
+  <%= f.hidden_field :word_id, :value => params[:format] %>
   <div>
   	<label for="lv">LV：</label>
-  	<%= select_tag :lv, options_for_select(@lvs) %>
+  	<%= select_tag :lv, options_for_select(@lvs), :include_blank => true %>
   </div>
   <div>
   	<label for="category">科目を選択：</label>
-  	<%= select_tag :category, options_for_select(@categories1) %>
+  	<%= select_tag :category, options_for_select({CATE1 => 1, CATE2 => 2, CATE3 => 3, CATE5 => 5}), :include_blank => true %>
   </div>
+  <div id="lesson_details">
+  	<label for="lesson[id]">LESSONを選択：</label>
+  </div>
+  <%= f.hidden_field :appr_id, :value => "" %>
+  <%= f.submit "LESSON登録", class: "btn btn-primary kakutei" %>
   <% end %>
 </div>
 
@@ -75,17 +81,47 @@ $(function() {
 
 $('select#lv').change(chngCategory);
 
+$('select#category').change(chngLesson);
+
+$('div#lesson_details').on('change', 'select#lesson_id',setLessonValue);
+
 function chngCategory(){
+  $('select#lesson_id').empty();
+  $('select#category').empty();
   if ($('select#lv').val() == 1){
-	$('select#category').empty();
-	list = [{value: 1, name:'<%= CATE1 %>'}, {value: 2, name:'<%= CATE2 %>'}, {value:3, name:'<%= CATE3 %>'}, {value:5, name:'<%= CATE5 %>'}];
-	$.each(list, function(index, elem){
-	  option = $('<option />');
-	  option.val(elem.value);
-	  option.html(elem.name);
-	  $('select#category').append(option);
-	})
+	list = [{value: '', name: ''}, {value: 1, name:'<%= CATE1 %>'}, {value: 2, name:'<%= CATE2 %>'}, {value:3, name:'<%= CATE3 %>'}, {value:5, name:'<%= CATE5 %>'}];
+  } else {
+  	list = [{value: '', name: ''}, {value: 1, name:'<%= CATE1 %>'}, {value: 2, name:'<%= CATE2 %>'}, {value:3, name:'<%= CATE3 %>'}, {value:4, name:'<%= CATE4 %>'}];
   };
+  $.each(list, function(index, elem){
+    option = $('<option />');
+    option.val(elem.value);
+    option.html(elem.name);
+    $('select#category').append(option);
+  })
+}
+
+function chngLesson(){
+  $.ajax({
+    url: "get_lesson_list",
+    type: "GET",
+    data: {lv: $('select#lv').val(),
+    	category: $('select#category').val()
+    },
+    dataType: "html",
+    success: function(data) {
+      // alert(data);
+      $('#lesson_details').html(data);
+    },
+    error: function(data) {
+      alert("errror");
+    }
+  });
+}
+
+function setLessonValue(){
+  var lessonId = $('select#lesson_id').val();
+  $('#appearance_appr_id').val(lessonId);
 }
 
 });

@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   get 'words/opn_words_to_lesson'
 
+  # セレクトボックス取得用
+  get 'appearances/get_lesson_list'
+  post 'appearances/get_lesson_list'
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
