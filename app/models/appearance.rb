@@ -5,4 +5,10 @@ class Appearance < ActiveRecord::Base
 	belongs_to :lesson,
 		foreign_key: [:appr_id]
 	has_paper_trail
+
+	include ActiveModel::Validations
+
+	validates :word_id, presence: true
+	validates :appr_id, presence: true
+	validates_with AppearanceValidator
 end

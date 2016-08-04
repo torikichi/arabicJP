@@ -18,10 +18,7 @@ Rails.application.routes.draw do
   get 'relations/antosub'
 
   get 'words/opn_words_to_lesson'
-
-  # セレクトボックス取得用
-  get 'appearances/get_lesson_list'
-  post 'appearances/get_lesson_list'
+  post 'words/opn_words_to_lesson'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -47,6 +44,7 @@ Rails.application.routes.draw do
     resources :words do
       member do
         get :wordsRoots, :lesson_in_words, :srch_words_to_lesson
+        post :srch_words_to_lesson
       end
 
       resources :examples
@@ -56,7 +54,12 @@ Rails.application.routes.draw do
 
     resources :users
 
-    resources :appearances
+    resources :appearances do
+      member do
+        get :add_word_to_lesson, :get_lesson_list
+        post :get_lesson_list
+      end
+    end
 
   # Example resource route with options:
   #   resources :products do

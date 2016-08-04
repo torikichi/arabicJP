@@ -61,6 +61,8 @@ module ApplicationHelper
       return "登録用対義語検索"
     when "add_synonym"
       return "検索結果"
+    when "add_word_to_lesson"
+      return "登場LESSON登録" + divider + baseTitle
   	end
 
   end

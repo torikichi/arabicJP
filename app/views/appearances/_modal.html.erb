@@ -1,0 +1,26 @@
+<div class="modal-dialog">
+<div class="modal-content">
+<%= form_for(@appearance, remote: true) do |f| %>
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">登場単語登録</h4>
+  </div>
+
+  <div class="modal-body">
+    <div class="field">
+      <%= text_field_tag(:add_word, "", class:"form-control", remote: true) %>
+      <%= f.hidden_field :word_id %>
+    </div>
+  </div><!-- /modal-body -->
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit "Save", :class => "btn btn-primary" %>
+  </div><!-- /modal-footer -->
+
+<% end %>
+</div><!-- /modal-content -->
+</div><!--/modal-dialig -->

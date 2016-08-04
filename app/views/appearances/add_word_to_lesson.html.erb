@@ -1,65 +1,37 @@
-<!--LESSON画面から-->
-<% if params[:flg] == "1" %>
-<h1>登場単語登録</h1>
-<div class="row">
-<% if logged_in? %>
-<div class="col-md-6 col-md-offset-3">
-
-  <%= link_to "登録する単語を検索", words_opn_words_to_lesson_path, class:"btn btn-default", :data => {:toggle => "modal", :target => "#remoteModal"} %>
-
-<!-- /modal area start -->
-<div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
-    
-<div class="modal-dialog">
-<div class="modal-content">
-
-<div class="modal-body">
-</div><!-- /modal-body -->
-
-</div><!-- /modal-content -->
-</div><!--/modal-dialig -->
-</div>
-<!-- /modal area end -->
-
-<!--formタグ開始-->
-
-</div>
-<% else %>
-  変更/修正を行うときはログインしてください。
-<% end %>
-</div>
-
-<script type="text/javascript">
-$(function() {
-  // JavaScript で表示
-  $('#remoteModalButton').on('click', function() {
-    $('#remoteModal').removeData('bs.modal'); //< 毎回新規に読み込み
-    $('#remoteModal').modal({'remote': '<%= words_opn_words_to_lesson_path %>'});
-  });
-  // ダイアログ表示前にJavaScriptで操作する
-  $('#remoteModal').on('loaded.bs.modal', function(e) {
-    $('#remoteModal .modal-body').append('<a class="btn btn-info" href="#addjs">JavaScript で追加したボタン</a>');
-  });
-  $('#remoteModal').on('click', '.modal-footer .btn-primary', function() {
-    $('#remoteModal').modal('hide');
-    alert('変更を保存をクリックしました。');
-  });
-  $('#remoteModal').on('click', 'a[href="#addjs"]', function() {
-    alert('JavaScript で追加したボタンをクリックしました。');
-    $('#remoteModal').modal('hide');
-  });
-});
-</script>
-
-<!--単語画面から-->
-<% elsif params[:flg] == "0" %>
 <h1><%= params[:titleWrd] %>：登場LESSON登録</h1>
 <div class="row">
 <% if logged_in? %>
 <div class="col-md-6 col-md-offset-3">
+
+  <table class="table results">
+  <caption>登場するLESSON：</caption>
+  <% @lessons.each do |l| %>
+  <tr>
+    <td>LV：<%= l.lv %></td>
+    <td>
+    <% case l.category %>
+      <% when READ_NO %>
+        <%= CATE1 %>
+      <% when WRITE_NO %>
+        <%= CATE2 %>
+      <% when CONVERSATION_NO %>
+        <%= CATE3 %>
+      <% when GRAMMER_NO %>
+        <%= CATE4 %>
+      <% when SUPPLEMENT_NO %>
+        <%= CATE5 %>
+    <% end %>
+    </td>
+    <td><%= l.lesson_no %></td>
+    <td><%= l.lesson_name %></td>
+  </tr>
+  <% end %>
+  </table>
+
+  <h4>新たにLESSONを登録：</h4>
   <%= form_for(@appearance) do |f| %>
   <%= render 'shared/error_messages' %>
-  <%= f.hidden_field :word_id, :value => params[:format] %>
+  <%= f.hidden_field :word_id, :value => params[:id] %>
   <div>
   	<label for="lv">LV：</label>
   	<%= select_tag :lv, options_for_select(@lvs), :include_blank => true %>
@@ -110,7 +82,6 @@ function chngLesson(){
     },
     dataType: "html",
     success: function(data) {
-      // alert(data);
       $('#lesson_details').html(data);
     },
     error: function(data) {
@@ -129,6 +100,4 @@ function setLessonValue(){
 
 <% else %>
   LESSONを登録するにはログインしてください。
-<% end %>
-
 <% end %>
