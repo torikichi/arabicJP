@@ -38,6 +38,12 @@ class AppearancesController < ApplicationController
   	render
   end
 
+  def srch_words_to_lesson
+    @words = Word.where("word = ?", params[:w_t_l])
+    # render 'words/opn_words_to_lesson'
+    render
+  end
+
   private
   	def appearance_params
   	  params.require(:appearance).permit(:word_id, :appr_id)

@@ -40,11 +40,6 @@ class WordsController < ApplicationController
     
   end
 
-  def srch_words_to_lesson
-    @words = Word.where("word = ?", params[:w_t_l])
-    # render 'words/opn_words_to_lesson'
-  end
-
   def show
     @word = Word.find(params[:id])
   end

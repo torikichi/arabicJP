@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get 'relations/synsub'
   get 'relations/antosub'
 
-  get 'words/opn_words_to_lesson'
-  post 'words/opn_words_to_lesson'
+  get 'appearances/srch_words_to_lesson'
+  post 'appearances/srch_words_to_lesson'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -43,8 +43,7 @@ Rails.application.routes.draw do
 
     resources :words do
       member do
-        get :wordsRoots, :lesson_in_words, :srch_words_to_lesson
-        post :srch_words_to_lesson
+        get :wordsRoots, :lesson_in_words
       end
 
       resources :examples
