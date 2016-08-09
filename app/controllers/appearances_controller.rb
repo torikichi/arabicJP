@@ -27,7 +27,9 @@ class AppearancesController < ApplicationController
         @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:word_id])
         render 'add_word_to_lesson'
       else
-  	    render 'new'
+        @choisedLesson = Lesson.find(@appearance.appr_id)
+        @words = Word.eager_load(:appearances, :examples).where("appr_id=?", @appearance.appr_id).page(params[:page])
+  	    render 'words/lesson_in_words'
       end
   	end
   end

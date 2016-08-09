@@ -20,9 +20,14 @@
     <h1><%= @choisedLesson.lesson_name %></h1>
 </section>
 
+<%= render 'shared/error_messages' %>
+
 <%= page_entries_info @words %>
-<%= link_to "単語を追加", new_appearance_path(params[:id]), class:"pull-right btn btn-default", remote: true %>
-<div id="appr_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+<% if logged_in? %>
+  <%= link_to "単語を追加", new_appearance_path(params[:id]), class:"pull-right btn btn-default", remote: true %>
+  <div id="appr_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<% end %>
 
 <table class="table results">
   <thead>
