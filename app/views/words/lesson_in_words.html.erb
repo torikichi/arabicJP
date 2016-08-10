@@ -41,6 +41,9 @@
     <th>類</th>
     <th>対</th>
     <th>例</th>
+    <% if logged_in? %>
+      <th><!--削除用カラム--></th>
+    <% end %>
   </tr>
   </thead>
   <%= render @words %>

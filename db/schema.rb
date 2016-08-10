@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713044213) do
+ActiveRecord::Schema.define(version: 20160810050832) do
 
   create_table "appearances", id: false, force: :cascade do |t|
     t.integer  "word_id",    null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160713044213) do
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",                         null: false
-    t.integer  "item_id",                           null: false
+    t.integer  "item_id"
     t.string   "event",                             null: false
     t.string   "whodunnit"
     t.text     "object",         limit: 1073741823

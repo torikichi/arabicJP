@@ -1,7 +1,6 @@
 
   <tr>
     <% expFlg = 0 %>
-    <%# if params[:action] == "lesson_in_words" %>
     <% if lesson_in_words?(params[:action], params[:controller]) %>
       <% if word.examples.size != 0 %>
         <% expFlg = 1 %>
@@ -39,7 +38,6 @@
       <% end %>
     </td>
     <td>
-    <%# if params[:action] != "lesson_in_words" %>
     <% if !lesson_in_words?(params[:action], params[:controller]) %>
       <% if word.example != 0 %>
       <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
@@ -54,12 +52,14 @@
       <% end %>
     <% end %>
     </td>
-    <%# if params[:action] != "lesson_in_words" %>
     <% if !lesson_in_words?(params[:action], params[:controller]) %>
     <td>
       <% if word.lesson != 0 %>
       <%= link_to word.lesson, word_in_lessons_lesson_path(word.id) %>件
       <% end %>
     </td>
+    <% end %>
+    <% if logged_in? && lesson_in_words?(params[:action], params[:controller]) %>
+    <td><%= link_to "削除", appearance_path(:word_id => word.id), method: :delete, class:"btn btn-danger", data: {confirm:"当LESSONから、この単語を削除しますか？"} %></td>
     <% end %>
   </tr>

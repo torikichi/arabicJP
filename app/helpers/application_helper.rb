@@ -69,11 +69,8 @@ module ApplicationHelper
 
   # LESSON内単語一覧もしくはLESSON内登場単語登録からの遷移かどうかを判定する
   def lesson_in_words?(action_name, controller_name)
-    if (action_name  == "lesson_in_words") || (action_name == "create" && controller_name == "appearances")
-      return true
-    else
-      return false
-    end
+    false
+    (action_name  == "lesson_in_words") || (action_name == "create" && controller_name == "appearances")
   end
 
 end

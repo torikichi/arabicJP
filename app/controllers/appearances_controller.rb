@@ -46,6 +46,12 @@ class AppearancesController < ApplicationController
     render
   end
 
+  def destroy
+    Appearance.find_by(appr_id: params[:id], word_id: params[:word_id]).destroy
+    flash[:success] = "当LESSONから単語を削除しました。"
+    redirect_to action: "lesson_in_words", controller: "words", id: params[:id]
+  end
+
   private
   	def appearance_params
   	  params.require(:appearance).permit(:word_id, :appr_id)
