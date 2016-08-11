@@ -73,4 +73,10 @@ module ApplicationHelper
     (action_name  == "lesson_in_words") || (action_name == "create" && controller_name == "appearances")
   end
 
+  # 現在の画面がサブウィンドウかどうかを判定する
+  def sub_window?(action_name)
+    false
+    params[:action] == "antosub" or params[:action] == "synsub" or params[:action] == "add_synonym"
+  end
+
 end

@@ -10,7 +10,9 @@
   	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
   <% end %>
   <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
-  <li><a href="#">複数形登録</a></li>
+  <% if plural_editable?(@word.plural_cd, @word.pos) %>
+    <li><a href="#">複数形登録</a></li>
+  <% end %>
 </ul>
 <p>※登場LESSONの登録は<%= link_to "ここ", add_word_to_lesson_appearance_path(params[:id], titleWrd: @word.word) %>から、例文の追加/修正は
 <% if params[:exp_flg] == "1" %>
