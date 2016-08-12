@@ -35,3 +35,15 @@
 .kakutei {
   margin-top: 1em;
 }
+
+.breadcrumb {
+  background:transparent;
+}
+
+.breadcrumb li+li:before {
+  content:'»';
+}
+
+#commonhead {
+  margin-bottom: 0.5em !important;
+}

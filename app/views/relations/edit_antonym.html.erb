@@ -6,48 +6,23 @@
   	<% params[:id] ||= @relation.word_id %>
     <li><%= link_to "単語", edit_word_path(params[:id], :exp_flg => params[:exp_flg]) %></li>
     <% if @relations.present? %>
-      <li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg]) %></li>
+      <li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg], :plural_flg => params[:plural_flg]) %></li>
     <% else %>
-      <li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg]) %></li>
+      <li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg], :plural_flg => params[:plural_flg]) %></li>
     <% end %>
     <li class="active"><%= link_to "対義語", "#" %></li>
-    <li><a href="#">複数形登録</a></li>
+    <% if params[:plural_flg] == "1" %>
+      <li><a href="#">複数形登録</a></li>
+    <% end %>
   </ul>
-  <section id="syn_detail">
+
   <% if @relations.present? %>
-  	<% cnt = 0 %>
-	<% strLnk = "#disp" %>
-	<% strOpp = "#opps" %>
-	<% @relations.each do |rel| %>
-	  <% case rel.syn_ant_cd %>
-	  <% when 1 %>
-		<p>
-		<%= link_to "類義語詳細", strLnk + cnt.to_s, class:"clickToolTip", remote: true %>
-		分類名：<%= rel.type_name %>
-		</p>
-		<ul id="<%= strLnk.delete("#") + cnt.to_s %>" class="toolTip invisible">
-	  	<% rel.word_list(1, rel.rel_id).each do |syn| %>
-	  	  <li><%= syn.word %>　<%= syn.meaning %></li>
-	  	<% end %>
-	  	</ul>
-	  <% when 2 %>
-		<p>
-		<%= link_to "対義語詳細", strOpp + cnt.to_s, id:"antdetail", class:"clickToolTip", remote: true %>
-		分類名：<%= rel.type_name %>
-		</p>
-		<ul id="<%= strOpp.delete("#") + cnt.to_s %>" class="toolTip invisible">
-	  	<% rel.word_list(2, rel.rel_id).each do |syn| %>
-	  	  <li><%= syn.word %>　<%= syn.meaning %></li>
-	  	<% end %>
-	  	</ul>
-	  <% end %>
-	  <% cnt += 1 %>
-	<% end %>
-	<p>※詳細をクリックで類義語/対義語となっている単語を確認</p>
+    <%= render partial: 'syn_detail', locals: {relations: @relations} %>
   <% else %>
-	<h4>・現在、対義語なし</h4>	
+    <section id="syn_detail">
+	  <h4>・現在、対義語なし</h4>
+	</section>	
   <% end %>
-  </section>
 
   <%= render partial: 'relations/antonym_form', locals: {relation: @relation} %>
 

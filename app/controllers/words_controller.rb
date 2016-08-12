@@ -31,7 +31,7 @@ class WordsController < ApplicationController
 
   # Lessonに紐付く単語を取得
   def lesson_in_words
-    @choisedLesson = Lesson.find(params[:id])
+    @disp_obj = Lesson.find(params[:id])
 
     @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id]).page(params[:page])
   end

@@ -1,23 +1,14 @@
 <div class="container">
-<section>
-  <p>
-    LV<%= @choisedLesson.lv %> ＞ 
-    <% case @choisedLesson.category %>
-    <% when READ_NO %>
-      <%= CATE1 %>
-    <% when WRITE_NO %>
-      <%= CATE2 %>
-    <% when CONVERSATION_NO %>
-      <%= CATE3 %>
-    <% when GRAMMER_NO %>
-      <%= CATE4 %>
-    <% when SUPPLEMENT_NO %>
-      <%= CATE5 %>
-    <% end %>
-    ＞ LESSON <%= @choisedLesson.lesson_no %> - <%= @choisedLesson.lesson_seq %>
-    </p>
-    <h1><%= @choisedLesson.lesson_name %></h1>
-</section>
+
+<ol class="breadcrumb">
+  <li><%= link_to "LV" + @disp_obj.lv.to_s, lessons_path %></li>
+  <li>
+    <%= link_to cate_name(@disp_obj.category), lesson_path(:lv => @disp_obj.lv, :category => @disp_obj.category) %>
+  </li>
+  <li class="active">LESSON <%= @disp_obj.lesson_no %> - <%= @disp_obj.lesson_seq %></li>
+</ol>
+
+<h1><%= @disp_obj.lesson_name %></h1>
 
 <%= render 'shared/error_messages' %>
 

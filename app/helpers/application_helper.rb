@@ -67,6 +67,12 @@ module ApplicationHelper
 
   end
 
+  # LESSON系画面からの遷移かどうかを判定する
+  def lesson_menu?(action_name, controller_name)
+    false
+    params[:action] == "show" && params[:controller] == "lessons"
+  end
+
   # LESSON内単語一覧もしくはLESSON内登場単語登録からの遷移かどうかを判定する
   def lesson_in_words?(action_name, controller_name)
     false

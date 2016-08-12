@@ -2,14 +2,17 @@
 <div class="row">
 <% if logged_in? %>
 <div class="col-md-6 col-md-offset-3">
+
+<% plural_flg = plural_editable?(@word.plural_cd, @word.pos) ? 1 : 0 %>
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">単語</a></li>
   <% if @relations.present? %>
-  	<li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
+  	<li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg) %></li>
   <% else %>
-  	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
+  	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg) %></li>
   <% end %>
-  <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg]) %></li>
+  <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg) %></li>
   <% if plural_editable?(@word.plural_cd, @word.pos) %>
     <li><a href="#">複数形登録</a></li>
   <% end %>

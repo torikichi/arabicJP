@@ -7,7 +7,7 @@
       <%= link_to "MilaaHa", root_path, class:"navbar-brand" %>
     <% end %>
 
-    <% if params[:action] == "show" && params[:controller] == "lessons" %>
+    <% if lesson_menu?(params[:action], params[:controller]) || lesson_in_words?(params[:action], params[:controller]) %>
     <ul class="nav navbar-nav">
       <% if @disp_obj.lv != 1 %>
         <li class="dropdown">

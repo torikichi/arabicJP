@@ -1,0 +1,35 @@
+<section id="syn_detail">
+  <% if relations.present? %>
+  	<% cnt = 0 %>
+	<% strLnk = "#disp" %>
+	<% strOpp = "#opps" %>
+	<% relations.each do |rel| %>
+	  <% case rel.syn_ant_cd %>
+	  <% when 1 %>
+		<p>
+		<%= link_to "類義語詳細", strLnk + cnt.to_s, class:"clickToolTip", remote: true %>
+		分類名：<%= rel.type_name %>
+		</p>
+		<ul id="<%= strLnk.delete("#") + cnt.to_s %>" class="toolTip invisible">
+	  	<% rel.word_list(1, rel.rel_id).each do |syn| %>
+	  	  <li><%= syn.word %>　<%= syn.meaning %></li>
+	  	<% end %>
+	  	</ul>
+	  <% when 2 %>
+		<p>
+		<%= link_to "対義語詳細", strOpp + cnt.to_s, id:"antdetail", class:"clickToolTip", remote: true %>
+		分類名：<%= rel.type_name %>
+		</p>
+		<ul id="<%= strOpp.delete("#") + cnt.to_s %>" class="toolTip invisible">
+	  	<% rel.word_list(2, rel.rel_id).each do |syn| %>
+	  	  <li><%= syn.word %>　<%= syn.meaning %></li>
+	  	<% end %>
+	  	</ul>
+	  <% end %>
+	  <% cnt += 1 %>
+	<% end %>
+	<p>※詳細をクリックで類義語/対義語となっている単語を確認</p>
+  <% else %>
+	<h4>・現在、対義語なし</h4>	
+  <% end %>
+  </section>

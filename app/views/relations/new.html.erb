@@ -6,8 +6,10 @@
   	<% params[:format] ||= @relation.word_id %>
     <li><%= link_to "単語", edit_word_path(:id => params[:format], :exp_flg => params[:exp_flg]) %></li>
     <li class="active"><%= link_to "類義語", "#" %></li>
-    <li><%= link_to "対義語", edit_antonym_relation_path(params[:format], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg]) %></li>
-    <li><a href="#">複数形登録</a></li>
+    <li><%= link_to "対義語", edit_antonym_relation_path(params[:format], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg], :plural_flg => params[:plural_flg], :plural_flg => params[:plural_flg]) %></li>
+    <% if params[:plural_flg] == "1" %>
+      <li><a href="#">複数形登録</a></li>
+    <% end %>
   </ul>
 
   <h4>・現在、類義語なし</h4>
