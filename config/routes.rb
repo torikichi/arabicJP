@@ -9,9 +9,12 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  # sorcery対応(コメントアウト) --start--
+  # get 'login' => 'sessions#new'
+  # post 'login' => 'sessions#create'
+  # delete 'logout' => 'sessions#destroy'
+  # sorcery対応(コメントアウト) --end--
+
 
   # 類義語/対義語サブウィンドウ
   get 'relations/synsub'
@@ -22,6 +25,17 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # sorcery対応 --start--
+  resources :sessions
+  resources :users do
+    member do
+      get :activate
+    end    
+  end
+
+  get 'login' => 'sessions#new', :as => :login
+  get 'logout' => 'sessions#destroy', :as => :logout
+  # sorcery対応 --end--
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :product
@@ -50,8 +64,6 @@ Rails.application.routes.draw do
     end
 
     resources :examples
-
-    resources :users
 
     resources :appearances do
       member do

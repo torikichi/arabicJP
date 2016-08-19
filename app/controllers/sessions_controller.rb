@@ -1,11 +1,10 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
-  	user = User.find_by(name: params[:session][:name])
-  	if user && user.authenticate(params[:session][:password])
-  	  log_in user
+    if @user = login(params[:name], params[:password])
   	  redirect_to root_url
   	else
   	  flash.now[:danger] = 'アカウント名またはパスワードが違います'
@@ -14,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  	log_out
+  	logout
   	redirect_to root_url
   end
 end

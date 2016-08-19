@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
-  # validates :contact, uniqueness: true
-
+  authenticates_with_sorcery!
   has_secure_password
-  validates :password, presence: true, length: {minimum: 8}
+
+  validates :password, confirmation: true, length: {minimum: 8}
+  validates :password_confirmation, presence: true
+  validates :email, uniqueness: true
 end

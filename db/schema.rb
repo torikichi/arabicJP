@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810050832) do
+ActiveRecord::Schema.define(version: 20160818101502) do
 
   create_table "appearances", id: false, force: :cascade do |t|
     t.integer  "word_id",    null: false
@@ -58,16 +58,22 @@ ActiveRecord::Schema.define(version: 20160810050832) do
   add_index "relations", ["rel_id", "word_id", "syn_ant_cd"], name: "index_relations_on_rel_id_and_word_id_and_syn_ant_cd", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                            null: false
+    t.string   "name",                                                         null: false
     t.integer  "contact_cd"
     t.string   "contact"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "admin",           default: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.boolean  "admin",                       default: false
+    t.string   "email",                       default: "example@example.com", null: false
+    t.string   "salt"
+    t.integer  "level"
+    t.string   "activation_state"
+    t.string   "activation_token"
+    t.datetime "activation_token_expires_at"
   end
 
-  add_index "users", ["name"], name: "index_users_on_name"
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
 
   create_table "version_associations", force: :cascade do |t|
     t.integer "version_id"

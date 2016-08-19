@@ -36,13 +36,14 @@ class AppearancesController < ApplicationController
 
   def get_lesson_list
   	@lessons = Lesson.where("edition=? and lv=? and category=?", 1, params[:lv], params[:category])
-  	# render 'appearances/new'
   	render
   end
 
   def srch_words_to_lesson
+    if params[:w_t_l].nil?
+      return
+    end
     @words = Word.where("word = ?", params[:w_t_l])
-    # render 'words/opn_words_to_lesson'
     render
   end
 

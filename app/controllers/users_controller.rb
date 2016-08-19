@@ -6,23 +6,34 @@ class UsersController < ApplicationController
   end
 
   def new
-	  @user = User.new  	
+	  @user = User.new
+    @user.email = ""
   end
 
   def create
   	@user = User.new(user_params)
   	if @user.save
-      log_in @user
-      flash[:success] = "ユーザー登録が完了しました！単語や情報の登録、編集が可能になりました！"
+      # log_in @user
+      # flash[:success] = "ユーザー登録が完了しました！単語や情報の登録、編集が可能になりました！"
   	  redirect_to @user
   	else
 	  render 'new'
   	end
   end
 
+  # メールアクティベーション
+  def activate
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.activate!
+      redirect_to(login_path, :notice => 'ユーザー認証が完了しました。')
+    else
+      not_authenticated
+    end
+  end
+
   private
   	def user_params
-  	  params.require(:user).permit(:name, :password, :password_confirmation)
+  	  params.require(:user).permit(:name, :email, :password, :password_confirmation)
   	end
 
     def logged_in_user
