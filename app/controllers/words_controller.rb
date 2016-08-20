@@ -1,4 +1,6 @@
 class WordsController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update]
+  
   include Common
 
   def index

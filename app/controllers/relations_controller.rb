@@ -1,4 +1,6 @@
 class RelationsController < ApplicationController
+  before_action :require_login, only: [:add_synonym, :edit, :update, :new, :create, :edit_antonym, :entry_antonym]
+
   include Common
 
   # 類義語検索	

@@ -1,7 +1,9 @@
 class AppearancesController < ApplicationController
+  before_action :get_lvs, only: [:new, :add_word_to_lesson, :create]
+  before_action :require_login
+
   def new
   	@appearance = Appearance.new
-  	@lvs = Lesson.select("lv").where("edition=?", 1).distinct.pluck(:lv)
 
     if params[:flg] == "0"
       @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:format])
@@ -11,7 +13,6 @@ class AppearancesController < ApplicationController
 
   def add_word_to_lesson
     @appearance = Appearance.new
-    @lvs = Lesson.select("lv").where("edition=?", 1).distinct.pluck(:lv)
     @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:id])
   end
 
@@ -23,7 +24,6 @@ class AppearancesController < ApplicationController
   	  redirect_to action: "lesson_in_words", controller: "words", id: @appearance.appr_id
   	else
       if params[:commit] == "LESSON登録"
-        @lvs = Lesson.select("lv").where("edition=?", 1).distinct.pluck(:lv)
         @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:word_id])
         render 'add_word_to_lesson'
       else
@@ -57,4 +57,8 @@ class AppearancesController < ApplicationController
   	def appearance_params
   	  params.require(:appearance).permit(:word_id, :appr_id)
   	end
+
+    def get_lvs
+      @lvs = Lesson.select("lv").where("edition=?", 1).distinct.pluck(:lv)
+    end
 end

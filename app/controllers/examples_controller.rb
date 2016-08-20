@@ -1,4 +1,6 @@
 class ExamplesController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update]
+
   def index
 	  @examples = Example.where(["word_id=?", params[:format]])
   end

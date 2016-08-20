@@ -23,4 +23,10 @@ class UserMailer < ApplicationMailer
 
     mail(:to => user.email, :subject => "【MilaaHa】ユーザー認証 完了のお知らせ")
   end
+
+  def reset_password_email(user)
+    @user = user
+    @url = "http://0.0.0.0:3000" + edit_password_reset_path(@user.reset_password_token)
+    mail(:to => user.email,  :subject => "【MilaaHa】パスワードがリセットされました")
+  end
 end
