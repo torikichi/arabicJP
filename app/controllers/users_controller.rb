@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:show]
   before_action :admin_user, only: [:index, :destroy]
+  has_paper_trail
 
   def show
   	@user = User.find(params[:id])
+  end
+
+  def index
+    @users = User.all.page(params[:page])
   end
 
   def new
@@ -18,6 +23,12 @@ class UsersController < ApplicationController
   	else
 	    render 'new'
   	end
+  end
+
+  def destroy
+    User.find_by(params[:id]).destroy
+    flash[:success] = "ユーザーが削除されました。"
+    redirect_to users_path
   end
 
   # メールアクティベーション

@@ -48,11 +48,11 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(word_params)
-    if @word.plural_cd != 0
-      # 実装検討中
-    else
-      @word.plural_cd = nil
-    end
+    # if @word.plural_cd != 0
+    #   # 実装検討中
+    # else
+    #   @word.plural_cd = nil
+    # end
 
     if @word.save
       flash[:success] = "単語登録が完了しました！正しく登録されたか、確認してください。"
