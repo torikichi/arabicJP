@@ -20,6 +20,10 @@ module ApplicationHelper
       return "登録ユーザー一覧" + divider + baseTitle
     end
 
+    if controller_name == "versions" && action_name == "index"
+      return "履歴一覧" + divider + baseTitle
+    end
+
     if controller_name == "words" && action_name == "new"
       return "新規単語登録" + divider + baseTitle
     end

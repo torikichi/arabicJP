@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:show]
   before_action :admin_user, only: [:index, :destroy]
-  has_paper_trail
 
   def show
   	@user = User.find(params[:id])

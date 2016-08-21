@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>データ更新履歴一覧</h1>
+
+  <%= page_entries_info @versions %>
+  <table class="table result">
+  <tr>
+    <th>ユーザー</th>
+    <th>更新テーブル</th>
+    <th>更新レコード</th>
+    <th>実行操作</th>
+    <th>実行日時</th>
+  </tr>
+  <% @versions.each do |version| %>
+  <tr>
+  	<td>
+  	  <%= get_whodunnit(version.whodunnit) %>
+  	</td>
+  	<td><%= version.item_type %></td>
+  	<td><%= link_to version.item_id, edit_word_path(version.item_id), :target => "_blank" %></td>
+  	<td><%= version.event %></td>
+  	<td><%= version.created_at %></td>
+  </tr>
+  <% end %>
+  </table>
+  <%= paginate @versions %>
+
+</div>

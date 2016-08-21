@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   has_secure_password
+  has_paper_trail
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :password, confirmation: true, length: {minimum: 8}
