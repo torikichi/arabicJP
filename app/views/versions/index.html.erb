@@ -4,6 +4,7 @@
   <%= page_entries_info @versions %>
   <table class="table result">
   <tr>
+    <th>Trn ID</th>
     <th>ユーザー</th>
     <th>更新テーブル</th>
     <th>更新レコード</th>
@@ -12,12 +13,17 @@
   </tr>
   <% @versions.each do |version| %>
   <tr>
+    <td><%= version.id %></td>
   	<td>
   	  <%= get_whodunnit(version.whodunnit) %>
   	</td>
   	<td><%= version.item_type %></td>
-  	<td><%= link_to version.item_id, edit_word_path(version.item_id), :target => "_blank" %></td>
-  	<td><%= version.event %></td>
+  	<td>
+  	<% if version.event != "destroy" %>
+  	  <%= link_to version.item_id, edit_word_path(version.item_id), target:"_blank" %>
+  	<% end %>
+  	</td>
+  	<td><%= link_to_if(version.event != "create", version.event, version_path(version.id), target:"_blank") %></td>
   	<td><%= version.created_at %></td>
   </tr>
   <% end %>

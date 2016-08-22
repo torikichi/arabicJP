@@ -35,7 +35,17 @@ class WordsController < ApplicationController
   def lesson_in_words
     @disp_obj = Lesson.find(params[:id])
 
-    @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id]).page(params[:page])
+    @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id])
+
+    respond_to do |format|
+      format.html do
+        @words = @words.page(params[:page])
+      end
+      format.csv do
+        send_data render_to_string, filename: "LV#{@disp_obj.lv}_LESSON#{@disp_obj.lesson_no}_#{@disp_obj.lesson_name}.csv", type: :csv
+      end
+    end
+
   end
 
   def show

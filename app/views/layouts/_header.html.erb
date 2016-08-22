@@ -71,7 +71,7 @@
               <li><%= link_to "ユーザー詳細", current_user %></li>
               <% if current_user.admin? %>
                 <li><%= link_to "登録ユーザー一覧", users_path %></li>
-                <li><%= link_to "履歴一覧", :history %></li>
+                <li><%= link_to "履歴一覧", versions_path %></li>
               <% end %>
             </ul>
           </li>

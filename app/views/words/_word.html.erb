@@ -11,7 +11,7 @@
     <td><%= link_to_if(logged_in?, word.word, edit_word_path(word, :exp_flg => expFlg), {:'data-toggle' => "tooltip", :'data-original-title' => "クリックで単語情報を編集", :target => "_blank"}) %></td>
     <td><%= word.word_with_pron %></td>
     <td><%= word.pos %></td>
-    <td><%= word.meaning %></td>
+    <td><%= simple_format(word.meaning) %></td>
     <td>
       <% if word.plural_cd.present? && word.plural_cd.nonzero? %>
         <%= word.plural_ord == 0 ? "→複" : "→単" %>

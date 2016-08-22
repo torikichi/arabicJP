@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', :as => :logout
   # sorcery対応 --end--
 
-  get 'history' => 'versions#index', :as => :history
+  resources :versions, only: [:index, :show]
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :product
