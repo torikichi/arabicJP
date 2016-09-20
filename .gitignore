@@ -21,3 +21,6 @@
 
 # Ignore environmental config files.
 /config/environments/development.rb
+/config/environments/production.rb
+/config/database.yml
+/config/puma.rb

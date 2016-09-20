@@ -11,12 +11,6 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  # sorcery対応(コメントアウト) --start--
-  # get 'login' => 'sessions#new'
-  # post 'login' => 'sessions#create'
-  # delete 'logout' => 'sessions#destroy'
-  # sorcery対応(コメントアウト) --end--
-
 
   # 類義語/対義語サブウィンドウ
   get 'relations/synsub'
