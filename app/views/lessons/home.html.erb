@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" id="list"></div>
   <div class="row">
-    <%= form_tag("/words", method: "get") do %>
+    <%= form_tag(words_path, method: "get") do %>
       <fieldset>
         <legend><%= action_title(params[:action]) %></legend>
         <% if params[:action] == "home" %>
