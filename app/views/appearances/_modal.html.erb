@@ -34,7 +34,7 @@ $('a#word_to_add').on('click', getWordList);
 
 function getWordList(){
   $.ajax({
-  	url: "/appearances/srch_words_to_lesson",
+  	url: "/milaaha/appearances/srch_words_to_lesson",
   	type: "GET",
   	data: { w_t_l: $('#w_t_l').val() },
   	datatype: "html",

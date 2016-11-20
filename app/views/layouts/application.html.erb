@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta http-equiv="Content-Language" content="ja">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <% flash.each do |message_type, message| %>
@@ -15,7 +16,10 @@
   <% if !sub_window?(params[:action]) %>
   	<%= render 'layouts/header' %>
   <% end %>
-<%= yield %>
+
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

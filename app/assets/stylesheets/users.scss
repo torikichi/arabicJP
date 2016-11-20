@@ -14,7 +14,7 @@ h1 {
 
 /* forms */
 /*input, textarea, select, .uneditable-input {*/
-#user_name, #user_password, #user_password_confirmation,
+#user_name, #user_email, #user_password, #user_password_confirmation,
 #entry_word, #entry_shakle {
   border: 1px solid #bbb;
   width: 100%;
@@ -30,4 +30,8 @@ input {
 .admin {
   color: #CC0000;
   font-weight: bold;
+}
+
+span.label {
+  margin-left: 1em;
 }
