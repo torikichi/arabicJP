@@ -73,5 +73,9 @@ group :development do
   # N+1問題検知
   gem 'bullet'
 
+  # Use Capistrano for deployment
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
 end
 
