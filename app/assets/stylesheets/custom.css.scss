@@ -47,3 +47,35 @@
 #commonhead {
   margin-bottom: 0.5em !important;
 }
+
+@media screen and (max-width: 420px) {
+
+  #srch_result {
+    display: block;
+  }
+  #srch_result thead {
+    display: none;
+  }
+  #srch_result tbody {
+    display: block;
+  }
+  #srch_result tbody tr {
+    display: block;
+    margin-bottom: 1.5em;
+  }
+  #srch_result tbody th,
+  #srch_result tbody td {
+    display: list-item;
+    border: none;
+  }
+  #srch_result tbody th {
+    margin-bottom: 5px;
+    list-style-type: none;
+    color: #fff;
+    background: #000;
+  }
+  #srch_result tbody td {
+    margin-left: 20px;
+    padding: 0;
+  }
+}
