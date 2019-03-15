@@ -12,7 +12,7 @@ http://tori-kichi.com/milaaha/
 ## Contribution
 単語、類義語・対義語、例文を追加してくれる有志を随時募集中です。
 参加希望の方は、こちらからユーザー登録をお願いします
-↓
+→
 http://tori-kichi.com/milaaha/users/new
 
 プログラムを見てみたい方も随時募集中です。
