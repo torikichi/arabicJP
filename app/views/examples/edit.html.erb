@@ -1,8 +1,6 @@
+<% provide(:button_text, '例文修正') %>
+
 <h1>例文を修正する：<%= params[:exp] %></h1>
 <div class="container">
-<% if logged_in? %>
   <%= render partial: 'examples/example_form', locals: {example: @example} %>
-<% else %>
-  例文修正を行うときはログインしてください。
-<% end %>
 </div>

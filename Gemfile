@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
-
+ruby '2.4.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.2'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # bootstrap CSS
@@ -43,20 +44,9 @@ gem 'puma'
 
 gem 'listen'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# 複合keyを扱えるようにする
-gem 'composite_primary_keys', '~> 10.0.2'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara'
-  gem 'selenium-webdriver'
   # Testing flamework
   gem 'rspec-rails'
   # A library for setting up Ruby objects as test data
@@ -68,13 +58,12 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.7.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -93,11 +82,12 @@ group :development do
 end
 
 group :test do
-  # generating fake data such as names, addresses, and phone numbers
-  gem "faker"
-  gem "database_cleaner"
   # helper class for launching cross-platform applications in a fire and forget manner
   gem "launchy"
   # RSpec and Minitest-compatible one-liners that test common Rails functionality
   gem "shoulda-matchers"
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end

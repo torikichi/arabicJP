@@ -1,14 +1,12 @@
-class CreateExamples < ActiveRecord::Migration
+class CreateExamples < ActiveRecord::Migration[5.2]
   def change
-    create_table :examples, id: false do |t|
-      t.integer :word_id, null: false
-      t.integer :exp_seq, null: false
+    create_table :examples do |t|
       t.text :sentence_ja
       t.text :sentence_ar
 
-      t.timestamps null: false
-    end
+      t.timestamps
 
-    add_index :examples, [:word_id, :exp_seq], unique: true
+      t.references :word, foreign_key: true
+    end
   end
 end

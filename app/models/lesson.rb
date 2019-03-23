@@ -1,4 +1,6 @@
 class Lesson < ActiveRecord::Base
-	has_many :appearances, foreign_key: [:appr_id]
-	has_many :words, through: :appearance
+	has_many :appearances, dependent: :destroy
+	has_many :words, through: :appearances
+
+  scope :get_lessons, ->(lv, category){ where(lv: lv, category: category) }
 end

@@ -1,42 +1,42 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3 portfolio-item inline">
-      <%= image_tag("cover"+@disp_obj.lv.to_s, alt:"img", class:"img-responsive") %>
-      <h3>LV<%= @disp_obj.lv %></h3>
+      <%= image_tag("cover#{@lessons.first.lv}", alt:"img", class:"img-responsive") %>
+      <h3>LV<%= @lessons.first.lv %></h3>
       <ul>
         <li>
-          <% if @disp_obj.category == READ_NO %>
+          <% if @lessons.first.category == READ_NO %>
           <%= CATEGORY1+"　"+CATEGORY1_AR %>
           <% else %>
-          <%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 1) %>
+          <%= link_to CATEGORY1+"　"+CATEGORY1_AR, lesson_path(:id => 1, :lv => @lessons.first.lv, :category => 1) %>
           <% end %>
         </li>
       	<li>
-          <% if @disp_obj.category == WRITE_NO %>
+          <% if @lessons.first.category == WRITE_NO %>
           <%= CATEGORY2+"　"+CATEGORY2_AR %>
           <% else %>
-          <%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 2) %>
+          <%= link_to CATEGORY2+"　"+CATEGORY2_AR, lesson_path(:id => 1, :lv => @lessons.first.lv, :category => 2) %>
           <% end %>
         </li>
       	<li>
-          <% if @disp_obj.category == CONVERSATION_NO %>
+          <% if @lessons.first.category == CONVERSATION_NO %>
           <%= CATEGORY3+" "+CATEGORY3_AR %>
           <% else %>
-          <%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 3) %>
+          <%= link_to CATEGORY3+" "+CATEGORY3_AR, lesson_path(:id => 1, :lv => @lessons.first.lv, :category => 3) %>
           <% end %>
         </li>
         <li>
-        <% if @disp_obj.lv != 1 %>
-          <%if @disp_obj.category == GRAMMER_NO %>
+        <% if @lessons.first.lv != 1 %>
+          <%if @lessons.first.category == GRAMMER_NO %>
             <%= CATEGORY4+"　"+CATEGORY4_AR %>
           <% else %>
-            <%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 4) %>
+            <%= link_to CATEGORY4+"　"+CATEGORY4_AR, lesson_path(:id => 1, :lv => @lessons.first.lv, :category => 4) %>
           <% end %>
         <% else %>
-          <%if @disp_obj.category == SUPPLEMENT_NO %>
+          <%if @lessons.first.category == SUPPLEMENT_NO %>
             <%= CATEGORY5+"　"+CATEGORY5_AR %>
           <% else %>
-            <%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => @disp_obj.lv, :category => 5) %>
+            <%= link_to CATEGORY5+"　"+CATEGORY5_AR, lesson_path(:id => 1, :lv => @lessons.first.lv, :category => 5) %>
           <% end %>
         <% end %>
         </li>

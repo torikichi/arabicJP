@@ -1,14 +1,14 @@
 <div class="container">
 
 <ol class="breadcrumb">
-  <li><%= link_to "LV" + @disp_obj.lv.to_s, lessons_path %></li>
+  <li><%= link_to "LV" + @lesson.lv.to_s, lessons_path %></li>
   <li>
-    <%= link_to cate_name(@disp_obj.category), lesson_path(:lv => @disp_obj.lv, :category => @disp_obj.category) %>
+    <%= link_to cate_name(@lesson.category), lesson_path(:lv => @lesson.lv, :category => @lesson.category) %>
   </li>
-  <li class="active">LESSON <%= @disp_obj.lesson_no %> - <%= @disp_obj.lesson_seq %></li>
+  <li class="active">LESSON <%= @lesson.lesson_no %> - <%= @lesson.lesson_seq %></li>
 </ol>
 
-<h1><%= @disp_obj.lesson_name %></h1>
+<h1><%= @lesson.lesson_name %></h1>
 
 <%= render 'shared/error_messages' %>
 
@@ -19,7 +19,7 @@
   <div id="appr_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <% end %>
 
-<%= link_to "単語一覧ダウンロード", lesson_in_words_word_path(format: :csv), class:"pull-right btn btn-default" %>
+<%= link_to "単語一覧ダウンロード", vocabulary_book_word_path(format: :csv), class:"pull-right btn btn-default" %>
 
 <table class="table results">
   <thead>

@@ -1,65 +1,55 @@
-
   <tr>
-    <% expFlg = 0 %>
-    <% if lesson_in_words?(params[:action], params[:controller]) %>
-      <% if word.examples.size != 0 %>
-        <% expFlg = 1 %>
-      <% end %>
-    <% elsif word.example != 0 %>
-      <% expFlg = 1 %>
-    <% end %>
-    <td><%= link_to_if(logged_in?, word.word, edit_word_path(word, :exp_flg => expFlg), {:'data-toggle' => "tooltip", :'data-original-title' => "クリックで単語情報を編集", :target => "_blank"}) %></td>
+    <td><%= link_to_if(logged_in?, "編集", edit_word_path(word), {:class => "btn btn-default wrd_edit", :target => "_blank"}) {} %><%= word.word %></td>
     <td><%= word.word_with_pron %></td>
     <td><%= word.pos %></td>
     <td><%= simple_format(word.meaning) %></td>
-    <td>
-      <% if word.plural_cd.present? && word.plural_cd.nonzero? %>
-        <%= word.plural_ord == 0 ? "→複" : "→単" %>
-      <% end %>
-    </td>
-    <% if params[:action] != "wordsRoots" %>
+    <td><%= confirm_plural(word) %></td>
+    <% if params[:action] != "words_roots" %>
       <td>
         <% if word.root != "-" && word.root.present? %>
-          <%= link_to word.root, wordsRoots_word_path(word.root) %>
+          <%= link_to word.root, words_roots_word_path(word.root) %>
         <% end %>
       </td>
     <% end %>
     <% if params[:action] != "synonym" %>
       <td>
-        <% word.cntSynm(1, word.id).each do |syn| %>
-          <p><%= link_to syn.subtotal, synonym_relation_path(syn.rel_id) -%>件</p>
+        <% word.relations.each do |relation| %>
+          <% if relation.syn_ant_cd == 1 %>
+            <p><%= puts_synonym(relation) %></p>
+          <% end %>
         <% end %>
       </td>
     <% end %>
     <td>
-      <% word.cntSynm(2, word.id).each do |anto| %>
-        <p><%= link_to anto.type_name, antonym_relation_path(anto.rel_id, anto.ant_contrast_cd) -%>
-        </p>
+      <% word.relations.each do |relation| %>
+        <% if relation.syn_ant_cd == 2 %>
+          <p><%= puts_antonym(relation) %></p>
+        <% end %>
       <% end %>
     </td>
     <td>
     <% if !lesson_in_words?(params[:action], params[:controller]) %>
-      <% if word.example != 0 %>
-      <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
-      <% else %>
-      <%= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加", :target => "_blank"}){} %>
+      <% if word.examples.present? %>
+        <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+      <%# else %>
+        <%#= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加", :target => "_blank"}){} %>
       <% end %>
     <% else %>
-      <%if word.examples.size != 0 %>
-      <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
-      <% else %>
-      <%= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加", :target => "_blank"}){} %>
+      <%if word.examples.present? %>
+        <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+      <%# else %>
+        <%#= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加", :target => "_blank"}){} %>
       <% end %>
     <% end %>
     </td>
     <% if !lesson_in_words?(params[:action], params[:controller]) %>
     <td>
-      <% if word.lesson != 0 %>
-      <%= link_to word.lesson, word_in_lessons_lesson_path(word.id) %>件
+      <% if word.appearances.present? %>
+      <%= link_to word.appearances.size, word_in_lessons_lesson_path(word.id) %>件
       <% end %>
     </td>
     <% end %>
-    <% if logged_in? && lesson_in_words?(params[:action], params[:controller]) %>
-    <td><%= link_to "削除", appearance_path(:word_id => word.id), method: :delete, class:"btn btn-danger", data: {confirm:"当LESSONから、この単語を削除しますか？"} %></td>
-    <% end %>
+    <%# if logged_in? && lesson_in_words?(params[:action], params[:controller]) %>
+    <td><%#= link_to "削除", appearance_path(:word_id => word.id), method: :delete, class:"btn btn-danger", data: {confirm:"当LESSONから、この単語を削除しますか？"} %></td>
+    <%# end %>
   </tr>

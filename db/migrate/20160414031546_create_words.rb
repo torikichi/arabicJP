@@ -1,4 +1,4 @@
-class CreateWords < ActiveRecord::Migration
+class CreateWords < ActiveRecord::Migration[5.2]
   def change
     create_table :words do |t|
     	t.string :word, null: false
@@ -6,8 +6,7 @@ class CreateWords < ActiveRecord::Migration
     	t.string :pos
     	t.text :meaning, null: false
     	t.string :root
-    	t.integer :plural_cd
-    	t.integer :plural_ord
+    	t.integer :plural_word_id
 
     	t.timestamps null: false
     end

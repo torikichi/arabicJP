@@ -1,13 +1,15 @@
-class CreateRelations < ActiveRecord::Migration
+class CreateRelations < ActiveRecord::Migration[5.2]
   def change
-    create_table :relations, id: false do |t|
+    create_table :relations do |t|
       t.integer :rel_id, null: false
-      t.integer :word_id, null: false
+      t.integer :lock_version, default: 0, null: false
       t.integer :syn_ant_cd, null: false
       t.integer :ant_contrast_cd
       t.string :type_name
 
-      t.timestamps null: false
+      t.timestamps
+
+      t.references :word, foreign_key: true
     end
 
     add_index :relations, [:rel_id, :word_id, :syn_ant_cd], unique: true

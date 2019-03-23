@@ -1,51 +1,53 @@
 class WordsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update]
-  
-  include Common
 
   def index
-    # 日本語検索(あいまい検索)対応
-    srchCondition = "where w.word=? "
-    srchValue = params[:srchWrd]
-
-    if srchValue.empty?
-      flash.now[:danger] = 'アラビア語もしくは日本語を入力してください'
-      render '/lessons/home'
-      return
-    end
-
     if params[:srch_in_jpn]
-      srchCondition = "where w.meaning like ? "
-      srchValue = "%" + params[:srchWrd] + "%"
+      @words = Word.search_by_ja(params[:srch_word]).results_set
+    elsif params[:word_id]
+      @words = Word.where(id: params[:word_id])
+    else
+      @words = Word.search_by_ar(params[:srch_word]).results_set
     end
 
-    @words = Word.find_by_sql([generate_query("word") + srchCondition + "group by w.id", srchValue])
     @words = Kaminari.paginate_array(@words).page(params[:page])
   	render '/lessons/home'
   end
 
   # 語根検索
-  def wordsRoots
-    @words = Word.find_by_sql([generate_query("word") + "where w.root=? group by w.id", params[:id]])
+  def words_roots
+    @words = Word.search_by_root(params[:id]).results_set
+
+    @words = Kaminari.paginate_array(@words).page(params[:page])
+    render '/lessons/home'
+  end
+
+  # 複数形検索
+  def plural_from_singular
+    @words = Word.get_plural(params[:id]).results_set
+
     @words = Kaminari.paginate_array(@words).page(params[:page])
     render '/lessons/home'
   end
 
   # Lessonに紐付く単語を取得
   def lesson_in_words
-    @disp_obj = Lesson.find(params[:id])
+    @lesson = Lesson.find(params[:id])
+    @words = Word.get_attached_info(@lesson.words)
 
-    @words = Word.eager_load(:appearances, :examples).where("appr_id=?", params[:id])
+    @words = @words.page(params[:page])
+  end
+
+  # Lesson毎の単語帳を出力(csv)
+  def vocabulary_book
+    @lesson = Lesson.find(params[:id])
+    @words = @lesson.words
 
     respond_to do |format|
-      format.html do
-        @words = @words.page(params[:page])
-      end
       format.csv do
-        send_data render_to_string, filename: "LV#{@disp_obj.lv}_LESSON#{@disp_obj.lesson_no}_#{@disp_obj.lesson_name}.csv", type: :csv
+        send_data render_to_string, filename: "LV#{@lesson.lv}_LESSON#{@lesson.lesson_no}_#{@lesson.lesson_name}.csv", type: :csv
       end
     end
-
   end
 
   def show
@@ -58,11 +60,7 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(word_params)
-    # if @word.plural_cd != 0
-    #   # 実装検討中
-    # else
-    #   @word.plural_cd = nil
-    # end
+    # 複数形の取り扱いはpendding
 
     if @word.save
       flash[:success] = "単語登録が完了しました！正しく登録されたか、確認してください。"
@@ -91,5 +89,4 @@ class WordsController < ApplicationController
     def word_params
       params.require(:word).permit(:word, :word_with_pron, :pos, :meaning, :root)
     end
-
 end

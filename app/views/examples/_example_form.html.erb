@@ -7,8 +7,6 @@
     <%= f.label :sentence_ar, "アラビア語" %>
     <%= f.text_area :sentence_ar, class:"form-control" %>
 
-    <%= f.hidden_field :word_id, :value => params[:word_id] %>
-
-    <%= f.submit "例文追加", class: "btn btn-primary kakutei" %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary kakutei" %>
   <% end %>
 </div>

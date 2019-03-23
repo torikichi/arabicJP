@@ -33,7 +33,7 @@ set :prune_bundler, true
 append :linked_files, 'config/puma.rb', 'config/database.yml', 'config/secrets.yml', 'config/environments/production.rb', 'Gemfile', 'Gemfile.lock'
 
 # Default value for linked_dirs is []
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'spec'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

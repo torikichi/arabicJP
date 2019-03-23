@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   resources :words do
     member do
-      get :wordsRoots, :lesson_in_words
+      get :words_roots, :plural_from_singular, :lesson_in_words, :vocabulary_book
     end
 
     resources :examples

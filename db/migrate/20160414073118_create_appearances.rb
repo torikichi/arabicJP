@@ -1,12 +1,7 @@
-class CreateAppearances < ActiveRecord::Migration
+class CreateAppearances < ActiveRecord::Migration[5.2]
   def change
-    create_table :appearances, id: false do |t|
-      t.integer :word_id, null: false
-      t.integer :appr_id, null: false
-
-      t.timestamps null: false
+    create_table :appearances do |t|
+      t.timestamps
     end
-
-    add_index :appearances, [:word_id, :appr_id], unique: true
   end
 end

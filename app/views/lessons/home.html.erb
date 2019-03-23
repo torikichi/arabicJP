@@ -6,7 +6,7 @@
         <legend><%= action_title(params[:action]) %></legend>
         <% if params[:action] == "home" %>
         <p>
-          <%= text_field_tag(:srchWrd, "", placeholder: "アラビア語を入力", class:"form-control", id:"search", autofocus:true) %>
+          <%= text_field_tag(:srch_word, "", placeholder: "アラビア語を入力", class:"form-control", id:"search", autofocus:true) %>
           <%= link_to "アラビア語キーボードを表示", "#", id:"showkeyboard" %>
         </p>
         <%= submit_tag("通常検索", class:"btn btn-primary", id:"search-btn") %>
@@ -66,7 +66,7 @@
   </div>
   <div class="row">
 
-  <% if !@words.nil? %>
+  <% if @words.present? %>
     <%= page_entries_info @words %>
     <table id="srch_result" class="table results">
       <thead>
@@ -76,7 +76,7 @@
         <th>品詞</th>
         <th>意味</th>
         <th>複数</th>
-        <% if params[:action] != "wordsRoots" %>
+        <% if params[:action] != "words_roots" %>
           <th>語根</th>
         <% end %>
         <% if params[:action] != "synonym" %>
@@ -94,10 +94,12 @@
   </div>
 </div>
 
-<% if logged_in? %>
-<script type="text/javascript">
+<%# if logged_in? %>
+<!-- <script type="text/javascript"> -->
+<!--
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
-</script>
-<% end %>
+-->
+<!-- </script> -->
+<%# end %>
