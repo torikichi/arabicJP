@@ -42,9 +42,9 @@ server 'tori-kichi.com', user: 'torikichi', roles: %w{app db web}
 # Global options
 # --------------
 set :ssh_options, {
-   keys: '~/.ssh/torikichi_rsa',
+   keys: %w(~/.ssh/torikichi_rsa ~/.ssh/github_rsa),
    forward_agent: true,
-#    auth_methods: %w(password)
+#    auth_methods: %w(publickey)
 }
 
 set :puma_conf, "/var/www/milaaha/arabicJP/shared/config/puma.rb"

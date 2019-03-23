@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock '3.11.0'
 
 set :application, 'arabicJP'
 set :repo_url, 'git@github.com:torikichi/arabicJP.git'
@@ -41,7 +41,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'spec'
 # Default value for keep_releases is 5
 set :keep_releases, 3
 
-set :rbenv_ruby, '2.3.0'
+set :rbenv_ruby, '2.4.2'
 
 task :restart do
   on roles(:app) do
