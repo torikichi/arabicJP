@@ -3,7 +3,7 @@ class Word < ActiveRecord::Base
 	has_many :lessons, through: :appearances
 	has_many :examples, dependent: :destroy
 	has_many :relations, dependent: :destroy
-	# has_many :synonym, through: :relations, source: :from_word
+
 	has_paper_trail
 
 	before_validation :is_changed_word, on: :update

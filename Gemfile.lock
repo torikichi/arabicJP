@@ -214,6 +214,8 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
     puma (3.12.0)
+    purecss-sass (1.0.0)
+      sass (>= 3.4)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -368,6 +370,7 @@ DEPENDENCIES
   paper_trail
   pg
   puma
+  purecss-sass
   rails (~> 5.2.2)
   rails_12factor
   rspec-rails

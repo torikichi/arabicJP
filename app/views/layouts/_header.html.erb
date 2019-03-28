@@ -1,85 +1,76 @@
 <% editalbe = logged_in? ? true : false %>
 
-<header class="navbar navbar-inverse" id="commonhead"><!--navbar-fixed-top -->
-  <div class="container">
-    <nav>
-    <% if editalbe %>
-      <span id="headlogo"><%= link_to WELCOME_MSG, root_path %>　<span id="highlight"><%= current_user.name %></span>さん！</span>
-    <% else %>
-      <%= link_to "MilaaHa", root_path, class:"navbar-brand" %>
-    <% end %>
-
-    <%# if lesson_menu?(params[:action], params[:controller]) || lesson_in_words?(params[:action], params[:controller]) %>
-    <!-- <ul class="nav navbar-nav"> -->
-      <%# if @lessons.first.lv != 1 %>
-        <!-- <li class="dropdown"> -->
-          <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV1 <span class="caret"></span></a> -->
-          <!-- <ul class="dropdown-menu" role="menu"> -->
-            <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 1, :category => 1) %></li> -->
-            <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 1, :category => 2) %></li> -->
-            <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 1, :category => 3) %></li> -->
-            <!-- <li><%#=link_to "Supplement", lesson_path(:id => 1, :lv => 1, :category => 5) %></li> -->
-          <!-- </ul> -->
-        <!-- </li> -->
-      <%# end %>
-
-      <%# if @lessons.first.lv != 2 %>
-        <!-- <li class="dropdown"> -->
-          <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV2 <span class="caret"></span></a> -->
-          <!-- <ul class="dropdown-menu" role="menu"> -->
-            <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 2, :category => 1) %></li> -->
-            <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 2, :category => 2) %></li> -->
-            <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 2, :category => 3) %></li> -->
-            <!-- <li><%#=link_to "Grammer", lesson_path(:id => 1, :lv => 2, :category => 4) %></li> -->
-          <!-- </ul> -->
-        <!-- </li> -->
-      <%# end %>
-
-      <%# if @lessons.first.lv != 3 %>
-        <!-- <li class="dropdown"> -->
-          <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV3 <span class="caret"></span></a> -->
-          <!-- <ul class="dropdown-menu" role="menu"> -->
-            <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 3, :category => 1) %></li> -->
-            <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 3, :category => 2) %></li> -->
-            <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 3, :category => 3) %></li> -->
-            <!-- <li><%#=link_to "Grammer", lesson_path(:id => 1, :lv => 3, :category => 4) %></li> -->
-          <!-- </ul> -->
-        <!-- </li> -->
-      <%# end %>
-
-      <%# if @lessons.first.lv != 4 %>
-        <!-- <li class="dropdown"> -->
-          <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV4 <span class="caret"></span></a> -->
-          <!-- <ul class="dropdown-menu" role="menu"> -->
-            <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 4, :category => 1) %></li> -->
-            <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 4, :category => 2) %></li> -->
-            <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 4, :category => 3) %></li> -->
-            <!-- <li><%#=link_to "Grammer", lesson_path(:id => 1, :lv => 4, :category => 4) %></li> -->
-          <!-- </ul> -->
-        <!-- </li> -->
-      <%# end %>
-    <!-- </ul> -->
+<header class="pure-menu pure-menu-horizontal" role="navigation">
+  <%# if lesson_menu?(params[:action], params[:controller]) || lesson_in_words?(params[:action], params[:controller]) %>
+  <!-- <ul class="nav navbar-nav"> -->
+    <%# if @lessons.first.lv != 1 %>
+      <!-- <li class="dropdown"> -->
+        <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV1 <span class="caret"></span></a> -->
+        <!-- <ul class="dropdown-menu" role="menu"> -->
+          <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 1, :category => 1) %></li> -->
+          <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 1, :category => 2) %></li> -->
+          <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 1, :category => 3) %></li> -->
+          <!-- <li><%#=link_to "Supplement", lesson_path(:id => 1, :lv => 1, :category => 5) %></li> -->
+        <!-- </ul> -->
+      <!-- </li> -->
     <%# end %>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "LESSON MENU", lessons_path %></li>
-        <% if editalbe %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">編集者MENU <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "単語登録", new_word_path %></li>
-              <li class="divider"></li>
-              <li><%= link_to "ユーザー詳細", current_user %></li>
-              <% if current_user.admin? %>
-                <li><%= link_to "登録ユーザー一覧", users_path %></li>
-                <li><%= link_to "履歴一覧", versions_path %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li><%= link_to "LogOut", :logout %></li>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
+    <%# if @lessons.first.lv != 2 %>
+      <!-- <li class="dropdown"> -->
+        <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV2 <span class="caret"></span></a> -->
+        <!-- <ul class="dropdown-menu" role="menu"> -->
+          <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 2, :category => 1) %></li> -->
+          <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 2, :category => 2) %></li> -->
+          <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 2, :category => 3) %></li> -->
+          <!-- <li><%#=link_to "Grammer", lesson_path(:id => 1, :lv => 2, :category => 4) %></li> -->
+        <!-- </ul> -->
+      <!-- </li> -->
+    <%# end %>
+
+    <%# if @lessons.first.lv != 3 %>
+      <!-- <li class="dropdown"> -->
+        <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV3 <span class="caret"></span></a> -->
+        <!-- <ul class="dropdown-menu" role="menu"> -->
+          <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 3, :category => 1) %></li> -->
+          <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 3, :category => 2) %></li> -->
+          <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 3, :category => 3) %></li> -->
+          <!-- <li><%#=link_to "Grammer", lesson_path(:id => 1, :lv => 3, :category => 4) %></li> -->
+        <!-- </ul> -->
+      <!-- </li> -->
+    <%# end %>
+
+    <%# if @lessons.first.lv != 4 %>
+      <!-- <li class="dropdown"> -->
+        <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LV4 <span class="caret"></span></a> -->
+        <!-- <ul class="dropdown-menu" role="menu"> -->
+          <!-- <li><%#=link_to "Reading", lesson_path(:id => 1, :lv => 4, :category => 1) %></li> -->
+          <!-- <li><%#=link_to "Writing", lesson_path(:id => 1, :lv => 4, :category => 2) %></li> -->
+          <!-- <li><%#=link_to "Conversation", lesson_path(:id => 1, :lv => 4, :category => 3) %></li> -->
+          <!-- <li><%#=link_to "Grammer", lesson_path(:id => 1, :lv => 4, :category => 4) %></li> -->
+        <!-- </ul> -->
+      <!-- </li> -->
+    <%# end %>
+  <!-- </ul> -->
+  <%# end %>
+
+  <ul class="pure-menu-list">
+    <li class="pure-menu-item"><%= link_to "MilaaHa", root_path, class:"pure-menu-link" %></li>
+    <li class="pure-menu-item"><%= link_to "LESSON MENU", lessons_path, class:"pure-menu-link" %></li>
+    <% if editalbe %>
+      <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+        <a href="#" id="menuLink1" class="pure-menu-link">
+          編集者MENU
+        </a>
+        <ul class="pure-menu-children">
+          <li class="pure-menu-item"><%= link_to "単語登録", new_word_path, class:"pure-menu-link" %></li>
+          <li class="pure-menu-item"><%= link_to "ユーザー詳細", current_user, class:"pure-menu-link" %></li>
+          <% if current_user.admin? %>
+            <li class="pure-menu-item"><%= link_to "登録ユーザー一覧", users_path, class:"pure-menu-link" %></li>
+            <li class="pure-menu-item"><%= link_to "履歴一覧", versions_path, class:"pure-menu-link" %></li>
+          <% end %>
+          <li class="pure-menu-item"><%= link_to "LogOut", :logout, class:"pure-menu-link" %></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
 </header>

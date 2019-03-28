@@ -1,18 +1,19 @@
   <tr>
-    <td><%= link_to_if(logged_in?, "編集", edit_word_path(word), {:class => "btn btn-default wrd_edit", :target => "_blank"}) {} %><%= word.word %></td>
+    <td><%= word.word %></td>
     <td><%= word.word_with_pron %></td>
     <td><%= word.pos %></td>
     <td><%= simple_format(word.meaning) %></td>
-    <td><%= confirm_plural(word) %></td>
     <% if params[:action] != "words_roots" %>
-      <td>
+      <td class="root_column">
         <% if word.root != "-" && word.root.present? %>
+          <span></span>
           <%= link_to word.root, words_roots_word_path(word.root) %>
         <% end %>
       </td>
     <% end %>
+    <td><%= confirm_plural(word) %></td>
     <% if params[:action] != "synonym" %>
-      <td>
+      <td class="synonym_column">
         <% word.relations.each do |relation| %>
           <% if relation.syn_ant_cd == 1 %>
             <p><%= puts_synonym(relation) %></p>
@@ -20,7 +21,7 @@
         <% end %>
       </td>
     <% end %>
-    <td>
+    <td class="antonym_column">
       <% word.relations.each do |relation| %>
         <% if relation.syn_ant_cd == 2 %>
           <p><%= puts_antonym(relation) %></p>
@@ -43,13 +44,18 @@
     <% end %>
     </td>
     <% if !lesson_in_words?(params[:action], params[:controller]) %>
-    <td>
+    <td class="appr_column">
+      <span></span>
       <% if word.appearances.present? %>
       <%= link_to word.appearances.size, word_in_lessons_lesson_path(word.id) %>件
       <% end %>
     </td>
     <% end %>
     <%# if logged_in? && lesson_in_words?(params[:action], params[:controller]) %>
-    <td><%#= link_to "削除", appearance_path(:word_id => word.id), method: :delete, class:"btn btn-danger", data: {confirm:"当LESSONから、この単語を削除しますか？"} %></td>
-    <%# end %>
+    <% if logged_in? %>
+    <td>
+      <%#= link_to "削除", appearance_path(:word_id => word.id), method: :delete, class:"btn btn-danger", data: {confirm:"当LESSONから、この単語を削除しますか？"} %>
+      <%= link_to("編集", edit_word_path(word), :class => "pure-button  pure-button-primary wrd_edit", :target => "_blank") %>
+    </td>
+    <% end %>
   </tr>

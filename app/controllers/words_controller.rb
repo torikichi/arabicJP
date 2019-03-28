@@ -2,16 +2,22 @@ class WordsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update]
 
   def index
-    if params[:srch_in_jpn]
-      @words = Word.search_by_ja(params[:srch_word]).results_set
-    elsif params[:word_id]
-      @words = Word.where(id: params[:word_id])
-    else
-      @words = Word.search_by_ar(params[:srch_word]).results_set
-    end
+    if params[:srch_word].present? || params[:word_id].present? 
+      if params[:srch_in_jpn]
+        @words = Word.search_by_ja(params[:srch_word]).results_set
+      elsif params[:word_id]
+        @words = Word.where(id: params[:word_id])
+      else
+        @words = Word.search_by_ar(params[:srch_word]).results_set
+      end
 
-    @words = Kaminari.paginate_array(@words).page(params[:page])
-  	render '/lessons/home'
+      @words = Kaminari.paginate_array(@words).page(params[:page])
+    else
+      flash[:danger] = "単語が入力されていません。"
+      redirect_to root_path
+      return
+    end
+    render '/lessons/home'
   end
 
   # 語根検索

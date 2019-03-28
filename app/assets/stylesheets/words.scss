@@ -13,4 +13,49 @@
 
 .wrd_edit {
   margin-right: 0.5em;
+  text-decoration: none !important;
+}
+
+#srch_result {
+  width: 100%;
+}
+
+@media screen and (max-width: 420px) {
+
+  #srch_result {
+    display: block;
+  }
+  #srch_result thead {
+    display: none;
+  }
+  #srch_result tbody {
+    display: block;
+  }
+  #srch_result tbody tr {
+    display: block;
+    margin-bottom: 1.5em;
+  }
+  #srch_result tbody th,
+  #srch_result tbody td {
+    display: block;
+    border: none;
+  }
+  #srch_result tbody th {
+    margin-bottom: 5px;
+    list-style-type: none;
+    color: #fff;
+    background: #000;
+  }
+  #srch_result tbody td {
+    margin-left: 1em;
+    padding: 0;
+  }
+  #srch_result tbody td:nth-of-type(1):before { content: "【単語】"; }
+  #srch_result tbody td:nth-of-type(2):before { content: "読み："; }
+  #srch_result tbody td:nth-of-type(3):before { content: "品詞："; }
+  #srch_result tbody td:nth-of-type(4):before { content: "意味："; }
+  .root_column span:nth-of-type(1):before { content: "語根："; }
+  .appr_column span:nth-of-type(1):before { content: "登場箇所："; }
+  .synonym_column p:nth-of-type(1):before { content: "類義語："; }
+  .antonym_column p:nth-of-type(1):before { content: "対義語："; }
 }

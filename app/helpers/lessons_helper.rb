@@ -4,7 +4,7 @@ module LessonsHelper
   	case action_name
   	when "home"
   	  "単語検索メニュー"
-  	when "wordsRoots"
+  	when "words_roots"
   	  "語根検索結果"
   	when "synonym"
   	  "類義語検索結果"

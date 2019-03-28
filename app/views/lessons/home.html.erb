@@ -1,105 +1,39 @@
-<div class="container">
-  <div class="row" id="list"></div>
-  <div class="row">
-    <%= form_tag(words_path, method: "get") do %>
-      <fieldset>
-        <legend><%= action_title(params[:action]) %></legend>
-        <% if params[:action] == "home" %>
-        <p>
-          <%= text_field_tag(:srch_word, "", placeholder: "アラビア語を入力", class:"form-control", id:"search", autofocus:true) %>
-          <%= link_to "アラビア語キーボードを表示", "#", id:"showkeyboard" %>
-        </p>
-        <%= submit_tag("通常検索", class:"btn btn-primary", id:"search-btn") %>
-        <%= submit_tag("日本語検索", class:"btn btn-default", name:"srch_in_jpn") %>
-        <% end %>
-      </fieldset>
+<%= form_tag(words_path, method: "get", class:"pure-form  pure-form-stacked") do %>
+  <fieldset>
+    <legend><%= action_title(params[:action]) %></legend>
+    <% if params[:action] == "home" %>
+    <%= text_field_tag(:srch_word, "", placeholder: "アラビア語または日本語を入力", id:"search", class:"pure-input-2-3 pure-input-rounded", autofocus:true) %>
+    <%= submit_tag("通常検索", class:"pure-button pure-button-primary", id:"search-btn") %>
+    <%= submit_tag("日本語検索", class:"pure-button pure-button-active", name:"srch_in_jpn") %>
     <% end %>
-    <div id="keyboard">
-      <div id="row0">
-        <input name="ض" type="button" value="ض" />
-        <input name="ص" type="button" value="ص" />
-        <input name="ث" type="button" value="ث" />
-        <input name="ق" type="button" value="ق" />
-        <input name="ف" type="button" value="ف" />
-        <input name="غ" type="button" value="غ" />
-        <input name="ع" type="button" value="ع" />
-        <input name="ه" type="button" value="ه" />
-        <input name="خ" type="button" value="خ" />
-        <input name="ح" type="button" value="ح" />
-        <input name="ج" type="button" value="ج" />
-        <input name="ّ" type="button" value="ّ" />
-        <input name="backspace" type="button" value="Backspace" />
-      </div>
-      <div id="row1">
-        <input name="إ" type="button" value="إ" />
-        <input name="أ" type="button" value="أ" />
-        <input name="آ" type="button" value="آ" />
-        <input name="ش" type="button" value="ش" />
-        <input name="س" type="button" value="س" />
-        <input name="ي" type="button" value="ي" />
-        <input name="ب" type="button" value="ب" />
-        <input name="ل" type="button" value="ل" />
-        <input name="ا" type="button" value="ا" />
-        <input name="ت" type="button" value="ت" />
-        <input name="ن" type="button" value="ن" />
-        <input name="م" type="button" value="م" />
-        <input name="ك" type="button" value="ك" />
-        <input name="ة" type="button" value="ة" />
-      </div>
-      <div id="row2">
-        <input name="ؤ" type="button" value="ؤ" />
-        <input name="ئ" type="button" value="ئ" />
-        <input name="ء" type="button" value="ء" />
-        <input name="ظ" type="button" value="ظ" />
-        <input name="ط" type="button" value="ط" />
-        <input name="ذ" type="button" value="ذ" />
-        <input name="د" type="button" value="د" />
-        <input name="ز" type="button" value="ز" />
-        <input name="ر" type="button" value="ر" />
-        <input name="و" type="button" value="و" />
-        <input name="ى" type="button" value="ى" />  
-      </div>
-      <div id="spacebar">
-        <input name="spacebar" type="button" value=" " />
-      </div>
-    </div>
-  </div>
-  <div class="row">
+  </fieldset>
+<% end %>
 
-  <% if @words.present? %>
-    <%= page_entries_info @words %>
-    <table id="srch_result" class="table results">
-      <thead>
-      <tr>
-        <th>単語</th>
-        <th>読み</th>
-        <th>品詞</th>
-        <th>意味</th>
-        <th>複数</th>
-        <% if params[:action] != "words_roots" %>
-          <th>語根</th>
-        <% end %>
-        <% if params[:action] != "synonym" %>
-          <th>類</th>
-        <% end %>
-        <th>対</th>
-        <th>例</th>
-        <th>登場箇所</th>
-      </tr>
-      </thead>
-      <%= render @words %>
-    </table>
-    <%= paginate @words %>
-  <% end %>
-  </div>
-</div>
-
-<%# if logged_in? %>
-<!-- <script type="text/javascript"> -->
-<!--
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
--->
-<!-- </script> -->
-<%# end %>
+<% if @words.present? %>
+  <%= page_entries_info @words %>
+  <table id="srch_result" class="pure-table pure-table-horizontal">
+    <thead>
+    <tr>
+      <th>単語</th>
+      <th>読み</th>
+      <th>品詞</th>
+      <th>意味</th>
+      <% if params[:action] != "words_roots" %>
+        <th>語根</th>
+      <% end %>
+      <th>複数 / 単数</th>
+      <% if params[:action] != "synonym" %>
+        <th>類義語</th>
+      <% end %>
+      <th>対義語</th>
+      <th>例文</th>
+      <th>登場箇所</th>
+      <% if logged_in? %>
+        <th></th>
+      <% end %>
+    </tr>
+    </thead>
+    <%= render @words %>
+  </table>
+  <%= paginate @words %>
+<% end %>

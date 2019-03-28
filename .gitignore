@@ -24,6 +24,7 @@
 
 .DS_Store
 .byebug_history
+yarn.lock
 
 # Ignore environmental config files.
 /config/environments/development.rb
