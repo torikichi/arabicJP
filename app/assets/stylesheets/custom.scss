@@ -29,17 +29,6 @@ header a {
   }
 }
 
-#headlogo {
-  float: left;
-  margin-right: 10px;
-  /*font-size: 1.7em;*/
-  color: #fff;
-  /*text-transform: uppercase;*/
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-}
-
 #highlight {
   color: #ff6347;
   font-weight: normal !important;
@@ -47,6 +36,14 @@ header a {
 
 .kakutei {
   margin-top: 1em;
+}
+
+#milaaha_head {
+  background: #d7f3f3;
+}
+
+#milaaha-icon {
+  width: 7em;
 }
 
 .breadcrumb {
@@ -86,4 +83,38 @@ header a {
 
 .button-secondary {
     background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+/* ホームボタン アイコン */
+.browser.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 2px;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: solid 1px currentColor;
+}
+
+.browser.icon:before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 85% 15%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  border: solid 1px currentColor;
+}
+
+.browser.icon:after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 15px;
+  height: 1px;
+  background-color: currentColor;
 }

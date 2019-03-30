@@ -1,6 +1,6 @@
 <% editalbe = logged_in? ? true : false %>
 
-<header class="pure-menu pure-menu-horizontal" role="navigation">
+<header id="milaaha_head" class="pure-menu pure-menu-horizontal" role="navigation">
   <%# if lesson_menu?(params[:action], params[:controller]) || lesson_in_words?(params[:action], params[:controller]) %>
   <!-- <ul class="nav navbar-nav"> -->
     <%# if @lessons.first.lv != 1 %>
@@ -54,7 +54,11 @@
   <%# end %>
 
   <ul class="pure-menu-list">
-    <li class="pure-menu-item"><%= link_to "MilaaHa", root_path, class:"pure-menu-link" %></li>
+    <li id="milaaha-icon" class="pure-menu-item">
+      <%= link_to root_path, class:"pure-menu-link" do %>
+        MilaaHa<span class="browser icon"></span>
+      <% end %>
+    </li>
     <li class="pure-menu-item"><%= link_to "LESSON MENU", lessons_path, class:"pure-menu-link" %></li>
     <% if editalbe %>
       <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">

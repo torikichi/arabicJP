@@ -32,7 +32,7 @@
     <% if !lesson_in_words?(params[:action], params[:controller]) %>
       <% if word.examples.present? %>
         <span></span>
-        <%= link_to "*", examples_path(word.id, :exp => word.word), target:"_blank" %>
+        <%= link_to "参照", examples_path(word.id, :exp => word.word), class:"pure-button button-secondary", target:"_blank" %>
       <%# else %>
         <%#= link_to_if(logged_in?, "＋", new_word_example_path(word.id, :exp => word.word), {:'data-toggle' => "tooltip", :'data-original-title' => "例文を追加", :target => "_blank"}){} %>
       <% end %>

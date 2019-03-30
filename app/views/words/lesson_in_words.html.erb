@@ -21,7 +21,9 @@
   <div id="appr_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <% end %>
 
-  <%= link_to "単語一覧ダウンロード", vocabulary_book_word_path(format: :csv), class:"pure-button pure-button-primary" %>
+  <%= link_to vocabulary_book_word_path(format: :csv), class:"pure-button pure-button-primary", id:"download-csv" do %>
+    単語一覧ダウンロード<span class="cloud-download-solid icon"><i></i></span>
+  <% end %>
 </div>
 </div>
 
