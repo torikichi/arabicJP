@@ -1,6 +1,4 @@
 <% provide(:button_text, '例文追加') %>
 
 <h1>例文を追加する：<%= params[:exp] %></h1>
-<div class="container">
-  <%= render partial: 'examples/example_form', locals: {example: @example} %>
-</div>
+<%= render 'example_form' %>

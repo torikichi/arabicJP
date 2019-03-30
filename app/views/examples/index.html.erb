@@ -1,25 +1,31 @@
-<div class="container">
-  <h3>例文：<%= params[:exp] %></h3>
+<h3>例文：<%= params[:exp] %></h3>
+
+<div class="pure-g">
+  <div class="pure-u-4-5">
   <% if logged_in? %>
-    <%= link_to "例文を追加", new_word_example_path(params[:format], :exp => params[:exp]) %>
+    <%= link_to "例文を追加", new_word_example_path(params[:format], :exp => params[:exp]), class:"pure-button pure-button-primary" %>
   <% end %>
-  <input type="button" value="close" onclick="window.close()" class="pull-right btn btn-default">
-  <table class="table results">
-  <tr>
-  	<th>日本語</th>
-  	<th>アラビア語</th>
-    <% if logged_in? %>
-      <th></th>
-    <% end %>
-  </tr>
-  <% @examples.each do |example| %>
-  <tr>
-  	<td><%= example.sentence_ja %></td>
-  	<td><%= example.sentence_ar %></td>
-    <% if logged_in? %>
-      <td><%= link_to "この例文を修正", edit_example_path(example.id, :exp => params[:exp]) %></td>
-    <% end %>
-  </tr>
-  <% end %>
-  </table>
+  </div>
+  <div class="pure-u-1-5">
+    <input type="button" value="close" onclick="window.close()" class="pure-button pure-button-active">
+  </div>
 </div>
+
+<table class="pure-table pure-table-horizontal fix_table tbl_space">
+<tr>
+	<th>日本語</th>
+	<th>アラビア語</th>
+  <% if logged_in? %>
+    <th></th>
+  <% end %>
+</tr>
+<% @examples.each do |example| %>
+<tr>
+	<td><%= example.sentence_ja %></td>
+	<td><%= example.sentence_ar %></td>
+  <% if logged_in? %>
+    <td><%= link_to "修正", edit_example_path(example.id, :exp => params[:exp]), class:"pure-button button-secondary" %></td>
+  <% end %>
+</tr>
+<% end %>
+</table>

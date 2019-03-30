@@ -1,10 +1,9 @@
-<div class="container">
 <h1>登録ユーザー一覧</h1>
 
 <p>※<span class="admin">赤字</span>は管理ユーザー</p>
 
 <%= page_entries_info @users %>
-<table class="table result">
+<table class="pure-table pure-table-horizontal fix_table">
   <tr>
   	<th>ユーザー</th>
   	<th>email</th>
@@ -24,11 +23,10 @@
   	<td><%= user.created_at.strftime("%Y年 %m月 %d日") %></td>
   	<td>
   	  <% if !user.admin %>
-  	    <%= link_to "削除", user_path(user.id), method: :delete, class:"btn btn-danger", data: {confirm:"【警告】ユーザーの確認完了時のみ削除すること！"} %>
+  	    <%= link_to "削除", user_path(user.id), method: :delete, class:"pure-button button-error", data: {confirm:"【警告】ユーザーの確認完了時のみ削除すること！"} %>
   	  <% end %>
   	</td>
   </tr>
   <% end %>
 </table>
 <%= paginate @users %>
-</div>

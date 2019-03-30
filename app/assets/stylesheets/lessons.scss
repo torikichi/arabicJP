@@ -4,3 +4,25 @@
 span.lesson {
 	margin-left: 0.5em;
 }
+
+#textbook {
+  margin-left: 1em;
+  margin-top: 2em;
+}
+
+#appr_lesson {
+  margin-top: 0.5em;
+}
+
+#each_word thead {
+  background: #d0e8f4;
+}
+
+#appr_lesson thead {
+  background: #ffffff;
+}
+
+#each_word caption, #appr_lesson caption {
+  text-align: left;
+  font-size: 1em;
+}

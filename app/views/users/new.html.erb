@@ -1,22 +1,18 @@
-<div class="container">
-  <h1 id="new_user_title">新規ユーザー登録</h1>
+<h1 id="new_user_title">新規ユーザー登録</h1>
 
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
-      <%= f.label :name %>
-      <%= f.text_field :name, class:"form-control" %>
+<%= form_for(@user, html: {class: "pure-form pure-form-stacked"}) do |f| %>
+  <%= render 'shared/error_messages' %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email, class:"form-control" %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
 
-      <%= f.label :password %><span class="label label-danger">※半角英数8字以上</span>
-      <%= f.password_field :password, class:"form-control" %>
+  <%= f.label :password %><span class="pure-form-message">※半角英数8字以上</span>
+  <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Password再入力" %>
-      <%= f.password_field :password_confirmation, class:"form-control" %>
+  <%= f.label :password_confirmation, "Password再入力" %>
+  <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
+  <%= f.submit "Create my account", class: "pure-button pure-button-primary" %>
+<% end %>

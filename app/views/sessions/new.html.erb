@@ -1,20 +1,14 @@
 <h1 id="new_user_title">編集ユーザーログイン</h1>
 
-<div class="container">
-  <div class="col-md-6 col-md-offset-3">
-  	<%= form_tag sessions_path, :method => :post do %>
-  	  <%= label_tag :name %>
-      <%= text_field_tag(:name, "", class:"form-control", id:"user_name") %>
+<%= form_tag sessions_path, :method => :post, class:"pure-form  pure-form-stacked" do %>
+  <%= label_tag :name %>
+  <%= text_field_tag(:name, "", id:"user_name") %>
 
-      <%= label_tag :password %>
-      <%= password_field_tag(:password, "", class:"form-control", id:"user_password") %>
+  <%= label_tag :password %>
+  <%= password_field_tag(:password, "", id:"user_password") %>
 
-      <%= submit_tag "Log in", class: "btn btn-primary" %>
-  	<% end %>
-  </div>
-</div>
+  <%= submit_tag "Log in", class: "pure-button pure-button-primary" %>
+<% end %>
 
-<div class="col-md-6 col-md-offset-3">
-  <h4 class="alert">パスワードを忘れた場合はこちらから</h4>
-  <%= render 'forgot_password_form' %>
-</div>
+<h4 class="alert">パスワードを忘れた場合はこちらから</h4>
+<%= render 'forgot_password_form' %>

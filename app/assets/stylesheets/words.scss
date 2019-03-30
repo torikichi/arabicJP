@@ -18,6 +18,19 @@
 
 #srch_result {
   width: 100%;
+  margin-bottom: 0.5em;
+}
+
+#op_area {
+  margin-bottom: 1em;
+}
+
+.exp_form textarea {
+  width: 85%;
+}
+
+.pagination {
+  width: 100%;
 }
 
 @media screen and (max-width: 420px) {
@@ -58,4 +71,5 @@
   .appr_column span:nth-of-type(1):before { content: "登場箇所："; }
   .synonym_column p:nth-of-type(1):before { content: "類義語："; }
   .antonym_column p:nth-of-type(1):before { content: "対義語："; }
+  .example_column span:nth-of-type(1):before { content: "例文："; }
 }

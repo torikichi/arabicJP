@@ -1,8 +1,7 @@
-<div class="container">
   <h1>データ更新履歴一覧</h1>
 
   <%= page_entries_info @versions %>
-  <table class="table result">
+  <table class="pure-table pure-table-horizontal fix_table">
   <tr>
     <th>Trn ID</th>
     <th>ユーザー</th>
@@ -29,5 +28,3 @@
   <% end %>
   </table>
   <%= paginate @versions %>
-
-</div>

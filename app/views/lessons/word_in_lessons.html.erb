@@ -1,9 +1,7 @@
-<div class="container">
-
-<table class="table table-condensed table-bordered">
+<table id="each_word" class="pure-table fix_table">
   <caption>単語：</caption>
   <thead>
-  <tr class="info">
+  <tr>
     <th>単語</th>
     <th>読み</th>
     <th>品詞</th>
@@ -14,11 +12,11 @@
   	<td><%= @choisedWord.word %></td>
   	<td><%= @choisedWord.word_with_pron%></td>
   	<td><%= @choisedWord.pos %></td>
-  	<td><%= @choisedWord.meaning %></td>
+  	<td><%= simple_format(@choisedWord.meaning) %></td>
   </tr>
 </table>
 
-<table class="table results">
+<table id="appr_lesson" class="fix_table pure-table pure-table-horizontal">
   <caption>登場LESSON一覧：</caption>
   <thead>
   <tr>
@@ -54,5 +52,3 @@
   </tr>
   <% end %>
 </table>
-
-</div>
