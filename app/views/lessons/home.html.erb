@@ -5,6 +5,9 @@
     <%= text_field_tag(:srch_word, "", placeholder: "アラビア語または日本語を入力", id:"search", class:"pure-input-2-3 pure-input-rounded", autofocus:true) %>
     <%= submit_tag("通常検索", class:"pure-button pure-button-primary", id:"search-btn") %>
     <%= submit_tag("日本語検索", class:"pure-button pure-button-active", name:"srch_in_jpn") %>
+    <div class="tbl_space">
+      <%= link_to "※アラビア語の入力方法について", "https://tori-kichi.com/blog/?p=1315", target:"_blank" %>
+    </div>
     <% end %>
   </fieldset>
 <% end %>

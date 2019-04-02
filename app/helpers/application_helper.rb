@@ -80,7 +80,6 @@ module ApplicationHelper
     when "add_word_to_lesson"
       return "登場LESSON登録#{divider}#{baseTitle}"
   	end
-
   end
 
   # LESSON系画面からの遷移かどうかを判定する
