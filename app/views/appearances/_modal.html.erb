@@ -13,14 +13,14 @@
     <div class="field">
       <div class="col-xs-3"><%= text_field_tag(:w_t_l, "", class:"form-control") %></div>
       <%= link_to "検索", "#", class:"btn btn-default", id:"word_to_add" %>
-      <%= hidden_field_tag "appearance[appr_id]", params[:format] %>
+      <%= hidden_field_tag "appearance[lesson_id]", params[:format] %>
     </div>
     <div id="word_details"></div>
   </div><!-- /modal-body -->
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <%= submit_tag "単語登録", :class => "btn btn-primary" %>
+    <button type="button" class="pure-button pure-button" data-dismiss="modal">Close</button>
+    <%= submit_tag "単語登録", :class => "pure-button pure-button-primary" %>
   </div><!-- /modal-footer -->
 
 <% end %>

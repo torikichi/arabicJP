@@ -1,28 +1,25 @@
-<div class="row">
-  <%= form_tag(add_synonym_relation_path(:id => kbn), method: "get") do %>
-  	<fieldset id="srchSynField">
-  	  <%= text_field_tag(:srchSyn, "", autofocus:true) %>
-  	  <%= submit_tag("検索", class:"btn btn-primary") %>
-      <button type="button" class="close" data-dismiss="modal" onclick="window.close();">
-      <span aria-hidden="true">&#215;</span><span class="sr-only">close</span>
-      </button>
-  	</fieldset>
-  <% end %>
-</div>
+<%= form_tag(add_synonym_relation_path(:id => kbn), method: "get") do %>
+	<fieldset id="srchSynField">
+	  <%= text_field_tag(:srchSyn, "", autofocus:true) %>
+	  <%= submit_tag("検索", class:"pure-button pure-button-primary") %>
+    <button type="button" class="close" data-dismiss="modal" onclick="window.close();">
+    <span aria-hidden="true">&#215;</span><span class="sr-only">close</span>
+    </button>
+	</fieldset>
+<% end %>
 
-<div class="row">
-  <% if !@relations.nil? %>
-    <table class="table results">
-    <thead>
-    <tr>
-      <th></th>
-      <th>類義語分類名</th>
-      <th>単語</th>
-      <th>品詞</th>
-      <th>意味</th>
-    </tr>
-    </thead>
-    <%= render partial: 'relations/relations', locals: {relations: @relations} %>
-    </table>
-  <% end %>
-</div>
+
+<% if !@relations.nil? %>
+  <table class="table results">
+  <thead>
+  <tr>
+    <th></th>
+    <th>類義語分類名</th>
+    <th>単語</th>
+    <th>品詞</th>
+    <th>意味</th>
+  </tr>
+  </thead>
+  <%= render partial: 'relations/relations', locals: {relations: @relations} %>
+  </table>
+<% end %>

@@ -6,14 +6,14 @@ class AppearancesController < ApplicationController
   	@appearance = Appearance.new
 
     if params[:flg] == "0"
-      @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:format])
+      @lessons = Lesson.lessons_including_word(params[:format])
     end
 
   end
 
   def add_word_to_lesson
     @appearance = Appearance.new
-    @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:id])
+    @lessons = Lesson.lessons_including_word(params[:id])
   end
 
   def create
@@ -48,14 +48,14 @@ class AppearancesController < ApplicationController
   end
 
   def destroy
-    Appearance.find_by(appr_id: params[:id], word_id: params[:word_id]).destroy
+    Appearance.find_by(lesson_id: params[:id], word_id: params[:word_id]).destroy
     flash[:success] = "当LESSONから単語を削除しました。"
     redirect_to action: "lesson_in_words", controller: "words", id: params[:id]
   end
 
   private
   	def appearance_params
-  	  params.require(:appearance).permit(:word_id, :appr_id)
+  	  params.require(:appearance).permit(:word_id, :lesson_id)
   	end
 
     def get_lvs

@@ -1,25 +1,19 @@
 <h1><%= params[:titleWrd] %>：類義語登録/修正</h1>
-<div class="container">
-<% if logged_in? %>
-<div class="col-md-6 col-md-offset-3">
-  <ul class="nav nav-tabs">
+
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+  <ul class="pure-menu-list">
   	<% params[:id] ||= @relation.word_id %>
-    <li><%= link_to "単語", edit_word_path(params[:id], :exp_flg => params[:exp_flg]) %></li>
-    <li class="active"><%= link_to "類義語", "#" %></li>
-    <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg], :plural_flg => params[:plural_flg]) %></li>
+    <li class="pure-menu-item"><%= link_to "単語", edit_word_path(params[:id], :exp_flg => params[:exp_flg]), class: "pure-menu-link" %></li>
+    <li class="pure-menu-item pure-menu-disabled">類義語</li>
+    <li class="pure-menu-item"><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: params[:titleWrd], :exp_flg => params[:exp_flg], :plural_flg => params[:plural_flg]), class: "pure-menu-link" %></li>
     <% if params[:plural_flg] == "1" %>
-      <li><a href="#">複数形登録</a></li>
+      <li class="pure-menu-item pure-menu-disabled">複数形登録</li>
     <% end %>
   </ul>
+</div>
 
   <%= render partial: 'syn_detail', locals: {relations: @relations} %>
 
   <%= render partial: 'relations/relation_form', locals: {relation: @relation} %>
-
-</div>
-<% else %>
-  変更/修正を行うときはログインしてください。
-<% end %>
-</div>
 
 <%= render 'relations/tooltips' %>

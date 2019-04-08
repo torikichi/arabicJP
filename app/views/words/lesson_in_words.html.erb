@@ -1,30 +1,34 @@
-<ol class="breadcrumb">
-  <li><%= link_to "LV" + @lesson.lv.to_s, lessons_path %></li>
-  <li>
+<div class="pure-menu pure-menu-horizontal">
+<ul class="breadcrumb pure-menu-list">
+  <li class="pure-menu-item"><%= link_to "LV" + @lesson.lv.to_s, lessons_path %></li>
+  <li  class="pure-menu-item">
     <%= link_to cate_name(@lesson.category), lesson_path(:lv => @lesson.lv, :category => @lesson.category) %>
   </li>
-  <li class="active">LESSON <%= @lesson.lesson_no %> - <%= @lesson.lesson_seq %></li>
-</ol>
+  <li class="pure-menu-item pure-menu-disabled">
+    <span>LESSON <%= @lesson.lesson_no %> - <%= @lesson.lesson_seq %></span>
+  </li>
+</ul>
+</div>
 
 <h1><%= @lesson.lesson_name %></h1>
 
 <%= render 'shared/error_messages' %>
 
 <div id="op_area" class="pure-g">
-<div class="pure-u-1 pure-u-sm-2-3">
-  <%= page_entries_info @words %>
-</div>
+  <div class="pure-u-1 pure-u-sm-2-3">
+    <%= page_entries_info @words %>
+  </div>
 
-<div class="pure-u-1  pure-u-sm-1-3">
-<% if logged_in? %>
-  <%= link_to "単語を追加", new_appearance_path(params[:id]), class:"pure-button pure-button-primary", remote: true %>
-  <div id="appr_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-<% end %>
-
-  <%= link_to vocabulary_book_word_path(format: :csv), class:"pure-button pure-button-primary", id:"download-csv" do %>
-    単語一覧ダウンロード<span class="cloud-download-solid icon"><i></i></span>
+  <div class="pure-u-1  pure-u-sm-1-3">
+  <% if logged_in? %>
+    <%= link_to "単語を追加", new_appearance_path(params[:id]), class:"pure-button pure-button-primary", remote: true %>
+    <!--div id="appr_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div-->
   <% end %>
-</div>
+
+    <%= link_to vocabulary_book_word_path(format: :csv), class:"pure-button pure-button-primary", id:"download-csv" do %>
+      単語一覧ダウンロード<span class="cloud-download-solid icon"><i></i></span>
+    <% end %>
+  </div>
 </div>
 
 <table id="srch_result" class="pure-table pure-table-horizontal">

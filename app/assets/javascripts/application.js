@@ -14,7 +14,5 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-fieldselection
-//= require vkeyboard
-//= require bootstrap
 //= require turbolinks
 //= require_tree .

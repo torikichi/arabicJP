@@ -1,35 +1,27 @@
 <% provide(:button_text, '単語修正') %>
 
 <h1>単語情報変更/修正</h1>
-<div class="container">
-<% if logged_in? %>
-<div class="col-md-6 col-md-offset-3">
 
 <% plural_flg = plural_editable?(@word.plural_word_id ||= 0, @word.pos) ? 1 : 0 %>
 
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#">単語</a></li>
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+<ul class="pure-menu-list">
+  <li class="pure-menu-item pure-menu-disabled">単語</li>
   <% if @relations.present? %>
-  	<li><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg) %></li>
+  	<li class="pure-menu-item"><%= link_to "類義語", edit_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg), class: "pure-menu-link" %></li>
   <% else %>
-  	<li><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg) %></li>
+  	<li class="pure-menu-item"><%= link_to "類義語", new_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg), class: "pure-menu-link" %></li>
   <% end %>
-  <li><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg) %></li>
+  <li class="pure-menu-item"><%= link_to "対義語", edit_antonym_relation_path(params[:id], titleWrd: @word.word, :exp_flg => params[:exp_flg], :plural_flg => plural_flg), class: "pure-menu-link" %></li>
   <% if plural_editable?(@word.plural_word_id ||= 0, @word.pos) %>
-    <li><a href="#">複数形登録</a></li>
+    <li class="pure-menu-item pure-menu-disabled">複数形登録</li>
   <% end %>
+  <li class="pure-menu-item"><%= link_to "登場LESSON登録", add_word_to_lesson_appearance_path(params[:id], titleWrd: @word.word), class: "pure-menu-link" %></li>
+  <li class="pure-menu-item"><%= link_to "例文", examples_path(params[:id], :exp => @word.word), target:"_blank", class: "pure-menu-link" %>
+  </li>
 </ul>
-<p>※登場LESSONの登録は<%= link_to "ここ", add_word_to_lesson_appearance_path(params[:id], titleWrd: @word.word) %>から、例文の追加/修正は
-<% if params[:exp_flg] == "1" %>
-  <%= link_to "ここ", examples_path(params[:id], :exp => @word.word), target:"_blank" %>
-<% else %>
-  <%= link_to "ここ", new_word_example_path(params[:id], :exp => @word.word), target:"_blank" %>
-<% end %>
-から</p>
-</ul>
+</div>
+
 <%= render partial: 'words/word_form', locals: {word: @word} %>
-</div>
-<% else %>
-  変更/修正を行うときはログインしてください。
-<% end %>
-</div>
+
+

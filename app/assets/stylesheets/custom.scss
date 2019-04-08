@@ -1,9 +1,48 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import "purecss";
 
-header a {
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333333;
+}
+
+a {
   text-decoration: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+legend {
+  font-size: 21px;
+}
+
+dd {
+  margin-left: 0;
+}
+
+dt {
+  font-weight: 700;
+}
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .content {
@@ -22,11 +61,23 @@ header a {
   }
 }
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.pagenation {
+  width: 100%;
+  padding-inline-start: 0;
+  padding-left: 0;
 }
 
 #highlight {
@@ -36,6 +87,7 @@ header a {
 
 .kakutei {
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 #milaaha_head {
@@ -48,10 +100,19 @@ header a {
 
 .breadcrumb {
   background:transparent;
+  list-style-type: none;
+}
+
+.breadcrumb li {
+  padding-left: 0;
 }
 
 .breadcrumb li+li:before {
   content:'»';
+}
+
+.breadcrumb a, .breadcrumb span {
+  margin: 0 0.5em;
 }
 
 .fix_table {

@@ -1,13 +1,18 @@
 <h1><%= params[:titleWrd] %>：登場LESSON登録</h1>
-<div class="row">
-<% if logged_in? %>
-<div class="col-md-6 col-md-offset-3">
 
-  <table class="table results">
+<table id="each_word" class="pure-table fix_table">
   <caption>登場するLESSON：</caption>
+  <thead>
+  <tr>
+    <th>LV</th>
+    <th>科目</th>
+    <th>LESSON No.</th>
+    <th>LESSON名</th>
+  </tr>
+  </thead>
   <% @lessons.each do |l| %>
   <tr>
-    <td>LV：<%= l.lv %></td>
+    <td><%= l.lv %></td>
     <td>
     <% case l.category %>
       <% when READ_NO %>
@@ -26,27 +31,25 @@
     <td><%= l.lesson_name %></td>
   </tr>
   <% end %>
-  </table>
+</table>
 
-  <h4>新たにLESSONを登録：</h4>
-  <%= form_for(@appearance) do |f| %>
+<h4>新たにLESSONを登録：</h4>
+<%= form_for(@appearance, html: {class: "pure-form pure-form-stacked"}) do |f| %>
   <%= render 'shared/error_messages' %>
   <%= f.hidden_field :word_id, :value => params[:id] %>
-  <div>
-  	<label for="lv">LV：</label>
-  	<%= select_tag :lv, options_for_select(@lvs), :include_blank => true %>
-  </div>
-  <div>
-  	<label for="category">科目を選択：</label>
-  	<%= select_tag :category, options_for_select({CATE1 => 1, CATE2 => 2, CATE3 => 3, CATE5 => 5}), :include_blank => true %>
-  </div>
+
+	<label for="lv">LV：</label>
+	<%= select_tag :lv, options_for_select(@lvs), :include_blank => true %>
+
+	<label for="category">科目を選択：</label>
+	<%= select_tag :category, options_for_select({CATE1 => 1, CATE2 => 2, CATE3 => 3, CATE5 => 5}), :include_blank => true %>
+
   <div id="lesson_details">
   	<label for="lesson[id]">LESSONを選択：</label>
   </div>
-  <%= f.hidden_field :appr_id, :value => "" %>
-  <%= f.submit "LESSON登録", class: "btn btn-primary kakutei" %>
-  <% end %>
-</div>
+  <%= f.hidden_field :lesson_id, :value => "" %>
+  <%= f.submit "LESSON登録", class: "pure-button pure-button-primary kakutei" %>
+<% end %>
 
 <script type="text/javascript">
 $(function() {
@@ -92,12 +95,8 @@ function chngLesson(){
 
 function setLessonValue(){
   var lessonId = $('select#lesson_id').val();
-  $('#appearance_appr_id').val(lessonId);
+  $('#appearance_lesson_id').val(lessonId);
 }
 
 });
 </script>
-
-<% else %>
-  LESSONを登録するにはログインしてください。
-<% end %>

@@ -6,8 +6,6 @@ gem 'rails', '~> 5.2.2'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# bootstrap CSS
-gem 'bootstrap-sass', '~> 3.4.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'purecss-sass'
 gem 'uglifier', '>= 1.3.0'
@@ -17,8 +15,6 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 # Use kaminari pagenation
 gem 'kaminari'
-# Use kaminari bootstrap
-gem 'kaminari-bootstrap'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -89,6 +85,5 @@ group :test do
   gem "shoulda-matchers"
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
