@@ -203,7 +203,7 @@ GEM
     puma (3.12.0)
     purecss-sass (1.0.0)
       sass (>= 3.4)
-    rack (2.0.6)
+    rack (2.0.8)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.2.1)
@@ -357,6 +357,7 @@ DEPENDENCIES
   pg
   puma
   purecss-sass
+  rack (>= 2.0.8)
   rails (~> 5.2.2)
   rails_12factor
   rspec-rails
