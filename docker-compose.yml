@@ -1,0 +1,31 @@
+version: "3"
+services:
+  web:
+    build: .
+    env_file: .env
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - 3000:3000
+      - 8081:8081
+    depends_on:
+      - db
+    command: sh docker_bash.sh
+    tty: true
+    stdin_open: true
+
+  db:
+    image: postgres:14
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      TZ: Asia/Tokyo
+      PGTZ: Asia/Tokyo
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+volumes:
+  db_data:
+  bundle:

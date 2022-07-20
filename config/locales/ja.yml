@@ -20,13 +20,16 @@ ja:
         word_id: 類義語情報
       user:
         name: 名前
+        password: パスワード
+        password_confirmation: パスワード確認
     errors:
       messages:
         blank: が未入力です。
         invalid: が不正です。
-        too_short: の文字数が短すぎます。2〜4文字で入力してください。
-        too_long: の文字数が長すぎます。2〜4文字で入力してください。
-        taken: が重複しています。
+        too_short: が短すぎます。
+        too_long: が長すぎます。
+        taken: は既に使用されています。
+        confirmation: が一致しません。
   views:
     pagination:
       first: "&laquo;"

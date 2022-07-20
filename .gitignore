@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -17,17 +18,21 @@
 !/log/.keep
 !/tmp/.keep
 
-/public/assets/**
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+/public/assets
+/public/packs
+/public/uploads
 
 /node_modules
 /yarn-error.log
 
+.env
+.env.*
+
 .DS_Store
 .byebug_history
 yarn.lock
-
-# Ignore environmental config files.
-/config/environments/development.rb
-/config/environments/production.rb
-/config/database.yml
-/config/puma.rb

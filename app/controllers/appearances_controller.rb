@@ -17,9 +17,9 @@ class AppearancesController < ApplicationController
   end
 
   def create
-  	@appearance = Appearance.new(appearance_params)
+  	appearance = Appearance.new(appearance_params)
 
-  	if @appearance.save
+  	if appearance.save
   	  flash[:success] = "登場単語・LESSONを登録しました。"
   	  redirect_to action: "lesson_in_words", controller: "words", id: @appearance.appr_id
   	else
@@ -27,7 +27,7 @@ class AppearancesController < ApplicationController
         @lessons = Lesson.eager_load(:appearances).where("word_id=?", params[:word_id])
         render 'add_word_to_lesson'
       else
-        @choisedLesson = Lesson.find(@appearance.appr_id)
+        @choisedLesson = Lesson.find(appearance.appr_id)
         @words = Word.eager_load(:appearances, :examples).where("appr_id=?", @appearance.appr_id).page(params[:page])
   	    render 'words/lesson_in_words'
       end
