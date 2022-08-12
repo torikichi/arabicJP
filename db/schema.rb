@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,8 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_084838) do
-
+ActiveRecord::Schema.define(version: 20_220_718_084_838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_084838) do
     t.bigint "word_id"
     t.bigint "lesson_id"
     t.index ["lesson_id"], name: "index_appearances_on_lesson_id"
-    t.index ["word_id", "lesson_id"], name: "index_appearances_on_word_id_and_lesson_id", unique: true
+    t.index %w[word_id lesson_id], name: "index_appearances_on_word_id_and_lesson_id", unique: true
     t.index ["word_id"], name: "index_appearances_on_word_id"
   end
 
@@ -55,7 +56,8 @@ ActiveRecord::Schema.define(version: 2022_07_18_084838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "word_id"
-    t.index ["rel_id", "word_id", "syn_ant_cd"], name: "index_relations_on_rel_id_and_word_id_and_syn_ant_cd", unique: true
+    t.index %w[rel_id word_id syn_ant_cd], name: "index_relations_on_rel_id_and_word_id_and_syn_ant_cd",
+                                           unique: true
     t.index ["word_id"], name: "index_relations_on_word_id"
   end
 
@@ -77,6 +79,14 @@ ActiveRecord::Schema.define(version: 2022_07_18_084838) do
     t.index ["activation_token"], name: "index_users_on_activation_token"
   end
 
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+    t.index %w[foreign_key_name foreign_key_id], name: "index_version_associations_on_foreign_key"
+    t.index ["version_id"], name: "index_version_associations_on_version_id"
+  end
+
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
@@ -84,7 +94,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_084838) do
     t.string "whodunnit"
     t.text "object"
     t.datetime "created_at"
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index %w[item_type item_id], name: "index_versions_on_item_type_and_item_id"
   end
 
   create_table "words", force: :cascade do |t|
@@ -96,7 +106,8 @@ ActiveRecord::Schema.define(version: 2022_07_18_084838) do
     t.integer "plural_word_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["word", "word_with_pron", "meaning", "root"], name: "index_words_on_word_and_word_with_pron_and_meaning_and_root"
+    t.index %w[word word_with_pron meaning root],
+            name: "index_words_on_word_and_word_with_pron_and_meaning_and_root"
   end
 
   add_foreign_key "appearances", "lessons"

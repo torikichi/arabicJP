@@ -1,12 +1,14 @@
-class RelationsController < ApplicationController
-  before_action :require_login, only: [:add_synonym, :edit, :update, :new, :create, :edit_antonym, :entry_antonym]
+# frozen_string_literal: true
 
-  # 類義語検索	
+class RelationsController < ApplicationController
+  before_action :require_login, only: %i[add_synonym edit update new create edit_antonym entry_antonym]
+
+  # 類義語検索
   def synonym
     @words = Word.get_synonyms(params[:id], 1)
 
     @words = Kaminari.paginate_array(@words).page(params[:page])
-  	render '/lessons/home'
+    render "/lessons/home"
   end
 
   # 対義語検索
@@ -14,17 +16,19 @@ class RelationsController < ApplicationController
     @words = Word.get_antonyms(params[:id], params[:ant_contrast_cd])
 
     @words = Kaminari.paginate_array(@words).page(params[:page])
-  	render '/lessons/home'
+    render "/lessons/home"
   end
 
   def add_synonym
-    @relations = Relation.find_by_sql(["select r.*, w.word as word, w.pos as pos, w.meaning as meaning from relations r left outer join words w on r.word_id=w.id where w.word=? and r.syn_ant_cd=?", params[:srchSyn], params[:id]])
+    @relations = Relation.find_by_sql([
+      "select r.*, w.word as word, w.pos as pos, w.meaning as meaning from relations r left outer join words w on r.word_id=w.id where w.word=? and r.syn_ant_cd=?", params[:srchSyn], params[:id]
+    ])
 
     case params[:id]
     when "1"
-      render '/relations/synsub'
+      render "/relations/synsub"
     when "2"
-      render '/relations/antosub'
+      render "/relations/antosub"
     end
   end
 
@@ -38,9 +42,9 @@ class RelationsController < ApplicationController
 
     if @relation.save
       flash[:success] = "新たな類義語を登録しました。"
-      redirect_to action: 'edit', id: @relation.word_id
+      redirect_to action: "edit", id: @relation.word_id
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -53,10 +57,10 @@ class RelationsController < ApplicationController
 
     if @relation.save
       flash[:success] = "新たな類義語を登録しました。"
-      redirect_to action: 'edit', id: @relation.word_id
+      redirect_to action: "edit", id: @relation.word_id
     else
       @relations = Relation.where("word_id=?", @relation.word_id)
-      render :action => "edit", :controller => "relations", :id => @relation.word_id
+      render action: "edit", controller: "relations", id: @relation.word_id
     end
   end
 
@@ -75,32 +79,28 @@ class RelationsController < ApplicationController
       @relation.ant_contrast_cd = 0
     else
       flash.now[:danger] = "対義語を指定してください。"
-      render 'edit_antonym'
+      render "edit_antonym"
       return
     end
 
     if @relation.save
       flash[:success] = "新たな対義語を登録しました。"
-      redirect_to action: 'edit_antonym', id: @relation.word_id
+      redirect_to action: "edit_antonym", id: @relation.word_id
     else
       @relations = Relation.where("word_id=?", @relation.word_id)
-      render :action => "edit_antonym", :controller => "relations", :id => @relation.word_id
+      render action: "edit_antonym", controller: "relations", id: @relation.word_id
     end
-
   end
 
   # 類義語サブウィンドウOPEN
-  def synsub
-    
-  end
+  def synsub; end
 
   # 対義語サブウィンドウOPEN
-  def antosub
-    
-  end
+  def antosub; end
 
   private
-    def relation_params
-      params.require(:relation).permit(:rel_id, :word_id, :syn_ant_cd, :ant_contrast_cd, :type_name)
-    end
+
+  def relation_params
+    params.require(:relation).permit(:rel_id, :word_id, :syn_ant_cd, :ant_contrast_cd, :type_name)
+  end
 end

@@ -39,7 +39,7 @@
   <%= f.hidden_field :word_id, :value => params[:id] %>
 
 	<label for="lv">LV：</label>
-	<%= select_tag :lv, options_for_select(@lvs), :include_blank => true %>
+	<%= select_tag :lv, options_for_select(@levels), :include_blank => true %>
 
 	<label for="category">科目を選択：</label>
 	<%= select_tag :category, options_for_select({CATE1 => 1, CATE2 => 2, CATE3 => 3, CATE5 => 5}), :include_blank => true %>

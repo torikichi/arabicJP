@@ -1,14 +1,16 @@
-# config valid only for current version of Capistrano
-lock '3.11.0'
+# frozen_string_literal: true
 
-set :application, 'arabicJP'
-set :repo_url, 'git@github.com:torikichi/arabicJP.git'
+# config valid only for current version of Capistrano
+lock "3.11.0"
+
+set :application, "arabicJP"
+set :repo_url, "git@github.com:torikichi/arabicJP.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
- set :deploy_to, '/var/www/milaaha/arabicJP'
+set :deploy_to, "/var/www/milaaha/arabicJP"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -30,10 +32,11 @@ set :puma_preload_app, false
 set :prune_bundler, true
 
 # Default value for :linked_files is []
-append :linked_files, 'config/puma.rb', 'config/database.yml', 'config/secrets.yml', 'config/environments/production.rb', 'Gemfile', 'Gemfile.lock'
+append :linked_files, "config/puma.rb", "config/database.yml", "config/secrets.yml",
+       "config/environments/production.rb", "Gemfile", "Gemfile.lock"
 
 # Default value for linked_dirs is []
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'spec'
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "spec"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -41,12 +44,12 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'spec'
 # Default value for keep_releases is 5
 set :keep_releases, 3
 
-set :rbenv_ruby, '2.4.2'
+set :rbenv_ruby, "2.4.2"
 
 task :restart do
   on roles(:app) do
     # Your restart mechanism here, for example:
     # execute :touch, release_path.join('tmp/restart.txt')
-    invoke 'puma:phased-restart'
+    invoke "puma:phased-restart"
   end
 end

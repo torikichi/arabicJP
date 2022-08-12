@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # 科目区分値(整数)
 READ_NO = 1
 WRITE_NO = 2
@@ -18,7 +20,7 @@ CATEGORY5 = "Supplement"
 CATEGORY5_AR = "قصة هوندا"
 
 # 科目略称
-CATE1 = "読解"	
+CATE1 = "読解"
 CATE2 = "作文"
 CATE3 = "会話"
 CATE4 = "文法"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRelations < ActiveRecord::Migration[5.2]
   def change
     create_table :relations do |t|
@@ -12,6 +14,6 @@ class CreateRelations < ActiveRecord::Migration[5.2]
       t.references :word, foreign_key: true
     end
 
-    add_index :relations, [:rel_id, :word_id, :syn_ant_cd], unique: true
+    add_index :relations, %i[rel_id word_id syn_ant_cd], unique: true
   end
 end

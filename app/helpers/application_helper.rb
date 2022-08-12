@@ -1,103 +1,81 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   # ページに応じたタイトルを返す
   def page_titles(action_name, controller_name)
-  	divider = " | "
-  	baseTitle = "アラビア語検索ナビ MilaaHa"
+    divider = " | "
+    base_title = "アラビア語検索ナビ MilaaHa"
 
-  	if controller_name == "lessons" && action_name == "index"
-  	  return "単元別単語メニュー#{divider}#{baseTitle}"
-  	elsif controller_name == "lessons" && action_name == "show"
-  	  return "LV#{params[:lv]}テキスト#{divider}#{baseTitle}"
+    if controller_name == "lessons" && action_name == "index"
+      return "単元別単語メニュー#{divider}#{base_title}"
+    elsif controller_name == "lessons" && action_name == "show"
+      return "LV#{params[:lv]}テキスト#{divider}#{base_title}"
     elsif controller_name == "examples" && action_name == "index"
-      return "例文：#{params[:exp]}#{divider}#{baseTitle}"
-  	end
-
-    if controller_name == "users" && action_name == "new"
-      return "新規ユーザー登録#{divider}#{baseTitle}"
+      return "例文：#{params[:exp]}#{divider}#{base_title}"
     end
 
-    if controller_name == "users" && action_name == "index"
-      return "登録ユーザー一覧#{divider}#{baseTitle}"
-    end
+    return "新規ユーザー登録#{divider}#{base_title}" if controller_name == "users" && action_name == "new"
 
-    if controller_name == "versions" && action_name == "index"
-      return "履歴一覧#{divider}#{baseTitle}"
-    end
+    return "登録ユーザー一覧#{divider}#{base_title}" if controller_name == "users" && action_name == "index"
 
-    if controller_name == "versions" && action_name == "show"
-      return "履歴詳細#{divider}#{baseTitle}"
-    end
+    return "履歴一覧#{divider}#{base_title}" if controller_name == "versions" && action_name == "index"
 
-    if controller_name == "words" && action_name == "new"
-      return "新規単語登録#{divider}#{baseTitle}"
-    end
+    return "履歴詳細#{divider}#{base_title}" if controller_name == "versions" && action_name == "show"
 
-    if controller_name == "examples" && action_name == "new"
-      return "例文追加：#{params[:exp]}#{divider}#{baseTitle}"
-    end
+    return "新規単語登録#{divider}#{base_title}" if controller_name == "words" && action_name == "new"
 
-    if controller_name == "relations" && action_name == "new"
-      return "類義語登録#{divider}#{baseTitle}"
-    end
+    return "例文追加：#{params[:exp]}#{divider}#{base_title}" if controller_name == "examples" && action_name == "new"
 
-    if controller_name == "sessions"
-      return "ログイン#{divider}#{baseTitle}"
-    end
+    return "類義語登録#{divider}#{base_title}" if controller_name == "relations" && action_name == "new"
 
-    if controller_name == "appearances" && action_name == "new"
-      return "登場単語登録#{divider}#{baseTitle}"
-    end
+    return "ログイン#{divider}#{base_title}" if controller_name == "sessions"
 
-    if controller_name == "users" && action_name == "show"
-      return "ユーザー情報#{divider}#{baseTitle}"
-    end
+    return "登場単語登録#{divider}#{base_title}" if controller_name == "appearances" && action_name == "new"
 
-  	case action_name
-  	when "home"
-	  return baseTitle
-  	when "words_roots"
-  	  return "語根 #{params[:id]} 検索結果#{divider}#{baseTitle}"
-  	when "synonym"
-  	  return "類義語検索結果#{divider}#{baseTitle}"
-  	when "antonym"
-  	  return "対義語検索結果#{divider}#{baseTitle}"
-  	when "index"
-  	  return "単語 #{params[:srch_word]} 検索結果#{divider}#{baseTitle}"
-  	when "word_in_lessons"
-  	  return "登場箇所#{divider}#{baseTitle}"
-  	when "lesson_in_words"
-  	  return "LESSON内単語一覧#{divider}#{baseTitle}"
+    return "ユーザー情報#{divider}#{base_title}" if controller_name == "users" && action_name == "show"
+
+    case action_name
+    when "home"
+      base_title
+    when "words_roots"
+      "語根 #{params[:id]} 検索結果#{divider}#{base_title}"
+    when "synonym"
+      "類義語検索結果#{divider}#{base_title}"
+    when "antonym"
+      "対義語検索結果#{divider}#{base_title}"
+    when "index"
+      "単語 #{params[:srch_word]} 検索結果#{divider}#{base_title}"
+    when "word_in_lessons"
+      "登場箇所#{divider}#{base_title}"
+    when "lesson_in_words"
+      "LESSON内単語一覧#{divider}#{base_title}"
     when "edit"
-      return "編集メニュー#{divider}#{baseTitle}"
+      "編集メニュー#{divider}#{base_title}"
     when "synsub"
-      return "登録用類義語検索"
+      "登録用類義語検索"
     when "edit_antonym"
-      return "対義語登録#{divider}#{baseTitle}"
+      "対義語登録#{divider}#{base_title}"
     when "antosub"
-      return "登録用対義語検索"
+      "登録用対義語検索"
     when "add_synonym"
-      return "検索結果"
+      "検索結果"
     when "add_word_to_lesson"
-      return "登場LESSON登録#{divider}#{baseTitle}"
-  	end
+      "登場LESSON登録#{divider}#{base_title}"
+    end
   end
 
   # LESSON系画面からの遷移かどうかを判定する
-  def lesson_menu?(action_name, controller_name)
-    false
+  def lesson_menu?(_action_name, _controller_name)
     params[:action] == "show" && params[:controller] == "lessons"
   end
 
   # LESSON内単語一覧もしくはLESSON内登場単語登録からの遷移かどうかを判定する
   def lesson_in_words?(action_name, controller_name)
-    false
-    (action_name  == "lesson_in_words") || (action_name == "create" && controller_name == "appearances")
+    (action_name == "lesson_in_words") || (action_name == "create" && controller_name == "appearances")
   end
 
   # 現在の画面がサブウィンドウかどうかを判定する
-  def sub_window?(action_name)
-    false
+  def sub_window?(_action_name)
     params[:action] == "antosub" or params[:action] == "synsub" or params[:action] == "add_synonym"
   end
-
 end

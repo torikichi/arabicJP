@@ -1,7 +1,9 @@
-require 'csv'
+# frozen_string_literal: true
+
+require "csv"
 
 CSV.generate do |csv|
-  csv_column_names = %w(単語 読み 品詞 意味 語根)
+  csv_column_names = %w[単語 読み 品詞 意味 語根]
   csv << csv_column_names
   @words.each do |word|
     csv_column_values = [

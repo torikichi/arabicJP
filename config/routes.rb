@@ -1,31 +1,33 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :password_resets
 
-  get 'lessons/home'
-  
-  root 'lessons#home'
-  
+  get "lessons/home"
+
+  root "lessons#home"
+
   # 類義語/対義語サブウィンドウ
-  get 'relations/synsub'
-  get 'relations/antosub'
-  
-  get 'appearances/srch_words_to_lesson'
-  post 'appearances/srch_words_to_lesson'
-  
+  get "relations/synsub"
+  get "relations/antosub"
+
+  get "appearances/srch_words_to_lesson"
+  post "appearances/srch_words_to_lesson"
+
   # sorcery対応 --start--
   resources :sessions
   resources :users do
     member do
       get :activate
-    end    
+    end
   end
-  get 'login' => 'sessions#new', :as => :login
-  get 'logout' => 'sessions#destroy', :as => :logout
+  get "login" => "sessions#new", :as => :login
+  get "logout" => "sessions#destroy", :as => :logout
   # sorcery対応 --end--
-  
-  resources :versions, only: [:index, :show]
-  
+
+  resources :versions, only: %i[index show]
+
   resources :lessons do
     member do
       get :word_in_lessons
@@ -52,8 +54,8 @@ Rails.application.routes.draw do
 
   resources :appearances do
     member do
-      get :add_word_to_lesson, :get_lesson_list
-      post :get_lesson_list
+      get :add_word_to_lesson, :lesson_list
+      post :lesson_list
     end
   end
 end

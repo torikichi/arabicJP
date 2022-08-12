@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -5,35 +7,34 @@ ruby "3.0.4"
 
 gem "rails", "~> 6.1"
 # gem "rack", ">= 2.0.8"
-gem "rubyzip", ">= 1.3.0"
 gem "pg"
+gem "rubyzip", ">= 1.3.0"
 gem "simpacker"
 # gem "purecss-sass"
+gem "enum_help"
 gem "kaminari"
 gem "ransack"
-gem "enum_help"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
 # Use paper_trail for versioning histories of records
 gem "paper_trail"
 
 # Magical Authentication for Rails
-gem "sorcery"
 gem "puma", "~> 5.6"
-
+gem "sorcery"
 
 group :development, :test do
   gem "byebug"
-  gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
+  gem "rspec-rails"
   # Guard::RSpec allows to automatically & intelligently launch specs when files are modified
   # gem "guard-rspec"
-  gem "rubocop", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-performance", require: false
   gem "dotenv-rails"
   gem "i18n-tasks"
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
 end
 
 group :development do
@@ -50,9 +51,9 @@ group :development do
   gem "bullet"
 
   # Use Capistrano for deployment
+  gem "capistrano3-puma"
   gem "capistrano-rails"
   gem "capistrano-rbenv"
-  gem "capistrano3-puma"
 end
 
 group :test do

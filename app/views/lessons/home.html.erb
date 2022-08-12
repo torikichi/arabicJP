@@ -1,14 +1,15 @@
-<%= form_tag(words_path, method: "get", class:"pure-form pure-form-stacked") do %>
+<%#= form_tag(words_path, method: "get", class:"pure-form pure-form-stacked") do %>
+<%= search_form_for @q, url: words_path, method: :get, class: "" do |form| %>
   <fieldset>
     <legend><%= action_title(params[:action]) %></legend>
-    <% if params[:action] == "home" %>
-    <%= text_field_tag(:srch_word, "", placeholder: "アラビア語または日本語を入力", id:"search", class:"pure-input-2-3 pure-input-rounded", autofocus:true) %>
-    <%= submit_tag("通常検索", class:"pure-button pure-button-primary", id:"search-btn") %>
-    <%= submit_tag("日本語検索", class:"pure-button pure-button-active", name:"srch_in_jpn") %>
+    <%# if params[:action] == "home" %>
+    <%= form.search_field :word_cont, placeholder: "アラビア語または日本語を入力", id:"search", class:"pure-input-2-3 pure-input-rounded", autofocus: true %>
+    <%= form.submit "通常検索", class: "button is-primary", id:"search-btn" %>
+    <%#= submit_tag("日本語検索", class: "button is-info", name:"srch_in_jpn") %>
     <div class="tbl_space">
-      <%= link_to "※アラビア語の入力方法について", "https://tori-kichi.com/blog/?p=1315", target:"_blank" %>
+      <%= link_to "※アラビア語の入力方法について", "https://tori-kichi.com/blog/?p=1315", class: "button is-white", target:"_blank" %>
     </div>
-    <% end %>
+    <%# end %>
   </fieldset>
 <% end %>
 

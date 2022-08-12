@@ -1,0 +1,35 @@
+AllCops:
+  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
+  # to ignore them, so only the ones explicitly set in this file are enabled.
+  Exclude:
+    - '**/node_modules/**/*'
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - '**/tmp/**/*'
+    - 'config/**/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'db/webrs_schema.rb'
+    - 'bin/**/*'
+    - 'spec/*'
+    - 'test/*'
+    - 'Rakefile'
+    - 'config.ru'
+
+Style/Documentation:
+  Enabled: false
+# Check quotes usage according to lint rule below.
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Metrics/MethodLength:
+  Enabled: false
+  CountComments: false  # count full line comments?
+  Max: 200
+
+Metrics/BlockLength:
+  Enabled: false
+  Exclude:
+    - '*'
+  Max: 100
